@@ -1,4 +1,4 @@
-const { http } = require("./baseService");
+import { http } from "./baseService";
 
 class ProductService {
     getProductByKeyword = (keyword) => http.get(`/api/Product${keyword ? `?keyword=${keyword}` : ''}`);

@@ -1,0 +1,76 @@
+:root {
+  --black: #000;
+  --white: #fff;
+
+  --font-family-base: 'Josefin Sans', sans-serif;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 24px;
+  --font-size-xlg: 32px;
+
+  --color-primary: #cc0201;
+  --color-secondary: #121212;
+  --color-text-base: #121212;
+  --color-error: #e46a76;
+
+  --max-width: 1440px;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: 400;
+  color: var(--color-text-base);
+  background-color: var(--white);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  font-family: var(--font-family-base);
+  background-color: transparent;
+}
+
+// Fonts embeded
+@font-face {
+  font-family: Josefin Sans;
+  src: url('/assets/fonts/JosefinSans-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: Josefin Sans;
+  src: url('/assets/fonts/JosefinSans-Regular.ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: Josefin Sans;
+  src: url('/assets/fonts/JosefinSans-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: Josefin Sans;
+  src: url('/assets/fonts/JosefinSans-SemiBold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: Josefin Sans;
+  src: url('/assets/fonts/JosefinSans-Bold.ttf');
+  font-weight: 700;
+}

@@ -1,51 +1,58 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+
 import { productService } from "services/productService";
 
-class ProductThunkAction {
+class ProductThunk {
     getProductByKeyword = createAsyncThunk(
-        'productReducer/getProductByKeyword',
+        'productAPI/getProductByKeyword',
         async (keyword) => {
             const response = await productService.getProductByKeyword(keyword);
             return response.data.content;
         }
     );
+
     getProductByCategory = createAsyncThunk(
-        'productReducer/getProductByCategory',
+        'productAPI/getProductByCategory',
         async (categoryId) => {
             const response = await productService.getProductByCategory(categoryId);
             return response.data.content;
         }
     );
+
     getProductByFeature = createAsyncThunk(
-        'productReducer/getProductByFeature',
+        'productAPI/getProductByFeature',
         async (feature) => {
             const response = await productService.getProductByFeature(feature);
             return response.data.content;
         }
     );
+
     getAllCategory = createAsyncThunk(
-        'productReducer/getAllCategory',
+        'productAPI/getAllCategory',
         async (keyword) => {
             const response = await productService.getAllCategory(keyword);
             return response.data.content;
         }
     );
+
     getPaging = createAsyncThunk(
-        'productReducer/getPaging',
+        'productAPI/getPaging',
         async ({ pageIndex, pageSize, keywords } = {}) => {
             const response = await productService.getPaging(pageIndex, pageSize, keywords);
             return response.data.content;
         }
     );
+
     getProductById = createAsyncThunk(
-        'productReducer/getProductById',
+        'productAPI/getProductById',
         async (id) => {
             const response = await productService.getProductById(id);
             return response.data.content;
         }
     );
+
     getAllStore = createAsyncThunk(
-        'productReducer/getAllStore',
+        'productAPI/getAllStore',
         async (keyword) => {
             const response = await productService.getAllStore(keyword);
             return response.data.content;
@@ -53,4 +60,4 @@ class ProductThunkAction {
     );
 }
 
-export const productThunkAction = new ProductThunkAction();
+export const productThunk = new ProductThunk();

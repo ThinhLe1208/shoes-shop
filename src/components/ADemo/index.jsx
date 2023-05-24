@@ -1,14 +1,13 @@
 import React from 'react';
 
 import styles from './styles.module.scss';
-import SignInForm from 'components/SignInForm';
 
-const Login = () => {
+const Demo = () => {
   return (
     <div className={styles.wrapper}>
-      <SignInForm />
+      <p>Demo</p>
     </div>
   );
 };
 
-export default Login;
+export default Demo;

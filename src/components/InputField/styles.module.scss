@@ -1,0 +1,16 @@
+.wrapper {
+  .label {
+    display: block;
+    font-weight: 600;
+    margin-left: 2px;
+    margin-bottom: 6px;
+  }
+
+  .input {
+    padding-left: 12px;
+    padding-right: 12px;
+    font-family: var(--font-family-base);
+    font-size: 14px;
+    border-radius: 6px;
+  }
+}

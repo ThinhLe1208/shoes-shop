@@ -2,17 +2,25 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './styles.module.scss';
-import { productThunkAction } from 'redux/thunkActions/productThunkAction';
+import { productThunk } from 'redux/thunks/productThunk';
+import Carousel from 'components/Carousel';
+import Collection from 'components/Collection';
 
-export default function Index() {
+const Index = () => {
   const dispatch = useDispatch();
-
-  const { storeList } = useSelector((state) => state.productReducer);
+  const productByKeywordList = useSelector((state) => state.productSlice.productByKeywordList);
+  console.log('Index ~ productByKeywordList:', productByKeywordList);
 
   useEffect(() => {
-    dispatch(productThunkAction.getAllStore());
+    dispatch(productThunk.getProductByKeyword());
   }, [dispatch]);
 
-  console.log(storeList);
-  return <div>Index</div>;
-}
+  return (
+    <div className={styles.wrapper}>
+      <Carousel productList={productByKeywordList} />
+      {/* <Collection productList={productByKeywordList} /> */}
+    </div>
+  );
+};
+
+export default Index;

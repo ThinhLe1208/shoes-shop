@@ -1,14 +1,13 @@
 import React from 'react';
 
 import styles from './styles.module.scss';
-import SignInForm from 'components/SignInForm';
 
-const Login = () => {
+const Media = ({ product }) => {
   return (
     <div className={styles.wrapper}>
-      <SignInForm />
+      <img src={product.image} alt='img' />
     </div>
   );
 };
 
-export default Login;
+export default Media;

@@ -2,6 +2,8 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
-export default function Carts() {
+const Carts = () => {
   return <div>Carts</div>;
-}
+};
+
+export default Carts;
