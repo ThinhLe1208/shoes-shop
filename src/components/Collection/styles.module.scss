@@ -1,2 +1,28 @@
 .wrapper {
+  .left,
+  .right {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: red;
+  }
+
+  .right {
+    margin-left: 8px;
+  }
+
+  .header {
+    margin-bottom: 16px;
+
+    .title,
+    .subTitle {
+      font-size: var(--font-size-xlg);
+      font-weight: 700;
+    }
+
+    .title {
+      color: var(--color-primary);
+      margin-right: 10px;
+    }
+  }
 }

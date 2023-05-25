@@ -2,28 +2,19 @@
   position: fixed;
   inset: 0 0 auto 0;
   background-color: transparent;
+  padding: 24px 0;
+  transition: all linear 0.2s;
   z-index: 999;
 
-  .container {
-    max-width: var(--max-width);
-    display: flex;
-    justify-content: space-between;
+  &.fixed {
     padding: 18px 0;
-    margin: 0 auto;
-  }
-
-  .logo {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex: 0 0 25%;
+    background-color: #161616;
   }
 
   .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    flex: 0 0 50%;
 
     ul {
       width: 100%;
@@ -33,19 +24,20 @@
 
       a {
         color: var(--white);
-        font-size: calc(var(--font-size-md) + 2px);
+        font-size: var(--font-size-md);
+        font-weight: 600;
         margin: 0px 15px;
         padding: 12px 0px;
         text-align: center;
         text-transform: capitalize;
         transition: all linear 0.2s;
 
-        & + & {
-          margin-left: 15px;
-        }
-
         &:hover {
           color: var(--color-primary);
+        }
+
+        & + & {
+          margin-left: 15px;
         }
       }
     }
@@ -54,30 +46,20 @@
   .icons {
     display: flex;
     align-items: center;
-    flex: 0 0 25%;
 
-    ul {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+    span {
+      color: var(--white);
+      font-size: var(--font-size-lg);
+      cursor: pointer;
+      transition: all linear 0.2s;
 
-      li {
-        display: inline-block;
-        color: var(--white);
-        font-size: var(--font-size-lg);
-        margin-left: 15px;
-        transition: all linear 0.2s;
-        cursor: pointer;
-
-        & + & {
-          margin-left: 15px;
-        }
-
-        &:hover {
-          color: var(--color-primary);
-        }
+      &:hover {
+        color: var(--color-primary);
       }
+    }
+
+    span + span {
+      margin-left: 20px;
     }
   }
 }

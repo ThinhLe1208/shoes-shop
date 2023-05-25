@@ -1,20 +1,61 @@
 import { http } from "./baseService";
 
 class ProductService {
-    getProductByKeyword = (keyword) => http.get(`/api/Product${keyword ? `?keyword=${keyword}` : ''}`);
+    getProductByKeyword = (keyword) => {
+        let url = '/api/Product';
+        if (keyword) {
+            url += `?keyword=${keyword}`;
+        }
+        return http.get(url);
+    };
 
-    getProductByCategory = (categoryId) => http.get(`/api/Product/getProductByCategory${categoryId ? `?categoryId=${categoryId}` : ''}`);
+    getProductByCategory = (categoryId) => {
+        let url = '/api/Product/getProductByCategory';
+        if (categoryId) {
+            url += `?categoryId=${categoryId}`;
+        }
+        return http.get(url);
+    };
 
-    getProductByFeature = (feature) => http.get(`/api/Product/getProductByFeature${feature ? `?feature=${feature}` : ''}`);
+    getProductByFeature = (feature) => {
+        let url = '/api/Product/getProductByFeature';
+        if (feature) {
+            url += `?feature=${feature}`;
+        }
+        return http.get(url);
+    };
 
-    getAllCategory = (keyword) => http.get(`/api/Product/getAllCategory${keyword ? `?keyword=${keyword}` : ''}`);
+    getAllCategory = (keyword) => {
+        let url = '/api/Product/getAllCategory';
+        if (keyword) {
+            url += `?keyword=${keyword}`;
+        }
+        return http.get(url);
+    };
 
-    getPaging = (pageIndex, pageSize, keywords) => http.get(`/api/Product/getpaging${pageIndex ? `?pageIndex=${pageIndex}` : ''}${pageSize ? `&pageSize=${pageSize}` : ''}${keywords ? `&keywords=${keywords}` : ''}`);
+    getPaging = (pageIndex, pageSize, keywords) => {
+        let url = `/api/Product/getpaging?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+        if (keywords) {
+            url += `&keywords=${keywords}`;
+        }
+        return http.get(url);
+    };
 
-    getProductById = (id) => http.get(`/api/Product/getbyid${id ? `?id=${id}` : ''}`);
+    getProductById = (id) => {
+        let url = '/api/Product/getbyid';
+        if (id) {
+            url += `?id=${id}`;
+        }
+        return http.get(url);
+    };
 
-    getAllStore = (keyword) => http.get(`/api/Product/getAllStore${keyword ? `?keyword=${keyword}` : ''}`);
-
+    getAllStore = (keyword) => {
+        let url = '/api/Product/getAllStore';
+        if (keyword) {
+            url += `?keyword=${keyword}`;
+        }
+        return http.get(url);
+    };
 }
 
 export const productService = new ProductService();

@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { productThunk } from 'redux/thunks/productThunk';
 import Carousel from 'components/Carousel';
 import Collection from 'components/Collection';
+import Container from 'components/Container';
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,9 @@ const Index = () => {
   return (
     <div className={styles.wrapper}>
       <Carousel productList={productByKeywordList} />
-      {/* <Collection productList={productByKeywordList} /> */}
+      <Container>
+        <Collection productList={productByKeywordList} title='Special Shoes' subTitle='Collection' />
+      </Container>
     </div>
   );
 };
