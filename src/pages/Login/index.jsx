@@ -5,7 +5,10 @@ import SignInForm from 'components/SignInForm';
 
 const Login = () => {
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      style={{ paddingTop: '140px' }}
+    >
       <SignInForm />
     </div>
   );

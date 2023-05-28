@@ -1,12 +1,11 @@
 {
   "token": {
     "colorPrimary": "#cc0201",
-    "colorError": "#e46a76",
-    "colorWarning": "#fec90f",
-    "colorSuccess": "#00c292",
-    "colorInfo": "#03c9d7",
+    "colorLink": "#121212",
+    "colorLinkHover": "#cc0201",
 
     "fontFamily": "Josefin Sans",
+    "fontSize": "16px",
 
     "colorBgTextHover": "rgba(0, 0, 0, 0.02)",
     "colorBgSpotlight": "#cc0201"

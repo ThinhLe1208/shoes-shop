@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
 import { productThunk } from 'redux/thunks/productThunk';
 import Carousel from 'components/Carousel';
-import Collection from 'components/Collection';
+import Collection from 'components/Slider';
 import Container from 'components/Container';
 
 const Index = () => {

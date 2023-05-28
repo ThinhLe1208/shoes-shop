@@ -1,10 +1,11 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Col, Row } from 'antd';
-import { SearchOutlined, UserOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { SearchOutlined, HeartOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 import Container from 'components/Container';
+import HeaderUserMenu from 'components/HeaderUserMenu';
 
 const Header = () => {
   const div = useRef();
@@ -26,9 +27,15 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={styles.wrapper} ref={div}>
+    <div
+      className={styles.wrapper}
+      ref={div}
+    >
       <Container>
-        <Row justify={'space-between'} align={'middle'}>
+        <Row
+          justify={'space-between'}
+          align={'middle'}
+        >
           <Col>
             <Link to='/'>
               <img
@@ -66,7 +73,7 @@ const Header = () => {
           <Col>
             <div className={styles.icons}>
               <SearchOutlined />
-              <UserOutlined />
+              <HeaderUserMenu />
               <HeartOutlined />
               <ShoppingCartOutlined />
             </div>

@@ -5,10 +5,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper';
 import { Col, Row } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './styles.module.scss';
 
-const Collection = memo(({ productList = [], title = '', subTitle = '' }) => {
+const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
@@ -33,10 +35,10 @@ const Collection = memo(({ productList = [], title = '', subTitle = '' }) => {
         </Col>
         <Col>
           <button ref={navigationPrevRef} className={styles.left}>
-            Left
+            <FontAwesomeIcon icon={faArrowLeft} />
           </button>
           <button ref={navigationNextRef} className={styles.right}>
-            Right
+            <div className={styles.longArrowRight}></div>
           </button>
         </Col>
       </Row>
@@ -61,4 +63,4 @@ const Collection = memo(({ productList = [], title = '', subTitle = '' }) => {
   );
 });
 
-export default Collection;
+export default Slider;

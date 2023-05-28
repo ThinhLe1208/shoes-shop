@@ -7,7 +7,7 @@ import { Col, Divider, Row } from 'antd';
 import styles from './styles.module.scss';
 import Media from './components/Media';
 import Info from './components/Info';
-import Collection from 'components/Collection';
+import Collection from 'components/Slider';
 
 const Detail = () => {
   const param = useParams();
