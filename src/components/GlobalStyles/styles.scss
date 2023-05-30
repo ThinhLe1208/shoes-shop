@@ -5,13 +5,29 @@
   --font-family-base: 'Josefin Sans', sans-serif;
   --font-size-sm: 14px;
   --font-size-md: 16px;
-  --font-size-lg: 24px;
-  --font-size-xlg: 32px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
 
   --color-primary: #cc0201;
-  --color-secondary: #121212;
-  --color-text-base: #121212;
+  --color-secondary: #5ab7d4;
+  --color-text-base: rgb(28, 49, 68);
+  --color-text-sub: rgba(28, 49, 68, 0.5);
   --color-error: #e46a76;
+
+  --bg-color: #fcf7ff;
+
+  --border-color: #eee;
+  --border-rad: 4px;
+
+  --box-shadow-1: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
+  --box-shadow-2: 0 0 6px rgba(0, 0, 0, 0.161);
+  --box-shadow-3: 0 0 20px rgba(0, 0, 0, 0.161);
+
+  --transition-short: 0.2s;
+  --transition-middle: 0.3s;
+
+  --padding-1: 68px;
 
   --max-width: 1440px;
 }
@@ -24,7 +40,7 @@ html {
 
 body {
   font-family: var(--font-family-base);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-md);
   font-weight: 400;
   color: var(--color-text-base);
   background-color: var(--white);
@@ -73,4 +89,28 @@ textarea {
   font-family: Josefin Sans;
   src: url('/assets/fonts/JosefinSans-Bold.ttf');
   font-weight: 700;
+}
+
+// Scroll bar
+html ::-webkit-scrollbar {
+  border-radius: 0px;
+  width: 6px;
+  height: 6px;
+}
+
+html ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+html ::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+// antd library
+.ant-empty-image {
+  img {
+    object-fit: contain;
+  }
 }

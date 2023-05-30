@@ -3,12 +3,23 @@
   inset: 0 0 auto 0;
   background-color: transparent;
   padding: 24px 0;
-  transition: all linear 0.2s;
+  transition: all linear var(--transition-short);
   z-index: 999;
 
   &.fixed {
     padding: 18px 0;
-    background-color: #161616;
+    background-color: var(--bg-color);
+    box-shadow: var(--box-shadow-1);
+
+    .nav ul a {
+      color: var(--color-text-base);
+    }
+
+    .icons {
+      span {
+        color: var(--color-text-base);
+      }
+    }
   }
 
   .nav {
@@ -31,7 +42,7 @@
         padding: 12px 0px;
         text-align: center;
         text-transform: capitalize;
-        transition: all linear 0.2s;
+        transition: all linear var(--transition-short);
 
         &:hover {
           color: var(--color-primary);
@@ -64,18 +75,18 @@
     display: flex;
     align-items: center;
 
-    span {
+    .icon {
       color: var(--white);
-      font-size: var(--font-size-lg);
+      font-size: var(--font-size-xl);
       cursor: pointer;
-      transition: all linear 0.2s;
+      transition: all linear var(--transition-short);
 
       &:hover {
         color: var(--color-primary);
       }
     }
 
-    span + span {
+    .icon + .icon {
       margin-left: 20px;
     }
   }

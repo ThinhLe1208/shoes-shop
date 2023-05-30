@@ -6,9 +6,9 @@ import Index from 'pages/Index';
 import Detail from 'pages/Detail';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
-import Carts from 'pages/Carts';
+import Cart from 'pages/Cart';
 import Profile from 'pages/Profile';
-
+import Checkout from 'pages/Checkout';
 
 function App() {
   return (
@@ -20,7 +20,8 @@ function App() {
           <Route path='detail/:id' element={<Detail />} />
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
-          <Route path='carts' element={<Carts />} />
+          <Route path='cart' element={<Cart />} />
+          <Route path='checkout' element={<Checkout />} />
           <Route path='profile' element={<Profile />} />
         </Route>
       </Routes>

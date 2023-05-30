@@ -81,7 +81,10 @@ const SignUpForm = () => {
           onBlur={handleBlur}
         />
         <Divider />
-        <Button type='primary' htmlType='submit'>
+        <Button
+          type='primary'
+          htmlType='submit'
+        >
           Sign Up
         </Button>
       </form>

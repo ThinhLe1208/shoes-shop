@@ -1,0 +1,45 @@
+.emptyContent,
+.filledContent {
+  width: 378px;
+  padding: 4px;
+}
+
+.emptyContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filledContent {
+  .body {
+    max-height: 332px;
+    overflow-y: auto;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .footer {
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      margin-bottom: 16px;
+
+      .totalText {
+        font-size: var(--font-size-md);
+      }
+
+      .totalNumber {
+        font-size: var(--font-size-xl);
+        font-weight: 600;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      column-gap: 10px;
+    }
+  }
+}

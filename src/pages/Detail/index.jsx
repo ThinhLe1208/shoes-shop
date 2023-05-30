@@ -12,7 +12,7 @@ import Collection from 'components/Slider';
 const Detail = () => {
   const param = useParams();
   const dispatch = useDispatch();
-  const { productById } = useSelector((state) => state.productSlice);
+  const { productById } = useSelector((state) => state.product);
 
   console.log('Detail ~ productById:', productById);
 

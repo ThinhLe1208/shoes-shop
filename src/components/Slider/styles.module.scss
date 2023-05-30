@@ -1,62 +1,70 @@
 .wrapper {
+  background-color: var(--bg-color);
+
   .left,
   .right {
     display: inline-block;
-    text-align: center;
     border: none;
-    border-radius: 25px;
-    font-size: 27px;
-    text-transform: uppercase;
-    box-shadow: 0 0 6px #00000029;
-    min-width: 40px;
-    min-height: 40px;
-    color: rgba(var(--color-foreground));
-    background: rgb(var(--color-background));
-    transition: 0.3s ease;
-    transform: unset;
-    width: auto;
-    height: auto;
-    margin: 0;
-    top: -56px;
-    opacity: 1;
+    border-radius: 100%;
+    box-shadow: var(--box-shadow-2);
+    width: 40px;
+    height: 40px;
+    background: var(--bg-color);
+    transition: all linear var(--transition-short);
     cursor: pointer;
-  }
 
-  .longArrowRight {
-    display: block;
-    margin: 30px auto;
-    width: 25px;
-    height: 25px;
-    border-top: 2px solid #000;
-    border-left: 2px solid #000;
-    transform: rotate(135deg);
-  }
-  .longArrowRight::after {
-    content: '';
-    display: block;
-    width: 2px;
-    height: 45px;
-    background-color: black;
-    transform: rotate(-45deg) translate(15px, 4px);
-    left: 0;
-    top: 0;
-  }
+    &:hover {
+      background-color: var(--color-primary);
+    }
 
-  .left {
-    svg {
+    &:hover div {
+      border-color: var(--white);
+    }
+
+    &:hover div::after {
+      background-color: var(--white);
     }
   }
 
+  .longArrow {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid var(--color-primary);
+    border-left: 2px solid var(--color-primary);
+    transform: translateX(6px) rotate(135deg);
+    transition: all linear var(--transition-short);
+
+    &::after {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 30px;
+      background-color: var(--color-primary);
+      transform: rotate(-45deg) translate(10px, 4px);
+      left: 0;
+      top: 0;
+      transition: all linear var(--transition-short);
+    }
+  }
+
+  .left {
+    transform: rotate(180deg);
+  }
+
   .right {
-    margin-left: 8px;
+    margin-left: 30px;
   }
 
   .header {
-    margin-bottom: 16px;
+    padding: 0 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: 6px;
 
     .title,
     .subTitle {
-      font-size: var(--font-size-xlg);
+      font-size: var(--font-size-xl);
       font-weight: 700;
     }
 
@@ -64,5 +72,11 @@
       color: var(--color-primary);
       margin-right: 10px;
     }
+  }
+
+  .swiper {
+    padding: 14px 10px var(--padding-1);
+    margin-left: -10px;
+    margin-right: -10px;
   }
 }

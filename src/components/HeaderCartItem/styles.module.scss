@@ -1,0 +1,49 @@
+.wrapper {
+  padding: 0 16px 8px 0;
+
+  .image {
+    width: 70%;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-rad);
+  }
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .name {
+      color: var(--color-primary);
+      font-weight: 600;
+    }
+
+    svg {
+      transition: all linear var(--transition-short);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .info {
+    color: var(--color-text-base);
+    font-size: var(--font-size-sm);
+    margin-bottom: 10px;
+
+    span {
+      color: var(--color-text-sub);
+    }
+  }
+
+  .price {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+  }
+}
+
+.wrapper + .wrapper {
+  padding: 8px 16px 8px 0;
+}

@@ -1,30 +1,68 @@
-import React from 'react';
-import { Button, Card } from 'antd';
+import React, { useRef } from 'react';
+import { Button, Rate } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { HeartOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addCart } from 'redux/slices/cartSlice';
 
 const CardProduct = ({ product }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleDetailProduct = () => {
-    if (product.id) {
-      navigate(`/detail/${product?.id}`);
-    }
+  const starRef = useRef(Math.floor(Math.random() * 5 + 1));
+
+  const handleShowDetailProduct = () => {
+    navigate(`/detail/${product?.id}`);
+  };
+
+  const handleAddCart = () => {
+    dispatch(addCart(product));
   };
 
   return (
     <div className={styles.wrapper}>
-      <Card
-        hoverable
-        style={{
-          width: 240,
-        }}
-        cover={<img src={product.image} alt='img' />}
-      >
+      <div className={styles.header}>
+        <img
+          src={product.image}
+          alt='img'
+          className={styles.image}
+        />
+        <Button
+          className={styles.detailBtn}
+          type='primary'
+          size='large'
+          icon={<FontAwesomeIcon icon={faEye} />}
+          onClick={handleShowDetailProduct}
+        />
+      </div>
+      <div className={styles.body}>
         <h3>{product.name}</h3>
-        <Button onClick={handleDetailProduct}>Detail</Button>
-      </Card>
+        <p>${product.price}</p>
+        <Rate
+          disabled
+          defaultValue={starRef.current}
+          style={{
+            fontSize: '14px',
+          }}
+        />
+      </div>
+      <div className={styles.footer}>
+        <Button
+          type='primary'
+          size='large'
+          onClick={handleAddCart}
+        >
+          Add To Cart
+        </Button>
+        <Button
+          icon={<HeartOutlined />}
+          size='large'
+        />
+      </div>
     </div>
   );
 };

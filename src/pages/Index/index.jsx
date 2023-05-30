@@ -9,7 +9,7 @@ import Container from 'components/Container';
 
 const Index = () => {
   const dispatch = useDispatch();
-  const productByKeywordList = useSelector((state) => state.productSlice.productByKeywordList);
+  const productByKeywordList = useSelector((state) => state.product.productByKeywordList);
   console.log('Index ~ productByKeywordList:', productByKeywordList);
 
   useEffect(() => {
@@ -19,9 +19,16 @@ const Index = () => {
   return (
     <div className={styles.wrapper}>
       <Carousel productList={productByKeywordList} />
-      <Container>
-        <Collection productList={productByKeywordList} title='Special Shoes' subTitle='Collection' />
-      </Container>
+
+      <div className={styles.container}>
+        <Container>
+          <Collection
+            productList={productByKeywordList}
+            title='Special Shoes'
+            subTitle='Collection'
+          />
+        </Container>
+      </div>
     </div>
   );
 };

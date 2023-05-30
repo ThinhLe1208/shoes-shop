@@ -4,11 +4,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper';
-import { Col, Row } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Button, Col, Row } from 'antd';
 
 import styles from './styles.module.scss';
+import CardProduct from 'components/CardProduct';
 
 const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
   const navigationPrevRef = useRef(null);
@@ -19,7 +18,7 @@ const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
       return list.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <img src={item.image} alt='img' />
+            <CardProduct product={item} />
           </SwiperSlide>
         );
       });
@@ -28,23 +27,33 @@ const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Row className={styles.header} justify={'space-between'} align={'middle'}>
+      <Row
+        className={styles.header}
+        justify={'space-between'}
+        align={'middle'}
+      >
         <Col>
           <span className={styles.title}>{title}</span>
           <span className={styles.subTitle}>{subTitle}</span>
         </Col>
         <Col>
-          <button ref={navigationPrevRef} className={styles.left}>
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </button>
-          <button ref={navigationNextRef} className={styles.right}>
-            <div className={styles.longArrowRight}></div>
-          </button>
+          <Button
+            ref={navigationPrevRef}
+            className={styles.left}
+          >
+            <div className={styles.longArrow}></div>
+          </Button>
+          <Button
+            ref={navigationNextRef}
+            className={styles.right}
+          >
+            <div className={styles.longArrow}></div>
+          </Button>
         </Col>
       </Row>
 
       <Swiper
-        slidesPerView={3}
+        slidesPerView={4}
         spaceBetween={30}
         navigation={{
           prevEl: navigationPrevRef.current,
@@ -55,7 +64,7 @@ const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
           swiper.params.navigation.nextEl = navigationNextRef.current;
         }}
         modules={[Navigation]}
-        className='mySwiper'
+        className={styles.swiper}
       >
         {renderProductList(productList)}
       </Swiper>

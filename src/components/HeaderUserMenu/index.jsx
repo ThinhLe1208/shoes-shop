@@ -15,6 +15,7 @@ const HeaderUserMenu = () => {
   const hide = () => {
     setOpen(false);
   };
+
   const handleOpenChange = (newOpen) => {
     setOpen(newOpen);
   };
@@ -75,16 +76,18 @@ const HeaderUserMenu = () => {
   );
 
   return (
-    <Popover
-      content={storage.getStore(USER_LOGIN) && storage.getStore(ACCESS_TOKEN) ? loggedInContent : notLoggedInContent}
-      trigger='click'
-      placement='bottomRight'
-      arrow={false}
-      open={open}
-      onOpenChange={handleOpenChange}
-    >
-      <UserOutlined />
-    </Popover>
+    <div className={styles.wrapper}>
+      <Popover
+        content={storage.getStore(USER_LOGIN) && storage.getStore(ACCESS_TOKEN) ? loggedInContent : notLoggedInContent}
+        trigger='click'
+        placement='bottomRight'
+        arrow={false}
+        open={open}
+        onOpenChange={handleOpenChange}
+      >
+        <UserOutlined />
+      </Popover>
+    </div>
   );
 };
 

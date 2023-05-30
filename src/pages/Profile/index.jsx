@@ -6,7 +6,7 @@ import { usersThunk } from 'redux/thunks/usersThunk';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const userProfile = useSelector((state) => state.usersSlice.userProfile);
+  const userProfile = useSelector((state) => state.users.userProfile);
   console.log('Profile ~ userProfile:', userProfile);
 
   useEffect(() => {
@@ -15,7 +15,11 @@ const Profile = () => {
 
   return (
     <>
-      <img src={userProfile?.avatar} alt='avatar' style={{ width: '200px' }} />
+      <img
+        src={userProfile?.avatar}
+        alt='avatar'
+        style={{ width: '200px' }}
+      />
       <p>Name : {userProfile?.name}</p>
       <p>Email : {userProfile?.email}</p>
     </>
