@@ -5,7 +5,7 @@
     "colorLinkHover": "#cc0201",
 
     "fontFamily": "Josefin Sans",
-    "fontSize": "16px",
+    "fontSize": 16,
 
     "colorBgTextHover": "rgba(0, 0, 0, 0.02)",
     "colorBgSpotlight": "#cc0201"

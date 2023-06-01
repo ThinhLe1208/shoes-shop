@@ -25,14 +25,14 @@ const HeaderCartItem = ({ product }) => {
         <Col span={6}>
           <img
             className={styles.image}
-            src={product.image}
+            src={product?.image}
             alt='img'
           />
         </Col>
 
         <Col span={18}>
           <div className={styles.heading}>
-            <p className={styles.name}>{product.name}</p>
+            <p className={styles.name}>{product?.name}</p>
             <FontAwesomeIcon
               icon={faTrashCan}
               onClick={handleDeleteProduct}

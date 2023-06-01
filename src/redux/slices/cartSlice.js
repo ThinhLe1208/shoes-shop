@@ -1,8 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const caculateTotal = (state) => {
+    const totalPrice = state.cartList.reduce((total, item) => {
+        return total += +item.qty * +item.price;
+    }, 0);
+    state.totalPrice = totalPrice.toLocaleString();
+    state.totalQuantity = state.cartList.reduce((total, item) => {
+        return total += +item.qty;
+    }, 0);
+};
+
 const initialState = {
     cartList: [],
-    totalPrice: 0
+    totalPrice: '',
+    totalQuantity: 0,
 };
 
 const cartSlice = createSlice({
@@ -16,18 +27,22 @@ const cartSlice = createSlice({
             } else {
                 state.cartList[index].qty += 1;
             }
+            caculateTotal(state);
         },
         removeCart: (state, { payload: id }) => {
             state.cartList = state.cartList.filter(item => item.id !== id);
+            caculateTotal(state);
         },
         clearCart: (state) => {
             state.cartList = [];
+            caculateTotal(state);
         },
         increaseQuantity: (state, { payload: id }) => {
             let index = state.cartList.findIndex(item => item.id === id);
             if (index !== -1) {
                 state.cartList[index].qty += 1;
             }
+            caculateTotal(state);
         },
         decreaseQuantity: (state, { payload: id }) => {
             let index = state.cartList.findIndex(item => item.id === id);
@@ -38,19 +53,15 @@ const cartSlice = createSlice({
                     state.cartList.splice(index, 1);
                 }
             }
+            caculateTotal(state);
         },
         changeQuantity: (state, { payload: { id, qty } }) => {
             let index = state.cartList.findIndex(item => item.id === id);
             if (index !== -1) {
                 state.cartList[index].qty = qty;
             }
+            caculateTotal(state);
         },
-        caculateTotalPrice: (state) => {
-            const totalPrice = state.cartList.reduce((acc, item) => {
-                return acc += item.qty * item.price;
-            }, 0);
-            state.totalPrice = totalPrice;
-        }
     }
 });
 
@@ -60,8 +71,7 @@ export const {
     clearCart,
     increaseQuantity,
     decreaseQuantity,
-    changeQuantity,
-    caculateTotalPrice
+    changeQuantity
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

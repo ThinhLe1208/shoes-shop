@@ -9,12 +9,12 @@
       color: var(--color-primary);
     }
 
-    & + & {
-      margin-top: 10px;
-    }
-
     p {
       transform: translateY(1.2px);
     }
+  }
+
+  .userItem + .userItem {
+    margin-top: 10px;
   }
 }

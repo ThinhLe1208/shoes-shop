@@ -24,6 +24,7 @@
     margin-bottom: -2px;
     text-align: center;
 
+    // Hide Arrows From Input Number
     /* Chrome, Safari, Edge, Opera */
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -32,8 +33,8 @@
     }
 
     /* Firefox */
-    &[type='number'] {
-      -moz-appearance: textfield;
-    }
+    // &[type='number'] {
+    //   -moz-appearance: textfield;
+    // }
   }
 }

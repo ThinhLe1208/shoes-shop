@@ -15,7 +15,8 @@
   --color-text-sub: rgba(28, 49, 68, 0.5);
   --color-error: #e46a76;
 
-  --bg-color: #fcf7ff;
+  // --bg-color: #fcf7ff;
+  --bg-color: #fff;
 
   --border-color: #eee;
   --border-rad: 4px;
@@ -28,6 +29,11 @@
   --transition-middle: 0.3s;
 
   --padding-1: 68px;
+
+  --margin-sm: 8px;
+  --margin-md: 16px;
+  --margin-lg: 24px;
+  --margin-xl: 30px;
 
   --max-width: 1440px;
 }
@@ -113,4 +119,8 @@ html ::-webkit-scrollbar-track {
   img {
     object-fit: contain;
   }
+}
+
+td {
+  vertical-align: middle;
 }

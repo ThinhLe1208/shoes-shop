@@ -1,7 +1,7 @@
 .wrapper {
   position: fixed;
   inset: 0 0 auto 0;
-  background-color: transparent;
+  background-color: var(--bg-color);
   padding: 24px 0;
   transition: all linear var(--transition-short);
   z-index: 999;
@@ -16,7 +16,7 @@
     }
 
     .icons {
-      span {
+      .icon {
         color: var(--color-text-base);
       }
     }
@@ -35,7 +35,7 @@
 
       a {
         position: relative;
-        color: var(--white);
+        color: var(--color-text-base);
         font-size: var(--font-size-md);
         font-weight: 600;
         margin: 0px 15px;
@@ -76,7 +76,7 @@
     align-items: center;
 
     .icon {
-      color: var(--white);
+      color: var(--color-text-base);
       font-size: var(--font-size-xl);
       cursor: pointer;
       transition: all linear var(--transition-short);

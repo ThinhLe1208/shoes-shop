@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from 'react';
-import { Button, Empty, Popover } from 'antd';
+import React, { useState } from 'react';
+import { Badge, Button, Empty, Popover } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
@@ -8,16 +8,9 @@ import HeaderCartItem from 'components/HeaderCartItem';
 import { useNavigate } from 'react-router-dom';
 
 const HeaderCartMenu = () => {
-  const cartList = useSelector((state) => state.cart.cartList);
+  const { cartList, totalPrice, totalQuantity } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-
-  const totalPriceMemo = useMemo(() => {
-    const totalPrice = cartList.reduce((acc, item) => {
-      return (acc += item.qty * item.price);
-    }, 0);
-    return totalPrice;
-  }, [cartList]);
 
   const handleViewCart = () => {
     setOpen(false);
@@ -36,12 +29,7 @@ const HeaderCartMenu = () => {
   const renderCartList = (list) => {
     if (Array.isArray(list)) {
       return cartList.map((item, index) => {
-        return (
-          <HeaderCartItem
-            key={index}
-            product={item}
-          />
-        );
+        return <HeaderCartItem key={index} product={item} />;
       });
     }
   };
@@ -67,22 +55,14 @@ const HeaderCartMenu = () => {
       <div className={styles.body}>{renderCartList(cartList)}</div>
       <div className={styles.footer}>
         <div className={styles.total}>
-          <p className={styles.totalText}>Total</p>
-          <p className={styles.totalNumber}>${totalPriceMemo.toLocaleString()}</p>
+          <p className={styles.totalText}>Subtotal</p>
+          <p className={styles.totalNumber}>${totalPrice}</p>
         </div>
         <div className={styles.buttons}>
-          <Button
-            type='primary'
-            block
-            onClick={handleViewCart}
-          >
+          <Button type='primary' block onClick={handleViewCart}>
             View Cart
           </Button>
-          <Button
-            type='primary'
-            block
-            onClick={handleCheckOut}
-          >
+          <Button type='primary' block onClick={handleCheckOut}>
             Check Out
           </Button>
         </div>
@@ -100,7 +80,11 @@ const HeaderCartMenu = () => {
         open={open}
         onOpenChange={handleOpenChange}
       >
-        <ShoppingCartOutlined />
+        <Badge count={totalQuantity} overflowCount={99}>
+          <div>
+            <ShoppingCartOutlined style={{ fontSize: 'var(--font-size-xl)' }} />
+          </div>
+        </Badge>
       </Popover>
     </div>
   );

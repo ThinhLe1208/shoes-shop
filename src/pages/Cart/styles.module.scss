@@ -1,0 +1,85 @@
+.wrapper {
+  padding-top: 110px;
+  background-color: var(--bg-color);
+
+  .heading {
+    color: var(--color-primary);
+    font-size: var(--font-size-xxl);
+    font-weight: 700;
+    margin: 16px 0;
+  }
+
+  .infoCell {
+    .name {
+      display: block;
+      color: var(--color-primary);
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+      margin-bottom: var(--margin-sm);
+    }
+
+    .info {
+      color: var(--color-text-base);
+      font-size: var(--font-size-md);
+      margin-bottom: var(--margin-sm);
+
+      span {
+        color: var(--color-text-sub);
+      }
+    }
+
+    .price {
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+    }
+  }
+
+  .quantityCell {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .trahsIcon {
+      margin-left: 20px;
+      transition: all linear var(--transition-short);
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .subPrice {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+  }
+
+  .tableFooter {
+    text-align: end;
+
+    .price {
+      margin-bottom: var(--margin-md);
+
+      span:first-child {
+        font-size: var(--font-size-md);
+      }
+
+      span:last-child {
+        font-size: var(--font-size-xl);
+        margin-left: 16px;
+      }
+    }
+
+    .subInfo {
+      color: var(--color-text-sub);
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--margin-lg);
+    }
+
+    button + button {
+      margin-top: var(--margin-md);
+    }
+  }
+}

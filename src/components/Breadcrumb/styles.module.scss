@@ -1,0 +1,17 @@
+.wrapper {
+  .breadcrumb {
+    & > ol > li > a {
+      color: var(--color-text-sub);
+      transition: all linear var(--transition-short);
+
+      &:hover {
+        color: var(--color-primary);
+      }
+    }
+
+    & > ol > li > span {
+      font-weight: 600;
+      color: var(--color-text-base);
+    }
+  }
+}
