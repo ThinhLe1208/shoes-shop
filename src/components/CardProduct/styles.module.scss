@@ -1,8 +1,9 @@
 .wrapper {
+  --padding-x: 16px;
   position: relative;
   border-radius: 16px;
-  border: 1.6px solid rgba(18, 18, 18, 0.1);
-  padding: 16px;
+  border: 1.6px solid var(--border-color);
+  padding: var(--padding-x);
   transition: all ease 0.3s;
 
   &:hover {
@@ -94,13 +95,10 @@
   }
 
   .footer {
+    width: calc(100% - var(--padding-x) * 2);
     display: none;
     position: absolute;
     bottom: 16px;
-
-    // button + button {
-    //   margin-left: 16px;
-    // }
   }
 }
 

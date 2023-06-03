@@ -28,10 +28,10 @@ const HeaderCartItem = ({ product }) => {
             <FontAwesomeIcon icon={faTrashCan} onClick={handleDeleteProduct} />
           </div>
           <p className={styles.info}>
-            <span>Size:</span> 32
+            <span>Size:</span> 36
           </p>
           <p className={styles.info}>
-            <span>Color:</span> black
+            <span>Color:</span> Black
           </p>
 
           <Row justify='space-between' align='middle'>

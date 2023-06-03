@@ -8,6 +8,7 @@ import { Button, Col, Row } from 'antd';
 
 import styles from './styles.module.scss';
 import CardProduct from 'components/CardProduct';
+import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 
 const Slider = memo(({ productList = [], saleProductList = [], title = '', subTitle = '', slidesPerView = 4 }) => {
   const navigationPrevRef = useRef(null);
@@ -18,7 +19,7 @@ const Slider = memo(({ productList = [], saleProductList = [], title = '', subTi
       return list.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <CardProduct product={item} saleProductList={saleProductList} />
+            <SaleCaculationHOC product={item} saleProductList={saleProductList} Component={CardProduct} />
           </SwiperSlide>
         );
       });
