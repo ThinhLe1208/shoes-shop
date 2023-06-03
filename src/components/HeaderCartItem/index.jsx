@@ -9,7 +9,6 @@ import QuantityField from 'components/QuantityField';
 import { removeCart } from 'redux/slices/cartSlice';
 
 const HeaderCartItem = ({ product }) => {
-  console.log('HeaderCartItem ~ product:', product);
   const dispatch = useDispatch();
 
   const handleDeleteProduct = () => {
@@ -18,25 +17,15 @@ const HeaderCartItem = ({ product }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Row
-        justify='space-between'
-        align='top'
-      >
+      <Row justify='space-between' align='top'>
         <Col span={6}>
-          <img
-            className={styles.image}
-            src={product?.image}
-            alt='img'
-          />
+          <img className={styles.image} src={product?.image} alt='img' />
         </Col>
 
         <Col span={18}>
           <div className={styles.heading}>
             <p className={styles.name}>{product?.name}</p>
-            <FontAwesomeIcon
-              icon={faTrashCan}
-              onClick={handleDeleteProduct}
-            />
+            <FontAwesomeIcon icon={faTrashCan} onClick={handleDeleteProduct} />
           </div>
           <p className={styles.info}>
             <span>Size:</span> 32
@@ -45,10 +34,7 @@ const HeaderCartItem = ({ product }) => {
             <span>Color:</span> black
           </p>
 
-          <Row
-            justify='space-between'
-            align='middle'
-          >
+          <Row justify='space-between' align='middle'>
             <QuantityField product={product} />
             <p className={styles.price}>${(product?.qty * product?.price).toLocaleString()}</p>
           </Row>

@@ -1,13 +1,16 @@
 .wrapper {
+  height: var(--padding-top-header);
   position: fixed;
   inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--bg-color);
-  padding: 24px 0;
   transition: all linear var(--transition-short);
   z-index: 999;
 
   &.fixed {
-    padding: 18px 0;
+    height: calc(var(--padding-top-header) - 24px);
     background-color: var(--bg-color);
     box-shadow: var(--box-shadow-1);
 
@@ -22,10 +25,22 @@
     }
   }
 
+  .logo {
+    width: 60px;
+  }
+
   .nav {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .active {
+      color: var(--color-primary) !important;
+
+      &::after {
+        width: 100%;
+      }
+    }
 
     ul {
       width: 100%;

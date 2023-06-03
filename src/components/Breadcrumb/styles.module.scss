@@ -1,4 +1,6 @@
 .wrapper {
+  margin-bottom: var(--margin-md);
+
   .breadcrumb {
     & > ol > li > a {
       color: var(--color-text-sub);

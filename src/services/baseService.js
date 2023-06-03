@@ -22,10 +22,19 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
     (response) => {
+        console.log("response:", response);
+
         return response;
     },
     (error) => {
-        if (error.response?.status === 400 || error.response?.status === 404) {
+        console.log('error', error);
+        if (error) {
+            localStorage.removeItem(USER_LOGIN);
+            localStorage.removeItem(ACCESS_TOKEN);
+            history.push('/login');
+        }
+
+        if (error.response?.status === 401 || error.response?.status === 403) {
             //Đã đăng nhập nhưng hết hạn (gọi api refresh token)
             let decodedToken = jwt_decode(storage.getStoreJson(ACCESS_TOKEN));
             console.log('Decoded Token', decodedToken);
@@ -45,8 +54,8 @@ http.interceptors.response.use(
             alert('Đăng nhập để vào trang này !');
             history.push('/login');
         }
-        if (error.response?.status === 401 || error.response?.status === 403) {
-            console.log('interceptors response 401/403', error);
+        if (error.response?.status === 400 || error.response?.status === 404) {
+            console.log('interceptors response 400/404', error);
         }
         return Promise.reject(error);
     }

@@ -11,6 +11,7 @@ import Register from 'pages/Register';
 import Cart from 'pages/Cart';
 import Profile from 'pages/Profile';
 import Checkout from 'pages/Checkout';
+import Search from 'pages/Search';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route path='cart' element={<Cart />} />
             <Route path='checkout' element={<Checkout />} />
             <Route path='profile' element={<Profile />} />
+            <Route path='search' element={<Search />} />
           </Route>
         </Routes>
       </HistoryRouter >

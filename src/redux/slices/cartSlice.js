@@ -20,32 +20,32 @@ const cartSlice = createSlice({
     name: 'cartSlice',
     initialState,
     reducers: {
-        addCart: (state, { payload: product }) => {
-            let index = state.cartList.findIndex(item => item.id === product?.id);
+        addCart: (state, { payload }) => {
+            let index = state.cartList.findIndex(item => item.id === payload?.id);
             if (index === -1) {
-                state.cartList.push({ ...product, qty: 1 });
+                state.cartList.push({ ...payload, qty: 1 });
             } else {
                 state.cartList[index].qty += 1;
             }
             caculateTotal(state);
         },
-        removeCart: (state, { payload: id }) => {
-            state.cartList = state.cartList.filter(item => item.id !== id);
+        removeCart: (state, { payload }) => {
+            state.cartList = state.cartList.filter(item => item.id !== payload);
             caculateTotal(state);
         },
         clearCart: (state) => {
             state.cartList = [];
             caculateTotal(state);
         },
-        increaseQuantity: (state, { payload: id }) => {
-            let index = state.cartList.findIndex(item => item.id === id);
+        increaseQuantity: (state, { payload }) => {
+            let index = state.cartList.findIndex(item => item.id === payload);
             if (index !== -1) {
                 state.cartList[index].qty += 1;
             }
             caculateTotal(state);
         },
-        decreaseQuantity: (state, { payload: id }) => {
-            let index = state.cartList.findIndex(item => item.id === id);
+        decreaseQuantity: (state, { payload }) => {
+            let index = state.cartList.findIndex(item => item.id === payload);
             if (index !== -1) {
                 if (state.cartList[index].qty > 1) {
                     state.cartList[index].qty -= 1;
@@ -55,10 +55,10 @@ const cartSlice = createSlice({
             }
             caculateTotal(state);
         },
-        changeQuantity: (state, { payload: { id, qty } }) => {
-            let index = state.cartList.findIndex(item => item.id === id);
+        changeQuantity: (state, { payload }) => {
+            let index = state.cartList.findIndex(item => item.id === payload?.id);
             if (index !== -1) {
-                state.cartList[index].qty = qty;
+                state.cartList[index].qty = payload?.qty;
             }
             caculateTotal(state);
         },
@@ -71,7 +71,7 @@ export const {
     clearCart,
     increaseQuantity,
     decreaseQuantity,
-    changeQuantity
+    changeQuantity,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

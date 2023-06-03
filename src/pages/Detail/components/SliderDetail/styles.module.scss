@@ -1,0 +1,41 @@
+.wrapper {
+  .mainSwiper {
+    height: 460px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-rad-md);
+    margin-bottom: var(--margin-md);
+
+    .swiperSlide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        object-position: center;
+        cursor: grab;
+      }
+    }
+  }
+
+  .subSwiper {
+    .swiperSlide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        object-position: center;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-rad-md);
+        padding: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+}

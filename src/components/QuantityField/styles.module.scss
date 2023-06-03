@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 56px;
+  max-width: 70px;
   border: 1px solid var(--border-color);
-  border-radius: var(--border-rad);
+  border-radius: var(--border-rad-sm);
   padding: 4px 6px;
 
   span {
@@ -16,7 +16,7 @@
     font-weight: 400;
     color: var(--color-text-base);
     display: inline-block;
-    max-width: 20px;
+    min-width: 20px;
     border: none;
     background-color: var(--white);
     background-clip: padding-box;

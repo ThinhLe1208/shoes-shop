@@ -1,0 +1,45 @@
+.wrapper {
+  width: 100%;
+  position: relative;
+  border-radius: var(--border-rad-lg);
+  overflow: hidden;
+
+  .image {
+    transform: scale(1);
+    transition: var(--transition-banner);
+  }
+
+  &:hover .image {
+    transform: scale(1.2);
+  }
+
+  .content {
+    position: absolute;
+    inset: 0 5% 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    z-index: 50;
+
+    h3 {
+      font-size: var(--font-size-md);
+      color: var(--white);
+      margin-bottom: var(--margin-lg);
+    }
+
+    h2 {
+      font-size: var(--font-size-xxl);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: var(--margin-lg);
+    }
+
+    p {
+      font-size: var(--font-size-xxxl);
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+  }
+}

@@ -80,7 +80,14 @@ const HeaderCartMenu = () => {
         open={open}
         onOpenChange={handleOpenChange}
       >
-        <Badge count={totalQuantity} overflowCount={99}>
+        <Badge
+          count={totalQuantity}
+          overflowCount={99}
+          style={{
+            lineHeight: '26px',
+            boxShadow: '0 0 0 1.5px #fff',
+          }}
+        >
           <div>
             <ShoppingCartOutlined style={{ fontSize: 'var(--font-size-xl)' }} />
           </div>

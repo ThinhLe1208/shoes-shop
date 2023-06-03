@@ -8,6 +8,7 @@
   --font-size-lg: 20px;
   --font-size-xl: 24px;
   --font-size-xxl: 32px;
+  --font-size-xxxl: 56px;
 
   --color-primary: #cc0201;
   --color-secondary: #5ab7d4;
@@ -19,7 +20,9 @@
   --bg-color: #fff;
 
   --border-color: #eee;
-  --border-rad: 4px;
+  --border-rad-sm: 4px;
+  --border-rad-md: 10px;
+  --border-rad-lg: 20px;
 
   --box-shadow-1: 0 3px 6px 0 rgba(0, 0, 0, 0.05);
   --box-shadow-2: 0 0 6px rgba(0, 0, 0, 0.161);
@@ -27,6 +30,7 @@
 
   --transition-short: 0.2s;
   --transition-middle: 0.3s;
+  --transition-banner: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   --padding-1: 68px;
 
@@ -35,10 +39,13 @@
   --margin-lg: 24px;
   --margin-xl: 30px;
 
+  --padding-top-header: 110px;
   --max-width: 1440px;
 }
 
 html {
+  margin: 0;
+  padding: 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 100%;
@@ -114,13 +121,30 @@ html ::-webkit-scrollbar-track {
   background-color: rgba(0, 0, 0, 0);
 }
 
-// antd library
+// --------- antd library ------------
 .ant-empty-image {
   img {
     object-fit: contain;
   }
 }
 
+.ant-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// table
 td {
   vertical-align: middle;
+}
+
+// collapse
+.ant-collapse {
+  background-color: var(--color-primary);
+  border-radius: 10px;
+}
+
+.ant-collapse-header {
+  color: var(--white) !important;
 }

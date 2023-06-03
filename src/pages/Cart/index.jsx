@@ -11,11 +11,10 @@ import Breadcrumb from 'components/Breadcrumb';
 import QuantityField from 'components/QuantityField';
 import { removeCart } from 'redux/slices/cartSlice';
 
-const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Cart' }];
-
 const Cart = () => {
   const { cartList, totalPrice } = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Cart' }];
 
   const dispatch = useDispatch();
 

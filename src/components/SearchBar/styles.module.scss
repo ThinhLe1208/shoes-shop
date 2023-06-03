@@ -1,0 +1,10 @@
+.wrapper {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-rad-sm);
+  padding: 10px;
+
+  .sortLabel {
+    display: inline-block;
+    margin-right: 10px;
+  }
+}

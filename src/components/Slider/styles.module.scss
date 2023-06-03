@@ -1,8 +1,8 @@
 .wrapper {
   background-color: var(--bg-color);
 
-  .left,
-  .right {
+  .leftBtn,
+  .rightBtn {
     display: inline-block;
     border: none;
     border-radius: 100%;
@@ -32,7 +32,7 @@
     height: 8px;
     border-top: 2px solid var(--color-primary);
     border-left: 2px solid var(--color-primary);
-    transform: translateX(6px) rotate(135deg);
+    transform: rotate(135deg);
     transition: all linear var(--transition-short);
 
     &::after {
@@ -48,11 +48,11 @@
     }
   }
 
-  .left {
+  .leftBtn {
     transform: rotate(180deg);
   }
 
-  .right {
+  .rightBtn {
     margin-left: 30px;
   }
 

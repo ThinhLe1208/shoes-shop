@@ -9,7 +9,7 @@ import { Button, Col, Row } from 'antd';
 import styles from './styles.module.scss';
 import CardProduct from 'components/CardProduct';
 
-const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
+const Slider = memo(({ productList = [], saleProductList = [], title = '', subTitle = '', slidesPerView = 4 }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
@@ -18,7 +18,7 @@ const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
       return list.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <CardProduct product={item} />
+            <CardProduct product={item} saleProductList={saleProductList} />
           </SwiperSlide>
         );
       });
@@ -27,33 +27,23 @@ const Slider = memo(({ productList = [], title = '', subTitle = '' }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Row
-        className={styles.header}
-        justify={'space-between'}
-        align={'middle'}
-      >
+      <Row className={styles.header} justify={'space-between'} align={'middle'}>
         <Col>
           <span className={styles.title}>{title}</span>
           <span className={styles.subTitle}>{subTitle}</span>
         </Col>
         <Col>
-          <Button
-            ref={navigationPrevRef}
-            className={styles.left}
-          >
+          <Button ref={navigationPrevRef} className={styles.leftBtn}>
             <div className={styles.longArrow}></div>
           </Button>
-          <Button
-            ref={navigationNextRef}
-            className={styles.right}
-          >
+          <Button ref={navigationNextRef} className={styles.rightBtn}>
             <div className={styles.longArrow}></div>
           </Button>
         </Col>
       </Row>
 
       <Swiper
-        slidesPerView={4}
+        slidesPerView={slidesPerView}
         spaceBetween={30}
         navigation={{
           prevEl: navigationPrevRef.current,

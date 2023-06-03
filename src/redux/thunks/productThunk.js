@@ -7,7 +7,10 @@ class ProductThunk {
         'productAPI/getProductByKeyword',
         async (keyword) => {
             const response = await productService.getProductByKeyword(keyword);
-            return response.data.content;
+            return {
+                keyword: keyword,
+                data: response.data.content
+            };
         }
     );
 
@@ -15,7 +18,10 @@ class ProductThunk {
         'productAPI/getProductByCategory',
         async (categoryId) => {
             const response = await productService.getProductByCategory(categoryId);
-            return response.data.content;
+            return {
+                categoryId: categoryId,
+                data: response.data.content
+            };
         }
     );
 
@@ -23,7 +29,10 @@ class ProductThunk {
         'productAPI/getProductByFeature',
         async (feature) => {
             const response = await productService.getProductByFeature(feature);
-            return response.data.content;
+            return {
+                feature: feature,
+                data: response.data.content
+            };
         }
     );
 

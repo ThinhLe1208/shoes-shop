@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useRef } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useEffect, useRef } from 'react';
+import { Link, NavLink, useHref } from 'react-router-dom';
 import { Col, Row } from 'antd';
 import { SearchOutlined, HeartOutlined } from '@ant-design/icons';
 
@@ -10,64 +10,71 @@ import HeaderCartMenu from 'components/HeaderCartMenu';
 
 const Header = () => {
   const div = useRef();
+  const href = useHref();
 
-  useLayoutEffect(() => {
+  const navLinks = [
+    { id: 1, name: 'Home', path: 'index' },
+    { id: 1, name: 'Detail', path: 'detail/12' },
+    { id: 1, name: 'Login', path: 'login' },
+    { id: 1, name: 'Register', path: 'register' },
+    { id: 1, name: 'Cart', path: 'cart' },
+    { id: 1, name: 'Profile', path: 'profile' },
+    { id: 1, name: 'Search', path: 'search' },
+  ];
+
+  useEffect(() => {
     const handleWindowScroll = () => {
       if (window.scrollY >= 40) {
+        div.current.style.backgroundColor = 'var(--bg-color)';
         div.current.classList.add(styles.fixed);
       } else {
+        if (href === '/index' || href === '/') {
+          div.current.style.backgroundColor = 'transparent';
+        }
         div.current.classList.remove(styles.fixed);
       }
     };
+
+    if (href === '/index' || href === '/') {
+      div.current.style.backgroundColor = 'transparent';
+    } else {
+      div.current.style.backgroundColor = 'var(--bg-color)';
+    }
 
     window.addEventListener('scroll', handleWindowScroll);
 
     return () => {
       window.removeEventListener('scroll', handleWindowScroll);
     };
-  }, []);
+  }, [href]);
+
+  const renderNavLinkList = (list) => {
+    if (Array.isArray(list)) {
+      return list.map((item, index) => {
+        return (
+          <li key={index}>
+            <NavLink to={item.path} className={(navLink) => (navLink.isActive ? styles.active : '')}>
+              {item.name}
+            </NavLink>
+          </li>
+        );
+      });
+    }
+  };
 
   return (
-    <div
-      className={styles.wrapper}
-      ref={div}
-    >
+    <div className={styles.wrapper} ref={div}>
       <Container>
-        <Row
-          justify={'space-between'}
-          align={'middle'}
-        >
+        <Row justify={'space-between'} align={'middle'}>
           <Col>
             <Link to='/'>
-              <img
-                src='https://cdn.shopify.com/s/files/1/0567/9169/5421/files/Group_1863_246x.png?v=1650346870'
-                alt='logo'
-              />
+              <img className={styles.logo} src={require('../../assets/images/logo_nike.png')} alt='logo' />
             </Link>
           </Col>
 
           <Col>
             <nav className={styles.nav}>
-              <ul>
-                <li>
-                  <NavLink to='index'>Home</NavLink>
-                </li>
-                <li>
-                  <NavLink to='detail/1'>Detail</NavLink>
-                </li>
-                <li>
-                  <NavLink to='login'>Login</NavLink>
-                </li>
-                <li>
-                  <NavLink to='register'>Register</NavLink>
-                </li>
-                <li>
-                  <NavLink to='cart'>Cart</NavLink>
-                </li>
-                <li>
-                  <NavLink to='profile'>Profile</NavLink>
-                </li>
-              </ul>
+              <ul>{renderNavLinkList(navLinks)}</ul>
             </nav>
           </Col>
 

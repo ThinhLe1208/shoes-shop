@@ -1,12 +1,11 @@
 .wrapper {
-  padding-top: 110px;
   background-color: var(--bg-color);
 
   .heading {
     color: var(--color-primary);
     font-size: var(--font-size-xxl);
     font-weight: 700;
-    margin: 16px 0;
+    margin-bottom: var(--margin-md);
   }
 
   .infoCell {

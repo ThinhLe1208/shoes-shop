@@ -5,14 +5,17 @@ import { productThunk } from 'redux/thunks/productThunk';
 import { Col, Divider, Row } from 'antd';
 
 import styles from './styles.module.scss';
-import Media from './components/Media';
 import Info from './components/Info';
-import Collection from 'components/Slider';
+import Slider from 'components/Slider';
+import SliderDetail from './components/SliderDetail';
+import Container from 'components/Container';
+import Breadcrumb from 'components/Breadcrumb';
 
 const Detail = () => {
   const param = useParams();
   const dispatch = useDispatch();
-  const { productById } = useSelector((state) => state.product);
+  const productById = useSelector((state) => state.product.productById);
+  const breadCrumbList = [{ href: '/', title: 'Home' }, { title: productById?.name }];
 
   console.log('Detail ~ productById:', productById);
 
@@ -22,20 +25,21 @@ const Detail = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Row>
-        <Col span={12}>
-          <Media product={productById} />
-        </Col>
-        <Col span={12}>
-          <Info product={productById} />
-        </Col>
-      </Row>
+      <Container>
+        <Breadcrumb breadCrumbList={breadCrumbList} />
+        <Row gutter={16}>
+          <Col span={12}>
+            <SliderDetail product={productById} />
+          </Col>
+          <Col span={12}>
+            <Info product={productById} />
+          </Col>
+        </Row>
 
-      <Divider />
+        <Divider />
 
-      <h3>You May Also Like</h3>
-
-      <Collection productList={productById.relatedProducts} />
+        <Slider productList={productById.relatedProducts} title='You May Also Like' />
+      </Container>
     </div>
   );
 };

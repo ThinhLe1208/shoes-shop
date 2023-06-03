@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { productThunk } from 'redux/thunks/productThunk';
 
 const initialState = {
-    productByKeywordList: [],
-    productByCategoryList: [],
-    productByFeatureList: [],
+    productByKeywordList: {},
+    productByCategoryList: {},
+    saleProductList: [],
     categoryList: [],
     pagingList: [],
     productById: {},
@@ -19,15 +19,37 @@ const productSlice = createSlice({
         builder
             // getProductByKeyword
             .addCase(productThunk.getProductByKeyword.fulfilled, (state, { payload }) => {
-                state.productByKeywordList = payload;
+                if (payload.keyword) {
+                    state.productByKeywordList = {
+                        ...state.productByKeywordList,
+                        [payload.keyword]: payload.data
+                    };
+                } else {
+                    state.productByKeywordList = {
+                        ...state.productByKeywordList,
+                        default: payload.data
+                    };
+                }
             })
             // getProductByCategory
             .addCase(productThunk.getProductByCategory.fulfilled, (state, { payload }) => {
-                state.productByCategoryList = payload;
+                if (payload.categoryId) {
+                    state.productByCategoryList = {
+                        ...state.productByCategoryList,
+                        [payload.categoryId]: payload.data
+                    };
+                } else {
+                    state.productByCategoryList = {
+                        ...state.productByCategoryList,
+                        default: payload.data
+                    };
+                }
             })
             // getProductByFeature
             .addCase(productThunk.getProductByFeature.fulfilled, (state, { payload }) => {
-                state.productByFeatureList = payload;
+                if (payload.feature) {
+                    state.saleProductList = payload.data;
+                }
             })
             // getAllCategory
             .addCase(productThunk.getAllCategory.fulfilled, (state, { payload }) => {
