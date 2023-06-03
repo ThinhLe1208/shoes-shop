@@ -4,14 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { HeartOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
-import { useDispatch } from 'react-redux';
 import { addCart } from 'redux/slices/cartSlice';
 
 const CardProduct = ({ product, saleProductList }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // make a random point for a rate feature
+  const starRef = useRef(Math.floor(Math.random() * 5 + 1));
 
   // check this product is in saleProductList or not
   const isSale = useMemo(() => {
@@ -28,8 +31,6 @@ const CardProduct = ({ product, saleProductList }) => {
     }
   }, [isSale, product]);
   const newPriceRef = useRef(randomSalePriceNum);
-
-  const starRef = useRef(Math.floor(Math.random() * 5 + 1));
 
   const handleShowDetailProduct = () => {
     navigate(`/detail/${product?.id}`);

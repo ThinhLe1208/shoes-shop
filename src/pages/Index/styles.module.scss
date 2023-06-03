@@ -1,7 +1,33 @@
 .wrapper {
+  --margin-bottom: 0px;
   background-color: var(--bg-color);
 
-  .container {
-    padding-top: var(--padding-1);
+  .carousel {
+    margin-bottom: calc(var(--margin-bottom) + 60px);
+  }
+
+  .slider {
+    margin-bottom: var(--margin-bottom);
+  }
+
+  .banner1 {
+    margin-bottom: calc(var(--margin-bottom) + 30px);
+
+    .image {
+      img {
+        height: 454px;
+      }
+    }
+  }
+
+  .banner2,
+  .banner3 {
+    margin-bottom: calc(var(--margin-bottom) + 60px);
+  }
+
+  .banner3 {
+    img {
+      height: 340px;
+    }
   }
 }
