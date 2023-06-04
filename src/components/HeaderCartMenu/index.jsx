@@ -86,11 +86,11 @@ const HeaderCartMenu = () => {
           style={{
             lineHeight: '26px',
             boxShadow: '0 0 0 1.5px #fff',
+            color: 'var(--color-text-secondary )',
+            backgroundColor: 'var(--color-secondary)',
           }}
         >
-          <div>
-            <ShoppingCartOutlined style={{ fontSize: 'var(--font-size-xl)' }} />
-          </div>
+          <ShoppingCartOutlined style={{ fontSize: 'var(--font-size-xl)' }} />
         </Badge>
       </Popover>
     </div>

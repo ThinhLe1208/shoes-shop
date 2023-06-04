@@ -21,12 +21,16 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
     dispatch(addCart({ product: product, qty: 1 }));
   };
 
+  const handleLikeProduct = () => {
+    console.log('like');
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <div className={styles.top}>
           {randomSalePrice ? <div className={styles.saleTag}>Sale {randomSalePrecent}%</div> : <div></div>}
-          <Button icon={<HeartOutlined />} size='large' />
+          <Button icon={<HeartOutlined />} size='large' ghost className={styles.likeBtn} onClick={handleLikeProduct} />
         </div>
         <img src={product.image} alt='img' className={styles.image} />
         <Button
@@ -45,7 +49,9 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
             <p className={styles.subPrice}>${randomSalePrice}</p>
           </div>
         ) : (
-          <p className={styles.mainPrice}>${product.price}</p>
+          <div className={styles.price}>
+            <p className={styles.mainPrice}>${product.price}</p>
+          </div>
         )}
         <Rate
           disabled

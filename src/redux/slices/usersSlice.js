@@ -7,11 +7,13 @@ import { storage } from 'utils/storage';
 
 const initialState = {
     userLogin: storage.getStorageJson(USER_LOGIN),
-    userProfile: null
+    userProfile: null,
+    isLoading: false,
+    currentRequestId: undefined,
 };
 
 const usersSlice = createSlice({
-    name: 'usersSlice',
+    name: 'users',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -33,12 +35,33 @@ const usersSlice = createSlice({
                 state.userProfile = payload;
             })
             // updateProfile
-            .addCase(usersThunk.updateProfile.fulfilled, (state, { payload }) => {
-                state.userProfile = payload;
+            .addCase(usersThunk.updateProfile.pending, (state, { meta }) => {
+                if (state.isLoading === false) {
+                    state.isLoading = true;
+                    state.currentRequestId = meta.requestId;
+                }
+            })
+            .addCase(usersThunk.updateProfile.fulfilled, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
+            })
+            .addCase(usersThunk.updateProfile.rejected, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
             });
     }
 });
 
-export const { } = usersSlice.actions;
+// export const { } = usersSlice.actions;
 
 export default usersSlice.reducer;

@@ -1,4 +1,5 @@
-:root {
+:root,
+[data-theme='blue'] {
   --black: #000;
   --white: #fff;
 
@@ -10,16 +11,16 @@
   --font-size-xxl: 32px;
   --font-size-xxxl: 56px;
 
-  --color-primary: #cc0201;
-  --color-secondary: #5ab7d4;
+  --color-primary: #fff;
+  --color-secondary: rgb(41, 182, 246);
+  --color-cta: #1565c0;
+  --border-color: rgba(41, 182, 246, 0.2);
+
   --color-text-base: rgb(28, 49, 68);
+  --color-text-secondary: #fff;
   --color-text-sub: rgba(28, 49, 68, 0.5);
   --color-error: #e46a76;
 
-  // --bg-color: #fcf7ff;
-  --bg-color: #fff;
-
-  --border-color: #eee;
   --border-rad-sm: 4px;
   --border-rad-md: 10px;
   --border-rad-lg: 20px;
@@ -32,15 +33,43 @@
   --transition-middle: 0.3s;
   --transition-banner: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  --padding-1: 68px;
-
-  --margin-sm: 8px;
-  --margin-md: 16px;
-  --margin-lg: 24px;
-  --margin-xl: 30px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 36px;
+  --space-xxl: 56px;
 
   --padding-top-header: 110px;
   --max-width: 1440px;
+}
+
+[data-theme='red'] {
+  --color-primary: #fff6c3;
+  --color-secondary: rgb(220, 0, 0);
+  --color-cta: #850000;
+  --border-color: rgba(220, 0, 0, 0.2);
+}
+
+[data-theme='green'] {
+  --color-primary: #282c16;
+  --color-secondary: rgb(220, 253, 2);
+  --color-cta: #b1cc02;
+  --border-color: rgba(220, 253, 2, 0.2);
+
+  --color-text-base: #fff;
+  --color-text-secondary: #373c1f;
+  --color-text-sub: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme='dark'] {
+  --color-primary: #2c3333;
+  --color-secondary: rgb(165, 201, 202);
+  --color-cta: #e7f6f2;
+  --border-color: rgba(165, 201, 202, 0.2);
+
+  --color-text-base: rgb(231, 246, 242);
+  --color-text-secondary: #395b64;
+  --color-text-sub: rgba(231, 246, 242, 0.5);
 }
 
 html {
@@ -114,7 +143,7 @@ html ::-webkit-scrollbar {
 
 html ::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
 }
 
 html ::-webkit-scrollbar-track {
@@ -129,23 +158,30 @@ html ::-webkit-scrollbar-track {
   }
 }
 
-.ant-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 // table
 td {
   vertical-align: middle;
 }
 
-// collapse
+// collapse for the sidebar in the search page
 .ant-collapse {
-  background-color: var(--color-primary);
+  background-color: var(--color-secondary);
   border-radius: 10px;
 }
 
 .ant-collapse-header {
-  color: var(--white) !important;
+  color: var(--color-text-secondary) !important;
+}
+
+.ant-badge {
+  color: inherit;
+}
+
+// spin
+// .ant-btn.ant-btn-primary .ant-spin-dot-item {
+//   background-color: var(--white) !important;
+// }
+
+.ant-btn {
+  box-shadow: none;
 }

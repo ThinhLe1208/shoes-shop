@@ -141,7 +141,7 @@ html {
 .productName h2 {
   font-weight: 900;
   font-size: xxx-large;
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .productPrice {
@@ -231,16 +231,16 @@ html {
   font-size: x-large;
   padding: 15px 60px;
   border-radius: 30px;
-  border: 2px solid var(--color-primary);
-  background-color: var(--white);
-  color: var(--color-primary);
+  border: 2px solid var(--color-secondary);
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
   transition: 0.5s;
 }
 
 .button > button:hover {
   cursor: pointer;
-  background-color: var(--color-primary);
-  color: var(--white);
+  background-color: var(--color-secondary);
+  color: var(--color-text-secondary);
 }
 
 .imgCol {
@@ -267,7 +267,7 @@ html {
 .slideControl div:hover {
   cursor: pointer;
   transform: translateY(-30px);
-  border-bottom: 2px solid var(--color-primary);
+  border-bottom: 2px solid var(--color-secondary);
 }
 
 .slideControl div img {

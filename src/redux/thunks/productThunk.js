@@ -4,7 +4,7 @@ import { productService } from "services/productService";
 
 class ProductThunk {
     getProductByKeyword = createAsyncThunk(
-        'productAPI/getProductByKeyword',
+        'product/getProductByKeywordAPI',
         async (keyword) => {
             const response = await productService.getProductByKeyword(keyword);
             return {
@@ -15,7 +15,7 @@ class ProductThunk {
     );
 
     getProductByCategory = createAsyncThunk(
-        'productAPI/getProductByCategory',
+        'product/getProductByCategoryAPI',
         async (categoryId) => {
             const response = await productService.getProductByCategory(categoryId);
             return {
@@ -26,7 +26,7 @@ class ProductThunk {
     );
 
     getProductByFeature = createAsyncThunk(
-        'productAPI/getProductByFeature',
+        'product/getProductByFeatureAPI',
         async (feature) => {
             const response = await productService.getProductByFeature(feature);
             return {
@@ -37,7 +37,7 @@ class ProductThunk {
     );
 
     getAllCategory = createAsyncThunk(
-        'productAPI/getAllCategory',
+        'product/getAllCategoryAPI',
         async (keyword) => {
             const response = await productService.getAllCategory(keyword);
             return response.data.content;
@@ -45,7 +45,7 @@ class ProductThunk {
     );
 
     getPaging = createAsyncThunk(
-        'productAPI/getPaging',
+        'product/getPagingAPI',
         async ({ pageIndex, pageSize, keywords } = {}) => {
             const response = await productService.getPaging(pageIndex, pageSize, keywords);
             return response.data.content;
@@ -53,7 +53,7 @@ class ProductThunk {
     );
 
     getProductById = createAsyncThunk(
-        'productAPI/getProductById',
+        'product/getProductByIdAPI',
         async (id) => {
             const response = await productService.getProductById(id);
             return response.data.content;
@@ -61,7 +61,7 @@ class ProductThunk {
     );
 
     getAllStore = createAsyncThunk(
-        'productAPI/getAllStore',
+        'product/getAllStoreAPI',
         async (keyword) => {
             const response = await productService.getAllStore(keyword);
             return response.data.content;

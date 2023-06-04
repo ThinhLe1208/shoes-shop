@@ -1,13 +1,13 @@
 .wrapper {
   & > * {
-    margin-bottom: var(--margin-md);
+    margin-bottom: var(--space-md);
   }
   .name {
     font-size: var(--font-size-xxl);
   }
 
   .rate {
-    margin-bottom: var(--margin-lg);
+    margin-bottom: var(--space-lg);
   }
 
   .price {
@@ -16,7 +16,7 @@
     align-items: baseline;
 
     .mainPrice {
-      color: var(--color-primary);
+      color: var(--color-secondary);
       font-size: var(--font-size-xl);
     }
 
@@ -29,7 +29,7 @@
 
     .saleTag {
       color: var(--white);
-      background-color: var(--color-primary);
+      background-color: var(--color-secondary);
       padding: 6px 10px 4px;
       border-radius: var(--border-rad-sm);
       margin-left: 12px;
@@ -42,7 +42,7 @@
   }
 
   .quantity {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-size: var(--font-size-md);
   }
 }

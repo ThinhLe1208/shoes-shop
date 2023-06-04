@@ -14,7 +14,7 @@
     margin-bottom: 10px;
 
     .name {
-      color: var(--color-primary);
+      color: var(--color-secondary);
       font-weight: 600;
     }
 
@@ -23,7 +23,7 @@
       cursor: pointer;
 
       &:hover {
-        color: var(--color-primary);
+        color: var(--color-secondary);
       }
     }
   }

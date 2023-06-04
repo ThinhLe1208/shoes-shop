@@ -25,7 +25,7 @@ const Header = () => {
   useEffect(() => {
     const handleWindowScroll = () => {
       if (window.scrollY >= 40) {
-        div.current.style.backgroundColor = 'var(--bg-color)';
+        div.current.style.backgroundColor = 'var(--color-primary)';
         div.current.classList.add(styles.fixed);
       } else {
         if (href === '/index' || href === '/') {
@@ -37,8 +37,10 @@ const Header = () => {
 
     if (href === '/index' || href === '/') {
       div.current.style.backgroundColor = 'transparent';
+      div.current.classList.add(styles.index);
     } else {
-      div.current.style.backgroundColor = 'var(--bg-color)';
+      div.current.style.backgroundColor = 'var(--color-primary)';
+      div.current.classList.remove(styles.index);
     }
 
     window.addEventListener('scroll', handleWindowScroll);
@@ -68,7 +70,15 @@ const Header = () => {
         <Row justify={'space-between'} align={'middle'}>
           <Col>
             <Link to='/'>
-              <img className={styles.logo} src={require('../../assets/images/logo_nike.png')} alt='logo' />
+              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' id='Nike' width={80} height={80}>
+                <path
+                  fill='var(--color-secondary)'
+                  fillRule='evenodd'
+                  d='m7.998 7.567-2.758.722c-.974.241-1.826.562-2.647.281-1.116-.482-1.096-1.736-.264-3.07-1.471 1.214-4.118 5.096-.538 5.488.456.06 1.268-.1 2.15-.471l4.057-1.665L16 5.58 8.992 7.306l-.994.261z'
+                  clipRule='evenodd'
+                  className='color1d1d1b svgShape'
+                ></path>
+              </svg>
             </Link>
           </Col>
 

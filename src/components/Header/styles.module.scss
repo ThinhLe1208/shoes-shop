@@ -5,28 +5,52 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--bg-color);
+  background-color: var(--color-primary);
   transition: all linear var(--transition-short);
   z-index: 999;
 
   &.fixed {
     height: calc(var(--padding-top-header) - 24px);
-    background-color: var(--bg-color);
+    background-color: var(--color-primary);
     box-shadow: var(--box-shadow-1);
 
-    .nav ul a {
+    .logo {
+      filter: invert(1);
+    }
+
+    .nav ul a,
+    .icons .icon {
+      // color text secondary
+      color: var(--color-text-base);
+    }
+  }
+
+  &.index {
+    .nav ul a,
+    .icons .icon {
       color: var(--color-text-base);
     }
 
-    .icons {
-      .icon {
-        color: var(--color-text-base);
-      }
+    .logo {
+      filter: invert(0);
+    }
+  }
+
+  &.fixed.index {
+    .nav ul a,
+    .icons .icon {
+      // color text secondary
+      color: var(--color-text-base);
+    }
+
+    .logo {
+      filter: invert(1);
     }
   }
 
   .logo {
     width: 60px;
+    filter: invert(1);
   }
 
   .nav {
@@ -35,7 +59,7 @@
     align-items: center;
 
     .active {
-      color: var(--color-primary) !important;
+      color: var(--color-secondary) !important;
 
       &::after {
         width: 100%;
@@ -50,6 +74,7 @@
 
       a {
         position: relative;
+        // color text secondary
         color: var(--color-text-base);
         font-size: var(--font-size-md);
         font-weight: 600;
@@ -60,7 +85,7 @@
         transition: all linear var(--transition-short);
 
         &:hover {
-          color: var(--color-primary);
+          color: var(--color-secondary);
         }
 
         & + & {
@@ -75,7 +100,7 @@
           height: 2px;
           bottom: 2px;
           left: 0;
-          background-color: var(--color-primary);
+          background-color: var(--color-secondary);
           transition: all linear 0.3s;
         }
 
@@ -91,13 +116,14 @@
     align-items: center;
 
     .icon {
+      // color text secondary
       color: var(--color-text-base);
       font-size: var(--font-size-xl);
       cursor: pointer;
       transition: all linear var(--transition-short);
 
       &:hover {
-        color: var(--color-primary);
+        color: var(--color-secondary);
       }
     }
 

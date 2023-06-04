@@ -1,9 +1,10 @@
 .wrapper {
   --padding-x: 16px;
+
   position: relative;
+  background-color: var(--color-primary);
   border-radius: 16px;
   border: 1.6px solid var(--border-color);
-  border: 1.6px solid rgba(204, 2, 1, 0.2);
   padding: var(--padding-x);
   transition: all ease 0.3s;
 
@@ -39,10 +40,19 @@
       z-index: 100;
 
       .saleTag {
-        color: var(--white);
-        background-color: var(--color-primary);
+        color: var(--color-text-secondary);
+        background-color: var(--color-secondary);
         padding: 6px 10px 4px;
         border-radius: var(--border-rad-sm);
+      }
+
+      .likeBtn,
+      .likeBtn svg {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--color-cta);
+        border-color: var(--border-color) !important;
       }
     }
 
@@ -67,12 +77,14 @@
   .body {
     .name {
       font-size: var(--font-size-md);
+      color: var(--color-text-base);
       margin-bottom: 10px;
     }
 
     p {
       font-size: var(--font-size-lg);
-      color: var(--color-primary);
+      color: var(--color-secondary);
+      color: var(--color-text-secondary);
       margin-bottom: 10px;
     }
 
@@ -82,7 +94,7 @@
       align-items: baseline;
 
       .mainPrice {
-        color: var(--color-primary);
+        color: var(--color-secondary);
         font-size: var(--font-size-lg);
       }
 

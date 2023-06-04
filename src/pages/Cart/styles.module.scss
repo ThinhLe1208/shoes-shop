@@ -1,26 +1,26 @@
 .wrapper {
-  background-color: var(--bg-color);
+  background-color: var(--color-primary);
 
   .heading {
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-size: var(--font-size-xxl);
     font-weight: 700;
-    margin-bottom: var(--margin-md);
+    margin-bottom: var(--space-md);
   }
 
   .infoCell {
     .name {
       display: block;
-      color: var(--color-primary);
+      color: var(--color-secondary);
       font-size: var(--font-size-lg);
       font-weight: 600;
-      margin-bottom: var(--margin-sm);
+      margin-bottom: var(--space-sm);
     }
 
     .info {
       color: var(--color-text-base);
       font-size: var(--font-size-md);
-      margin-bottom: var(--margin-sm);
+      margin-bottom: var(--space-sm);
 
       span {
         color: var(--color-text-sub);
@@ -45,7 +45,7 @@
       cursor: pointer;
 
       &:hover {
-        color: var(--color-primary);
+        color: var(--color-secondary);
       }
     }
   }
@@ -59,7 +59,7 @@
     text-align: end;
 
     .price {
-      margin-bottom: var(--margin-md);
+      margin-bottom: var(--space-md);
 
       span:first-child {
         font-size: var(--font-size-md);
@@ -74,11 +74,11 @@
     .subInfo {
       color: var(--color-text-sub);
       font-size: var(--font-size-sm);
-      margin-bottom: var(--margin-lg);
+      margin-bottom: var(--space-lg);
     }
 
     button + button {
-      margin-top: var(--margin-md);
+      margin-top: var(--space-md);
     }
   }
 }

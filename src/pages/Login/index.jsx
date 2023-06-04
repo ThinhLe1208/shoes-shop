@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './styles.module.scss';
-import SignInForm from 'components/SignInForm';
+import SignInForm from 'pages/Login/components/SignInForm';
 import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
 

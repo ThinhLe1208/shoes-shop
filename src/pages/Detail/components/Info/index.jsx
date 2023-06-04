@@ -66,13 +66,13 @@ const Info = ({ product, star, randomSalePrecent, randomSalePrice }) => {
       <Space>{renderSizeList(product.size)}</Space>
       <p className={styles.options}>Color</p>
       <Space>
-        <Button style={{ backgroundColor: 'red' }} type='primary'>
+        <Button style={{ color: 'var(--white)', backgroundColor: 'red' }} type='primary'>
           Red
         </Button>
-        <Button style={{ backgroundColor: 'black' }} type='primary'>
+        <Button style={{ color: 'var(--white)', backgroundColor: 'black' }} type='primary'>
           Black
         </Button>
-        <Button style={{ backgroundColor: 'blue' }} type='primary'>
+        <Button style={{ color: 'var(--white)', backgroundColor: 'blue' }} type='primary'>
           Blue
         </Button>
       </Space>

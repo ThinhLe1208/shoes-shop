@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './styles.module.scss';
-import SignUpForm from 'components/SignUpForm';
+import SignUpForm from 'pages/Register/components/SignUpForm';
 import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
 

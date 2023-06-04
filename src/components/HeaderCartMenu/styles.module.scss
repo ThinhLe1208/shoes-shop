@@ -26,10 +26,12 @@
       margin-bottom: 16px;
 
       .totalText {
+        color: var(--color-text-base);
         font-size: var(--font-size-md);
       }
 
       .totalNumber {
+        color: var(--color-text-base);
         font-size: var(--font-size-xl);
         font-weight: 600;
       }

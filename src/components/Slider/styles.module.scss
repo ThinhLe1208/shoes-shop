@@ -1,5 +1,5 @@
 .wrapper {
-  background-color: var(--bg-color);
+  background-color: var(--color-primary);
 
   .leftBtn,
   .rightBtn {
@@ -9,20 +9,20 @@
     box-shadow: var(--box-shadow-2);
     width: 40px;
     height: 40px;
-    background: var(--bg-color);
+    background: var(--color-primary);
     transition: all linear var(--transition-short);
     cursor: pointer;
 
     &:hover {
-      background-color: var(--color-primary);
+      background-color: var(--color-cta);
     }
 
     &:hover div {
-      border-color: var(--white);
+      border-color: var(--color-primary);
     }
 
     &:hover div::after {
-      background-color: var(--white);
+      background-color: var(--color-primary);
     }
   }
 
@@ -30,8 +30,8 @@
     display: block;
     width: 8px;
     height: 8px;
-    border-top: 2px solid var(--color-primary);
-    border-left: 2px solid var(--color-primary);
+    border-top: 2px solid var(--color-cta);
+    border-left: 2px solid var(--color-cta);
     transform: rotate(135deg);
     transition: all linear var(--transition-short);
 
@@ -40,7 +40,7 @@
       display: block;
       width: 2px;
       height: 30px;
-      background-color: var(--color-primary);
+      background-color: var(--color-cta);
       transform: rotate(-45deg) translate(10px, 4px);
       left: 0;
       top: 0;
@@ -69,13 +69,13 @@
     }
 
     .title {
-      color: var(--color-primary);
+      color: var(--color-secondary);
       margin-right: 10px;
     }
   }
 
   .swiper {
-    padding: 14px 10px var(--padding-1);
+    padding: 14px 10px 68px;
     margin-left: -10px;
     margin-right: -10px;
   }

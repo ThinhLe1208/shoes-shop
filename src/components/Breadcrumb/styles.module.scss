@@ -1,5 +1,5 @@
 .wrapper {
-  margin-bottom: var(--margin-md);
+  margin-bottom: var(--space-md);
 
   .breadcrumb {
     & > ol > li > a {
@@ -7,7 +7,7 @@
       transition: all linear var(--transition-short);
 
       &:hover {
-        color: var(--color-primary);
+        color: var(--color-secondary);
       }
     }
 

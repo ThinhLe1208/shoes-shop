@@ -105,7 +105,7 @@ const FilterSidebar = () => {
       <Collapse
         defaultActiveKey={['1', '2', '3']}
         expandIconPosition='end'
-        // style={{ backgroundColor: 'var(--color-primary)' }}
+        // style={{ backgroundColor: 'var(--color-secondary)' }}
       >
         <Panel header='Category' key='1'>
           {renderCategoryContent()}

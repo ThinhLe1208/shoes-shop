@@ -40,7 +40,6 @@ http.interceptors.response.use(
         }
         if (error.response?.status === 400 || error.response?.status === 404) {
             toast.error("The data was not found.");
-            history.push('/index');
         }
         return Promise.reject(error);
     }

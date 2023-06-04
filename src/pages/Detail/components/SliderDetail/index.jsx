@@ -44,8 +44,8 @@ const SliderDetail = memo(({ product }) => {
       <>
         <Swiper
           style={{
-            '--swiper-navigation-color': 'var(--color-primary)',
-            '--swiper-pagination-color': 'var(--color-primary)',
+            '--swiper-navigation-color': 'var(--color-secondary)',
+            '--swiper-pagination-color': 'var(--color-secondary)',
           }}
           spaceBetween={10}
           navigation={true}

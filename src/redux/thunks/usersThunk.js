@@ -4,36 +4,39 @@ import { usersService } from "services/usersService";
 
 class UsersThunk {
     signUp = createAsyncThunk(
-        'usersAPI/signUp',
+        'users/signUpAPI',
         async (payload) => {
             const response = await usersService.signUp(payload);
             return response.data.content;
         }
     );
     signIn = createAsyncThunk(
-        'usersAPI/signIn',
+        'users/signInAPI',
         async (payload) => {
             const response = await usersService.signIn(payload);
             return response.data.content;
         }
     );
     getProfile = createAsyncThunk(
-        'usersAPI/getProfile',
+        'users/getProfileAPI',
         async () => {
             const response = await usersService.getProfile();
             return response.data.content;
         }
     );
     updateProfile = createAsyncThunk(
-        'usersAPI/updateProfile',
-        async (payload, { dispatch, rejectWithValue }) => {
-            try {
-                const response = await usersService.updateProfile(payload);
-                dispatch(this.getProfile());
-                return response.data.content;
-            } catch (err) {
-                return rejectWithValue(err.response.data);
+        'users/updateProfileAPI',
+        async (payload, { dispatch, getState, requestId }) => {
+            const { currentRequestId, isLoading } = getState().users;
+            // run a peding state in usersSlice first ?
+            if (isLoading !== true || requestId !== currentRequestId) {
+                return;
             }
+            const response = await usersService.updateProfile(payload);
+            dispatch(this.getProfile());
+            return response.data.content;
+            // try catch
+            // return rejectWithValue(err.response.data);
         }
     );
 }

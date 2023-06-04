@@ -20,7 +20,7 @@ const HomeTemplate = () => {
     if (href === '/' || href === '/index') {
       outletRef.current.style.paddingTop = 0;
     } else {
-      outletRef.current.style.paddingTop = 'var(--padding-top-header)';
+      outletRef.current.style.paddingTop = 'calc(var(--space-lg) + var(--padding-top-header))';
     }
   }, [href]);
 
