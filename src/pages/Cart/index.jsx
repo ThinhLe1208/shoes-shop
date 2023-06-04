@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Col, Row, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,13 +10,24 @@ import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
 import QuantityField from 'components/QuantityField';
 import { removeCart } from 'redux/slices/cartSlice';
+import { storage } from 'utils/storage';
+import { toast } from 'react-toastify';
+import { history } from 'utils/history';
 
 const Cart = () => {
   const { cartList, totalPrice } = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Cart' }];
-
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const isLogin = storage.checkLogin();
+    if (!isLogin) {
+      toast.error('You must log in first.');
+      history.push('/login');
+    }
+  }, []);
+
+  const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Cart' }];
 
   const handleDeleteProduct = (id) => {
     dispatch(removeCart(id));
@@ -60,7 +71,7 @@ const Cart = () => {
       render: (data) => {
         return (
           <div className={styles.quantityCell}>
-            <QuantityField product={data} />
+            <QuantityField product={data} large />
             <FontAwesomeIcon
               className={styles.trahsIcon}
               icon={faTrashCan}
@@ -90,38 +101,40 @@ const Cart = () => {
   }));
 
   return (
-    <div className={styles.wrapper}>
-      <Container>
-        <Breadcrumb breadCrumbList={breadCrumbList} />
-        <h3 className={styles.heading}>Your Cart</h3>
+    storage.checkLogin() && (
+      <div className={styles.wrapper}>
+        <Container>
+          <Breadcrumb breadCrumbList={breadCrumbList} />
+          <h3 className={styles.heading}>Your Cart</h3>
 
-        <Row align={'top'} gutter={16}>
-          <Col span={18}>
-            <Table
-              columns={columns}
-              dataSource={data}
-              rowKey={'key'}
-              pagination={{ position: ['bottomRight'], defaultPageSize: 4 }}
-            />
-          </Col>
-          <Col span={6}>
-            <div className={styles.tableFooter}>
-              <p className={styles.price}>
-                <span>Subtotal :</span>
-                <span>${totalPrice}</span>
-              </p>
-              <p className={styles.subInfo}>Taxes and shipping calculated at checkout</p>
-              <Button type='primary' block onClick={() => navigate('/')}>
-                Continue Shopping
-              </Button>
-              <Button type='primary' block onClick={() => navigate('/checkout')}>
-                Check Out
-              </Button>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+          <Row align={'top'} gutter={16}>
+            <Col span={18}>
+              <Table
+                columns={columns}
+                dataSource={data}
+                rowKey={'key'}
+                pagination={{ position: ['bottomRight'], defaultPageSize: 4 }}
+              />
+            </Col>
+            <Col span={6}>
+              <div className={styles.tableFooter}>
+                <p className={styles.price}>
+                  <span>Subtotal :</span>
+                  <span>${totalPrice}</span>
+                </p>
+                <p className={styles.subInfo}>Taxes and shipping calculated at checkout</p>
+                <Button type='primary' block onClick={() => navigate('/')}>
+                  Continue Shopping
+                </Button>
+                <Button type='primary' block onClick={() => navigate('/checkout')}>
+                  Check Out
+                </Button>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    )
   );
 };
 

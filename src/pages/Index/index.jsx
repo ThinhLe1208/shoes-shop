@@ -1,25 +1,18 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Col, Row } from 'antd';
 
 import styles from './styles.module.scss';
-import { productThunk } from 'redux/thunks/productThunk';
 import Carousel from 'components/Carousel';
 import Slider from 'components/Slider';
 import Container from 'components/Container';
 import Banner from 'components/Banner';
 import { ADIDAS_CATEGORY_ID, NIKE_CATEGORY_ID, VANS_CONVERSE_CATEGORY_ID } from 'utils/constants/settingSystem';
+import BannerVideo from 'components/BannerVideo';
 
 const Index = () => {
-  const dispatch = useDispatch();
   const productByCategoryList = useSelector((state) => state.product.productByCategoryList);
   const saleProductList = useSelector((state) => state.product.saleProductList);
-
-  useEffect(() => {
-    dispatch(productThunk.getProductByCategory(NIKE_CATEGORY_ID));
-    dispatch(productThunk.getProductByCategory(ADIDAS_CATEGORY_ID));
-    dispatch(productThunk.getProductByCategory(VANS_CONVERSE_CATEGORY_ID));
-  }, [dispatch]);
 
   return (
     <div className={styles.wrapper}>
@@ -88,7 +81,7 @@ const Index = () => {
         <div className={styles.banner3}>
           <Row gutter={[32, 32]}>
             <Col span={15}>
-              <Banner position='middle' image='banner_3.png' path='/search' video={true} />
+              <BannerVideo image='banner_3.png' />
             </Col>
             <Col span={9}>
               <Banner

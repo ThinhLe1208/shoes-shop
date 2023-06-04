@@ -3,23 +3,32 @@ import { useDispatch } from 'react-redux';
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
-import { changeQuantity, decreaseQuantity } from 'redux/slices/cartSlice';
-import { increaseQuantity } from 'redux/slices/cartSlice';
+import { changeQuantityByButton, changeQuantityByInput } from 'redux/slices/cartSlice';
 
-const QuantityField = ({ product }) => {
+const QuantityField = ({ product, large }) => {
   const dispatch = useDispatch();
 
   const handleDecreaseQuantity = () => {
-    dispatch(decreaseQuantity(product?.id));
+    dispatch(
+      changeQuantityByButton({
+        id: product?.id,
+        qty: -1,
+      })
+    );
   };
 
   const handleIncreaseQuantity = () => {
-    dispatch(increaseQuantity(product?.id));
+    dispatch(
+      changeQuantityByButton({
+        id: product?.id,
+        qty: 1,
+      })
+    );
   };
 
   const handleChangeQuantity = (e) => {
     dispatch(
-      changeQuantity({
+      changeQuantityByInput({
         id: product?.id,
         qty: Number(e.target.value),
       })
@@ -27,12 +36,12 @@ const QuantityField = ({ product }) => {
   };
 
   const handleBlurQuantity = (e) => {
-    let qty = e.target.value;
+    let qty = Number(e.target.value);
     if (qty < 1) {
       qty = 1;
     }
     dispatch(
-      changeQuantity({
+      changeQuantityByInput({
         id: product?.id,
         qty: Math.floor(qty),
       })
@@ -40,11 +49,11 @@ const QuantityField = ({ product }) => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper + ' ' + (large && styles.large)}>
       <MinusOutlined onClick={handleDecreaseQuantity} />
       <input
         type='number'
-        value={product?.qty}
+        value={product?.qty ?? 1}
         onInput={handleChangeQuantity}
         onBlur={handleBlurQuantity}
         min={1}

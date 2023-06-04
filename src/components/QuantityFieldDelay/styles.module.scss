@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 70px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-rad-sm);
+  padding: 4px 6px;
+
+  &.large {
+    max-width: 100px;
+    padding: 10px 12px;
+
+    span {
+      font-size: 14px;
+    }
+
+    input {
+      font-size: 18px;
+    }
+  }
+
+  span {
+    font-size: 10px;
+  }
+
+  input {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-text-base);
+    display: inline-block;
+    min-width: 20px;
+    border: none;
+    background-color: var(--white);
+    background-clip: padding-box;
+    padding: 0 8px;
+    margin-bottom: -2px;
+    text-align: center;
+
+    // Hide Arrows From Input Number
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    // &[type='number'] {
+    //   -moz-appearance: textfield;
+    // }
+  }
+}

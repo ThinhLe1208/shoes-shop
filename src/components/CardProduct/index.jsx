@@ -18,7 +18,7 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
   };
 
   const handleAddCart = () => {
-    dispatch(addCart(product));
+    dispatch(addCart({ product: product, qty: 1 }));
   };
 
   return (

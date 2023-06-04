@@ -1,8 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './styles.module.scss';
 
@@ -15,7 +13,6 @@ const Banner = ({
   content,
   buttonContent,
   buttonType = 'primary',
-  video,
   path,
 }) => {
   const positionStyle = useMemo(() => {
@@ -30,6 +27,7 @@ const Banner = ({
           inset: '0 auto 0 5%',
           paddingTop: '40px',
           justifyContent: 'flex-start',
+          alignItems: 'flex-start',
         };
       default:
         return {
@@ -52,11 +50,6 @@ const Banner = ({
           {title && <h2>{title}</h2>}
           {content && <p>{content}</p>}
           {buttonContent && <Button type={buttonType}>{buttonContent}</Button>}
-          {video && (
-            <button className={styles.playButton}>
-              <FontAwesomeIcon icon={faPlay} />
-            </button>
-          )}
         </div>
       </Link>
     </div>

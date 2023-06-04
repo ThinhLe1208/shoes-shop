@@ -14,6 +14,7 @@ const initialState = {
     cartList: [],
     totalPrice: '',
     totalQuantity: 0,
+    quantityDetail: 1
 };
 
 const cartSlice = createSlice({
@@ -21,11 +22,11 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addCart: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload?.id);
+            let index = state.cartList.findIndex(item => item.id === payload?.product?.id);
             if (index === -1) {
-                state.cartList.push({ ...payload, qty: 1 });
+                state.cartList.push({ ...payload?.product, qty: payload.qty });
             } else {
-                state.cartList[index].qty += 1;
+                state.cartList[index].qty += payload.qty;
             }
             caculateTotal(state);
         },
@@ -37,30 +38,35 @@ const cartSlice = createSlice({
             state.cartList = [];
             caculateTotal(state);
         },
-        increaseQuantity: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload);
+        // QuantityField component
+        changeQuantityByInput: (state, { payload }) => {
+            let index = state.cartList.findIndex(item => item.id === payload?.id);
             if (index !== -1) {
-                state.cartList[index].qty += 1;
+                state.cartList[index].qty = payload?.qty;
             }
             caculateTotal(state);
         },
-        decreaseQuantity: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload);
+        changeQuantityByButton: (state, { payload }) => {
+            let index = state.cartList.findIndex(item => item.id === payload?.id);
             if (index !== -1) {
-                if (state.cartList[index].qty > 1) {
-                    state.cartList[index].qty -= 1;
+                const result = state.cartList[index].qty + payload?.qty;
+                if (result > 0) {
+                    state.cartList[index].qty = result;
                 } else {
                     state.cartList.splice(index, 1);
                 }
             }
             caculateTotal(state);
         },
-        changeQuantity: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload?.id);
-            if (index !== -1) {
-                state.cartList[index].qty = payload?.qty;
+        // QuantityFieldDelay component
+        changeQuantityDetailByInput: (state, { payload }) => {
+            state.quantityDetail = payload;
+        },
+        changeQuantityDetailByButton: (state, { payload }) => {
+            const result = state.quantityDetail + payload;
+            if (result > 0) {
+                state.quantityDetail = result;
             }
-            caculateTotal(state);
         },
     }
 });
@@ -69,9 +75,10 @@ export const {
     addCart,
     removeCart,
     clearCart,
-    increaseQuantity,
-    decreaseQuantity,
-    changeQuantity,
+    changeQuantityByInput,
+    changeQuantityByButton,
+    changeQuantityDetailByInput,
+    changeQuantityDetailByButton
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

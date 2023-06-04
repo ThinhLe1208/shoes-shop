@@ -1,3 +1,6 @@
+import jwt_decode from 'jwt-decode';
+import { ACCESS_TOKEN, USER_LOGIN } from './constants/settingSystem';
+
 class Storage {
     setStorageJson(name, data) {
         data = JSON.stringify(data);
@@ -68,6 +71,26 @@ class Storage {
     }
     clearStorage(name) {
         localStorage.removeItem(name);
+    }
+    checkLogin() {
+        let isLogin = true;
+        // Not log in yet
+        if (!this.getStore(USER_LOGIN) || !this.getStore(ACCESS_TOKEN)) {
+            isLogin = false;
+        }
+        // Already log in but a token expired (call api to refresh token)
+        if (this.getStore(ACCESS_TOKEN)) {
+            let decodedToken = jwt_decode(this.getStore(ACCESS_TOKEN));
+            let currentDate = new Date();
+            // JWT exp is in seconds
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {
+                isLogin = false;
+                this.clearStorage(USER_LOGIN);
+                this.clearStorage(ACCESS_TOKEN);
+            }
+        }
+
+        return isLogin;
     }
 };
 

@@ -1,16 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Rate, Space } from 'antd';
+import { useNavigate } from 'react-router';
 
 import styles from './styles.module.scss';
-import QuantityField from 'components/QuantityField';
+import QuantityFieldDelay from 'components/QuantityFieldDelay';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCart } from 'redux/slices/cartSlice';
 
 const Info = ({ product, star, randomSalePrecent, randomSalePrice }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const quantityDetail = useSelector((state) => state.cart.quantityDetail);
+  const [size, setSize] = useState(0);
+
   const renderSizeList = (list) => {
     if (Array.isArray(list)) {
       return list.map((item, index) => {
-        return <Button key={index}>{item}</Button>;
+        return (
+          <Button key={index} type={size === index ? 'primary' : 'default'} onClick={() => setSize(index)}>
+            {item}
+          </Button>
+        );
       });
     }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addCart({
+        product: product,
+        qty: quantityDetail,
+      })
+    );
+  };
+
+  const handleBuyItNow = () => {
+    navigate('/checkout');
   };
 
   return (
@@ -31,7 +56,9 @@ const Info = ({ product, star, randomSalePrecent, randomSalePrice }) => {
           <div className={styles.saleTag}>Sale {randomSalePrecent}%</div>
         </div>
       ) : (
-        <p className={styles.mainPrice}>${product.price}</p>
+        <div className={styles.price}>
+          <p className={styles.mainPrice}>${product.price}</p>
+        </div>
       )}
       <p className={styles.description}>{product.description}</p>
       <p className={styles.quantity}>In stock {product.quantity} units, ready to be shipped.</p>
@@ -50,11 +77,11 @@ const Info = ({ product, star, randomSalePrecent, randomSalePrice }) => {
         </Button>
       </Space>
       <p className={styles.options}>Quantity</p>
-      <QuantityField />
-      <Button type='primary' block>
+      <QuantityFieldDelay large />
+      <Button type='primary' block onClick={handleAddToCart}>
         Add To Cart
       </Button>
-      <Button type='default' block>
+      <Button type='default' block onClick={handleBuyItNow}>
         Buy It Now
       </Button>
     </div>

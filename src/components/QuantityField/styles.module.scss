@@ -7,6 +7,19 @@
   border-radius: var(--border-rad-sm);
   padding: 4px 6px;
 
+  &.large {
+    max-width: 100px;
+    padding: 10px 12px;
+
+    span {
+      font-size: 14px;
+    }
+
+    input {
+      font-size: 18px;
+    }
+  }
+
   span {
     font-size: 10px;
   }

@@ -9,14 +9,16 @@ import SearchBar from 'components/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { productThunk } from 'redux/thunks/productThunk';
 import CardProduct from 'components/CardProduct';
+import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 
 const Search = () => {
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'All products' }];
 
   // lay thong tin tam thoi
   const dispatch = useDispatch();
-  const { productByKeywordList } = useSelector((state) => state.product);
-  console.log('Search ~ productByKeywordList:', productByKeywordList);
+  const productByKeywordList = useSelector((state) => state.product.productByKeywordList);
+  const saleProductList = useSelector((state) => state.product.saleProductList);
+  console.log('Search ~ productByKeywordList:', productByKeywordList.default);
   useEffect(() => {
     dispatch(productThunk.getProductByKeyword());
   }, [dispatch]);
@@ -28,7 +30,7 @@ const Search = () => {
       return list.map((item, index) => {
         return (
           <Col key={index} span={8}>
-            <CardProduct product={item} />
+            <SaleCaculationHOC product={item} saleProductList={saleProductList} Component={CardProduct} />
           </Col>
         );
       });
@@ -48,7 +50,7 @@ const Search = () => {
             <SearchBar />
 
             <div className={styles.resultList}>
-              <Row gutter={[32, 66]}>{renderResultList(productByKeywordList)}</Row>
+              <Row gutter={[32, 66]}>{renderResultList(productByKeywordList.default)}</Row>
             </div>
           </Col>
         </Row>

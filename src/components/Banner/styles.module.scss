@@ -47,31 +47,4 @@
       font-weight: 700;
     }
   }
-
-  .playButton {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    background-color: var(--white);
-    width: 80px;
-    height: 80px;
-    border: 1px solid transparent;
-    border-radius: 100%;
-    transition: var(--transition-short);
-    cursor: pointer;
-
-    svg {
-      margin-left: 6px;
-    }
-
-    &:hover {
-      color: var(--color-primary);
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-  }
 }

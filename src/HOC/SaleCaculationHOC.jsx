@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from 'react';
 
 const SaleCaculationHOC = ({ product, saleProductList, Component }) => {
   // make a random point for a rate feature
-  const starRef = useRef(Math.floor(Math.random() * 5 + 1));
+  const starRef = useRef(Math.floor(Math.random() * 4 + 2));
 
   // make a random sale price for feature products, check this product is in saleProductList or not
   const salePrecentRef = useRef(Math.floor(Math.random() * 20 + 10));

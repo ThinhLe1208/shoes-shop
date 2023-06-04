@@ -12,6 +12,7 @@ import Cart from 'pages/Cart';
 import Profile from 'pages/Profile';
 import Checkout from 'pages/Checkout';
 import Search from 'pages/Search';
+import ScrollToTopAuto from 'components/ScrollToTopAuto';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         theme="light"
       />
       <HistoryRouter history={history}>
+        <ScrollToTopAuto />
         <Routes>
           <Route path='' element={<HomeTemplate />} >
             <Route index element={<Index />} />
