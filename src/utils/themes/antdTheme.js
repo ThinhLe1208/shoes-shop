@@ -14,6 +14,8 @@ class ThemeConfig {
 
       colorTextBase: "rgb(28, 49, 68)",
       colorLink: "rgb(28, 49, 68)",
+
+      colorTextLightSolid: '#fff',
     }
   };
 
@@ -32,6 +34,8 @@ class ThemeConfig {
 
       colorTextBase: "rgb(28, 49, 68)",
       colorLink: "rgb(28, 49, 68)",
+
+      colorTextLightSolid: '#fff',
     }
   };
 

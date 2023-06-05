@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 import { Button, Col, Popconfirm, Radio, Row, Space, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
 
 import styles from './styles.module.scss';
 import InputField from 'components/InputField';
 import { usersThunk } from 'redux/thunks/usersThunk';
+import { notifications } from 'utils/notifications';
 
 const UpdateSchema = Yup.object().shape({
   email: Yup.string().required('Please provide email.'),
@@ -34,9 +34,9 @@ const UserInfo = ({ userProfile, isLoading }) => {
     onSubmit: async (values) => {
       try {
         await dispatch(usersThunk.updateProfile(values)).unwrap();
-        toast.success('Your profile was updated successfully.');
+        notifications.success('Your profile was updated successfully.');
       } catch (err) {
-        toast.error('Failed to update your profile.');
+        notifications.error('Failed to update your profile.');
       }
     },
   });
@@ -47,8 +47,16 @@ const UserInfo = ({ userProfile, isLoading }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.heading}>
-        <img className={styles.cover} src={require('../../../../assets/images/banner_2.png')} alt='cover' />
-        <img className={styles.avatar} src={userProfile?.avatar} alt='avatar' />
+        <img
+          className={styles.cover}
+          src={require('../../../../assets/images/banner_2.png')}
+          alt='cover'
+        />
+        <img
+          className={styles.avatar}
+          src={userProfile?.avatar}
+          alt='avatar'
+        />
       </div>
 
       <form className={styles.form}>
@@ -91,7 +99,10 @@ const UserInfo = ({ userProfile, isLoading }) => {
           </Col>
           <Col span={12}>
             <label className={styles.label}>Gender</label>
-            <Radio.Group onChange={handleChangeGender} value={values.gender}>
+            <Radio.Group
+              onChange={handleChangeGender}
+              value={values.gender}
+            >
               <Radio value={true}>Male</Radio>
               <Radio value={false}>Female</Radio>
             </Radio.Group>
@@ -101,19 +112,34 @@ const UserInfo = ({ userProfile, isLoading }) => {
               <Popconfirm
                 placement='topLeft'
                 title={'Are you sure to update your profile?'}
-                icon={<FontAwesomeIcon icon={faCircleQuestion} style={{ color: 'var(--color-secondary)' }} />}
+                icon={
+                  <FontAwesomeIcon
+                    icon={faCircleQuestion}
+                    style={{ color: 'var(--color-secondary)' }}
+                  />
+                }
                 okText='Update'
                 cancelText='Cancel'
                 onConfirm={handleSubmit}
               >
-                <Button type='primary' block disabled={isLoading}>
+                <Button
+                  type='primary'
+                  block
+                  disabled={isLoading}
+                >
                   <Space>
                     Update
-                    <Spin spinning={isLoading} style={{ color: 'white' }} />
+                    <Spin
+                      spinning={isLoading}
+                      style={{ color: 'white' }}
+                    />
                   </Space>
                 </Button>
               </Popconfirm>
-              <Button type='primary' block>
+              <Button
+                type='primary'
+                block
+              >
                 Change Password
               </Button>
             </Space>

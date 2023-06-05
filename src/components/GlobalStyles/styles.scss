@@ -19,7 +19,11 @@
   --color-text-base: rgb(28, 49, 68);
   --color-text-secondary: #fff;
   --color-text-sub: rgba(28, 49, 68, 0.5);
-  --color-error: #e46a76;
+
+  --color-success: #52c41a;
+  --color-warning: #faad14;
+  --color-error: #ff4d4f;
+  --color-info: #1677ff;
 
   --border-rad-sm: 4px;
   --border-rad-md: 10px;
@@ -48,6 +52,10 @@
   --color-secondary: rgb(220, 0, 0);
   --color-cta: #850000;
   --border-color: rgba(220, 0, 0, 0.2);
+
+  --color-text-base: rgb(28, 49, 68);
+  --color-text-secondary: #fff;
+  --color-text-sub: rgba(28, 49, 68, 0.5);
 }
 
 [data-theme='green'] {
@@ -184,4 +192,19 @@ td {
 
 .ant-btn {
   box-shadow: none;
+}
+
+// ---------- toastify library ---------
+
+.Toastify__progress-bar--success {
+  background-color: var(--color-success);
+}
+.Toastify__progress-bar--warning {
+  background-color: var(--color-warning);
+}
+.Toastify__progress-bar--error {
+  background-color: var(--color-error);
+}
+.Toastify__progress-bar--info {
+  background-color: var(--color-info);
 }

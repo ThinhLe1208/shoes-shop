@@ -11,8 +11,8 @@ import Breadcrumb from 'components/Breadcrumb';
 import QuantityField from 'components/QuantityField';
 import { removeCart } from 'redux/slices/cartSlice';
 import { storage } from 'utils/storage';
-import { toast } from 'react-toastify';
 import { history } from 'utils/history';
+import { notifications } from 'utils/notifications';
 
 const Cart = () => {
   const { cartList, totalPrice } = useSelector((state) => state.cart);
@@ -22,7 +22,7 @@ const Cart = () => {
   useEffect(() => {
     const isLogin = storage.checkLogin();
     if (!isLogin) {
-      toast.error('You must log in first.');
+      notifications.error('You must log in first.');
       history.push('/login');
     }
   }, []);
@@ -40,7 +40,12 @@ const Cart = () => {
       key: 'product',
       width: 160,
       render: (data) => {
-        return <img src={data?.image} alt='img' />;
+        return (
+          <img
+            src={data?.image}
+            alt='img'
+          />
+        );
       },
     },
     {
@@ -50,7 +55,10 @@ const Cart = () => {
       render: (data) => {
         return (
           <div className={styles.infoCell}>
-            <Link className={styles.name} to={`/detail/${data?.id}`}>
+            <Link
+              className={styles.name}
+              to={`/detail/${data?.id}`}
+            >
               {data?.name}
             </Link>
             <p className={styles.info}>
@@ -71,7 +79,10 @@ const Cart = () => {
       render: (data) => {
         return (
           <div className={styles.quantityCell}>
-            <QuantityField product={data} large />
+            <QuantityField
+              product={data}
+              large
+            />
             <FontAwesomeIcon
               className={styles.trahsIcon}
               icon={faTrashCan}
@@ -107,7 +118,10 @@ const Cart = () => {
           <Breadcrumb breadCrumbList={breadCrumbList} />
           <h3 className={styles.heading}>Your Cart</h3>
 
-          <Row align={'top'} gutter={16}>
+          <Row
+            align={'top'}
+            gutter={16}
+          >
             <Col span={18}>
               <Table
                 columns={columns}
@@ -123,10 +137,18 @@ const Cart = () => {
                   <span>${totalPrice}</span>
                 </p>
                 <p className={styles.subInfo}>Taxes and shipping calculated at checkout</p>
-                <Button type='primary' block onClick={() => navigate('/')}>
+                <Button
+                  type='primary'
+                  block
+                  onClick={() => navigate('/')}
+                >
                   Continue Shopping
                 </Button>
-                <Button type='primary' block onClick={() => navigate('/checkout')}>
+                <Button
+                  type='primary'
+                  block
+                  onClick={() => navigate('/checkout')}
+                >
                   Check Out
                 </Button>
               </div>

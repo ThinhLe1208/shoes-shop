@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Button, Space } from 'antd';
-import { toast } from 'react-toastify';
 
 import styles from './styles.module.scss';
 import { storage } from 'utils/storage';
 import { history } from 'utils/history';
 import Container from 'components/Container';
+import { notifications } from 'utils/notifications';
 
 const Checkout = () => {
   useEffect(() => {
     const isLogin = storage.checkLogin();
     if (!isLogin) {
-      toast.error('You must log in first.');
+      notifications.error('You must log in first.');
       history.push('/login');
     }
   }, []);
