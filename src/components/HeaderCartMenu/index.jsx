@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { Badge, Button, Empty, Popover } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { Badge, Button, Empty, Popover, Spin } from 'antd';
 
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
 import HeaderCartItem from 'components/HeaderCartItem';
-import { useNavigate } from 'react-router-dom';
 import LordIcon from 'components/LordIcon';
-import { CART_ICON_CDN } from 'utils/constants/settingSystem';
+import { notifications } from 'utils/notifications';
+import { usersThunk } from 'redux/thunks/usersThunk';
+import { clearCart } from 'redux/slices/cartSlice';
 
 const HeaderCartMenu = () => {
   const { cartList, totalPrice, totalQuantity } = useSelector((state) => state.cart);
+  const { isLoading } = useSelector((state) => state.users);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const handleViewCart = () => {
@@ -18,9 +22,15 @@ const HeaderCartMenu = () => {
     navigate('/cart');
   };
 
-  const handleCheckOut = () => {
+  const handleCheckOut = async () => {
+    try {
+      await dispatch(usersThunk.order()).unwrap();
+      dispatch(clearCart());
+      notifications.success('Check out successfully.');
+    } catch (err) {
+      notifications.error('Failed to check out.');
+    }
     setOpen(false);
-    navigate('/checkout');
   };
 
   const handleOpenChange = (newOpen) => {
@@ -75,9 +85,14 @@ const HeaderCartMenu = () => {
           <Button
             type='primary'
             block
+            disabled={isLoading}
             onClick={handleCheckOut}
           >
             Check Out
+            <Spin
+              spinning={isLoading}
+              style={{ color: 'white' }}
+            />
           </Button>
         </div>
       </div>
@@ -106,7 +121,7 @@ const HeaderCartMenu = () => {
         >
           <LordIcon
             className={styles.lordIcon}
-            src={CART_ICON_CDN}
+            icon='cart'
             trigger='hover'
             state='hover-1'
           />

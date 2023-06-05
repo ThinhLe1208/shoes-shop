@@ -29,9 +29,7 @@ http.interceptors.response.use(
         return response;
     },
     (error) => {
-        console.log('error', error);
-
-        if (error.response?.status === 401 || error.response?.status === 403) {
+        if (error?.response?.status === 401 || error?.response?.status === 403) {
             const isLogin = storage.checkLogin();
             if (!isLogin) {
                 notifications.error('You must log in first.');
@@ -39,7 +37,11 @@ http.interceptors.response.use(
             }
         }
         if (error.response?.status === 400 || error.response?.status === 404) {
-            notifications.error('The data was not found.');
+            if (error?.response?.data?.message === 'Email đã được sử dụng!') {
+                notifications.error('The email has already been taken.');
+            } else {
+                notifications.error('The data was not found.');
+            }
         }
         return Promise.reject(error);
     }

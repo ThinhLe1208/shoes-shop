@@ -7,7 +7,6 @@ import Container from 'components/Container';
 import HeaderUserMenu from 'components/HeaderUserMenu';
 import HeaderCartMenu from 'components/HeaderCartMenu';
 import LordIcon from 'components/LordIcon';
-import { SEARCH_ICON_CDN } from 'utils/constants/settingSystem';
 import HeaderFavoriteMenu from 'components/HeaderFavoriteMenu';
 
 const Header = () => {
@@ -110,7 +109,7 @@ const Header = () => {
               <div className={styles.icon}>
                 <LordIcon
                   className={styles.lordIcon}
-                  src={SEARCH_ICON_CDN}
+                  icon='search'
                   trigger='hover'
                 />
               </div>

@@ -5,7 +5,6 @@ import styles from './styles.module.scss';
 import { changeQuantityDetailByButton, changeQuantityDetailByInput } from 'redux/slices/cartSlice';
 import { useHref } from 'react-router';
 import LordIcon from 'components/LordIcon';
-import { ARROW_DOWN_ICON_CDN, ARROW_UP_ICON_CDN } from 'utils/constants/settingSystem';
 
 const QuantityFieldDelay = memo(({ large }) => {
   const dispatch = useDispatch();
@@ -39,7 +38,7 @@ const QuantityFieldDelay = memo(({ large }) => {
   return (
     <div className={styles.wrapper + ' ' + (large && styles.large)}>
       <LordIcon
-        src={ARROW_DOWN_ICON_CDN}
+        icon='arrowDown'
         className={styles.lordIcon}
         state='hover-1'
         trigger='click'
@@ -55,7 +54,7 @@ const QuantityFieldDelay = memo(({ large }) => {
         step={1}
       />
       <LordIcon
-        src={ARROW_UP_ICON_CDN}
+        icon='arrowUp'
         className={styles.lordIcon}
         state='hover-1'
         trigger='click'

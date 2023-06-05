@@ -21,6 +21,11 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        clearCartInfo: (state) => {
+            state.cartList = [];
+            state.totalQuantity = '0';
+            state.totalQuantity = 0;
+        },
         addCart: (state, { payload }) => {
             let index = state.cartList.findIndex(item => item.id === payload?.product?.id);
             if (index === -1) {
@@ -34,7 +39,7 @@ const cartSlice = createSlice({
             state.cartList = state.cartList.filter(item => item.id !== payload);
             caculateTotal(state);
         },
-        clearCart: (state) => {
+        clearCart: (state, { payload }) => {
             state.cartList = [];
             caculateTotal(state);
         },
@@ -72,6 +77,7 @@ const cartSlice = createSlice({
 });
 
 export const {
+    clearCartInfo,
     addCart,
     removeCart,
     clearCart,

@@ -3,13 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Button, Col, Popconfirm, Radio, Row, Space, Spin } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './styles.module.scss';
 import InputField from 'components/InputField';
 import { usersThunk } from 'redux/thunks/usersThunk';
 import { notifications } from 'utils/notifications';
+import LordIcon from 'components/LordIcon';
 
 const UpdateSchema = Yup.object().shape({
   email: Yup.string().required('Please provide email.'),
@@ -44,6 +43,7 @@ const UserInfo = ({ userProfile, isLoading }) => {
   const handleChangeGender = (e) => {
     setFieldValue('gender', e.target.value);
   };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.heading}>
@@ -113,9 +113,13 @@ const UserInfo = ({ userProfile, isLoading }) => {
                 placement='topLeft'
                 title={'Are you sure to update your profile?'}
                 icon={
-                  <FontAwesomeIcon
-                    icon={faCircleQuestion}
-                    style={{ color: 'var(--color-secondary)' }}
+                  <LordIcon
+                    icon='warning'
+                    className={styles.lordWarningIcon}
+                    trigger='loop'
+                    delay='800'
+                    state='intro'
+                    size='20px'
                   />
                 }
                 okText='Update'

@@ -2,7 +2,6 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 import LordIcon from 'components/LordIcon';
-import { HEART_ICON_CDN } from 'utils/constants/settingSystem';
 import { Badge } from 'antd';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -25,7 +24,7 @@ const HeaderFavoriteMenu = () => {
         <Link to='/profile'>
           <LordIcon
             className={styles.lordIcon}
-            src={HEART_ICON_CDN}
+            icon='heart'
             trigger='hover'
           />
         </Link>

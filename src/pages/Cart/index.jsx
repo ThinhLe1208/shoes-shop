@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Col, Row, Table } from 'antd';
+import { Button, Col, Row, Spin, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -7,15 +7,16 @@ import styles from './styles.module.scss';
 import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
 import QuantityField from 'components/QuantityField';
-import { removeCart } from 'redux/slices/cartSlice';
+import { clearCart, removeCart } from 'redux/slices/cartSlice';
 import { storage } from 'utils/storage';
 import { history } from 'utils/history';
 import { notifications } from 'utils/notifications';
 import LordIcon from 'components/LordIcon';
-import { TRASH_ICON_CDN } from 'utils/constants/settingSystem';
+import { usersThunk } from 'redux/thunks/usersThunk';
 
 const Cart = () => {
   const { cartList, totalPrice } = useSelector((state) => state.cart);
+  const { isLoading } = useSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -31,6 +32,20 @@ const Cart = () => {
 
   const handleDeleteProduct = (id) => {
     dispatch(removeCart(id));
+  };
+
+  const handleCheckOut = async () => {
+    if (cartList.length < 1) {
+      notifications.warning('Your cart is empty.');
+    } else {
+      try {
+        await dispatch(usersThunk.order()).unwrap();
+        dispatch(clearCart());
+        notifications.success('Check out successfully.');
+      } catch (err) {
+        notifications.error('Failed to check out.');
+      }
+    }
   };
 
   const columns = [
@@ -84,7 +99,7 @@ const Cart = () => {
               large
             />
             <LordIcon
-              src={TRASH_ICON_CDN}
+              icon='trash'
               className={styles.lordIcon}
               size='24px'
               state='hover-empty'
@@ -149,9 +164,14 @@ const Cart = () => {
                 <Button
                   type='primary'
                   block
-                  onClick={() => navigate('/checkout')}
+                  disabled={isLoading}
+                  onClick={handleCheckOut}
                 >
                   Check Out
+                  <Spin
+                    spinning={isLoading}
+                    style={{ color: 'white' }}
+                  />
                 </Button>
               </div>
             </Col>

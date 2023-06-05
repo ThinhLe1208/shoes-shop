@@ -18,8 +18,16 @@ const rootPersistConfig = {
     blacklist: ['users', 'product'],
 };
 
+const usersPersistConfig = {
+    key: 'users',
+    storage,
+    stateReconciler: autoMergeLevel2,
+    // persist
+    whitelist: ['favoriteList'],
+};
+
 const rootReducer = combineReducers({
-    users: usersReducer,
+    users: persistReducer(usersPersistConfig, usersReducer),
     product: productReducer,
     cart: cartReducer
 });

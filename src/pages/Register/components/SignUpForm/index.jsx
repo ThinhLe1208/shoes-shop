@@ -4,9 +4,11 @@ import * as Yup from 'yup';
 
 import styles from './styles.module.scss';
 import InputField from 'components/InputField';
-import { Button, Divider } from 'antd';
+import { Button, Divider, Radio } from 'antd';
 import { useDispatch } from 'react-redux';
 import { usersThunk } from 'redux/thunks/usersThunk';
+import { history } from 'utils/history';
+import { notifications } from 'utils/notifications';
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().required('Please provide email.'),
@@ -19,7 +21,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
 
   // Formik
-  const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
+  const { values, errors, touched, handleChange, handleBlur, handleSubmit, setFieldValue } = useFormik({
     initialValues: {
       email: '',
       password: '',
@@ -28,11 +30,20 @@ const SignUpForm = () => {
       phone: '',
     },
     validationSchema: SignUpSchema,
-    onSubmit: (values) => {
-      console.log(values);
-      dispatch(usersThunk.signUp(values));
+    onSubmit: async (values) => {
+      try {
+        await dispatch(usersThunk.signUp(values)).unwrap();
+        notifications.success('Sign up successfully.');
+        history.push('/login');
+      } catch (err) {
+        notifications.error('Failed to sign up.');
+      }
     },
   });
+
+  const handleChangeGender = (e) => {
+    setFieldValue('gender', e.target.value);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -80,6 +91,15 @@ const SignUpForm = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
+        <Divider />
+        <label className={styles.label}>Gender</label>
+        <Radio.Group
+          onChange={handleChangeGender}
+          value={values.gender}
+        >
+          <Radio value={true}>Male</Radio>
+          <Radio value={false}>Female</Radio>
+        </Radio.Group>
         <Divider />
         <Button
           type='primary'

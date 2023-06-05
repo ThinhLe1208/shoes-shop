@@ -6,7 +6,6 @@ import styles from './styles.module.scss';
 import QuantityField from 'components/QuantityField';
 import { removeCart } from 'redux/slices/cartSlice';
 import LordIcon from 'components/LordIcon';
-import { TRASH_ICON_CDN } from 'utils/constants/settingSystem';
 
 const HeaderCartItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ const HeaderCartItem = ({ product }) => {
           <div className={styles.heading}>
             <p className={styles.name}>{product?.name}</p>
             <LordIcon
-              src={TRASH_ICON_CDN}
+              icon='trash'
               className={styles.lordIcon}
               size='20px'
               state='hover-empty'

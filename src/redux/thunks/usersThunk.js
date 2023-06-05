@@ -12,8 +12,16 @@ class UsersThunk {
     );
     signIn = createAsyncThunk(
         'users/signInAPI',
-        async (payload) => {
+        async (payload, { dispatch }) => {
             const response = await usersService.signIn(payload);
+            dispatch(this.getProductfavorite(response?.data?.content?.accessToken));
+            return response.data.content;
+        }
+    );
+    facebooklogin = createAsyncThunk(
+        'users/facebookloginAPI',
+        async (payload) => {
+            const response = await usersService.facebooklogin({ facebookToken: payload });
             return response.data.content;
         }
     );
@@ -65,8 +73,36 @@ class UsersThunk {
     );
     getProductfavorite = createAsyncThunk(
         'users/getProductfavoriteAPI',
-        async () => {
-            const response = await usersService.getProductfavorite();
+        async (token) => {
+            const response = await usersService.getProductfavorite(token);
+            return response.data.content;
+        }
+    );
+    order = createAsyncThunk(
+        'users/orderAPI',
+        async (payload, { dispatch, getState, requestId }) => {
+            const { currentRequestId, isLoading, userLogin } = getState().users;
+            const { cartList } = getState().cart;
+            if (isLoading !== true || requestId !== currentRequestId) {
+                return;
+            }
+            const orderDetailList = cartList?.map(item => ({
+                productId: item?.id,
+                quantity: item?.qty
+            }));
+            const response = await usersService.order({
+                orderDetail: orderDetailList,
+                email: userLogin.email
+            });
+            dispatch(this.getProfile());
+            return response.data.content;
+        }
+    );
+    deleteOrder = createAsyncThunk(
+        'users/facebookloginAPI',
+        async (payload, { dispatch }) => {
+            const response = await usersService.deleteOrder({ orderId: payload });
+            dispatch(this.getProfile());
             return response.data.content;
         }
     );

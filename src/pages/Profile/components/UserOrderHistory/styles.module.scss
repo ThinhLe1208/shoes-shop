@@ -1,6 +1,18 @@
+@use '../../../../assets//sass/mixin.scss';
+
 .wrapper {
   .name {
     color: var(--color-cta);
     font-weight: 700;
   }
+}
+
+.lordIcon {
+  @extend %lordIcon;
+  display: block;
+  margin-left: auto;
+}
+
+.lordWarningIcon {
+  --lord-icon-primary: var(--color-warning);
 }

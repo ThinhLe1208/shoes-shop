@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Popover, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,13 +7,19 @@ import { faLock, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-
 
 import styles from './styles.module.scss';
 import { storage } from 'utils/storage';
-import { ACCESS_TOKEN, USER_ICON_CDN, USER_LOGIN } from 'utils/constants/settingSystem';
+import { ACCESS_TOKEN, USER_LOGIN } from 'utils/constants/settingSystem';
 import LordIcon from 'components/LordIcon';
+import { clearUsersInfo } from 'redux/slices/usersSlice';
+import { clearCartInfo } from 'redux/slices/cartSlice';
+import { persistor } from 'redux/configStore';
+import { notifications } from 'utils/notifications';
 
 const HeaderUserMenu = () => {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = useState(false);
 
-  const hide = () => {
+  const handleHidePopup = () => {
     setOpen(false);
   };
 
@@ -20,10 +27,24 @@ const HeaderUserMenu = () => {
     setOpen(newOpen);
   };
 
+  const handleLogout = () => {
+    storage.clearStorage(USER_LOGIN);
+    storage.clearStorage(ACCESS_TOKEN);
+    storage.eraseCookie(USER_LOGIN);
+    dispatch(clearUsersInfo());
+    dispatch(clearCartInfo());
+    // clear all persisted states in local storage
+    persistor.pause();
+    persistor.flush().then(() => {
+      return persistor.purge();
+    });
+    notifications.success('Log out successfully.');
+  };
+
   const notLoggedInContent = (
     <ul
       className={styles.userMenu}
-      onClick={hide}
+      onClick={handleHidePopup}
     >
       <li className={styles.userItem}>
         <Link to='/login'>
@@ -47,7 +68,7 @@ const HeaderUserMenu = () => {
   const loggedInContent = (
     <ul
       className={styles.userMenu}
-      onClick={hide}
+      onClick={handleHidePopup}
     >
       <li className={styles.userItem}>
         <Link to='/profile'>
@@ -60,11 +81,7 @@ const HeaderUserMenu = () => {
       <li className={styles.userItem}>
         <Link
           to='/index'
-          onClick={() => {
-            storage.clearStorage(USER_LOGIN);
-            storage.clearStorage(ACCESS_TOKEN);
-            storage.eraseCookie(USER_LOGIN);
-          }}
+          onClick={handleLogout}
         >
           <Space align='baseline'>
             <FontAwesomeIcon icon={faRightFromBracket} />
@@ -87,7 +104,7 @@ const HeaderUserMenu = () => {
       >
         <LordIcon
           className={styles.lordIcon}
-          src={USER_ICON_CDN}
+          icon='user'
           trigger='hover'
         />
       </Popover>

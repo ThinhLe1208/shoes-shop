@@ -1,13 +1,19 @@
 import React from 'react';
-import { Collapse, Empty, Table } from 'antd';
+import { Collapse, Empty, Popconfirm, Table } from 'antd';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 import styles from './styles.module.scss';
+import LordIcon from 'components/LordIcon';
+import { useDispatch } from 'react-redux';
+import { usersThunk } from 'redux/thunks/usersThunk';
+import { notifications } from 'utils/notifications';
 
 const { Panel } = Collapse;
 
 const UserOrderHistory = ({ userProfile }) => {
+  const dispatch = useDispatch();
+
   const columns = [
     {
       title: 'PRODUCT',
@@ -61,9 +67,19 @@ const UserOrderHistory = ({ userProfile }) => {
     },
   ];
 
+  const handleDeleteOrder = async (id) => {
+    try {
+      await dispatch(usersThunk.deleteOrder(id)).unwrap();
+      notifications.success('Delete the order successfully');
+    } catch (err) {
+      notifications.error('Failed to delete the order');
+    }
+  };
+
   const renderordersHistoryList = (ordersHistory) => {
     if (Array.isArray(ordersHistory)) {
       return ordersHistory.map((order, index) => {
+        console.log('returnordersHistory.map ~ order:', order);
         const data = order?.orderDetail?.map((item, index) => ({
           key: index,
           product: item,
@@ -76,6 +92,31 @@ const UserOrderHistory = ({ userProfile }) => {
             header={moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}
             key={index}
           >
+            <Popconfirm
+              placement='topLeft'
+              title={<p>Are you sure to delete this order?</p>}
+              icon={
+                <LordIcon
+                  icon='warning'
+                  className={styles.lordWarningIcon}
+                  trigger='loop'
+                  delay='800'
+                  state='intro'
+                  size='20px'
+                />
+              }
+              okText='Delete'
+              cancelText='Cancel'
+              onConfirm={() => handleDeleteOrder(order?.id)}
+            >
+              <LordIcon
+                icon='trash'
+                className={styles.lordIcon}
+                size='30px'
+                state='hover-empty'
+              />
+            </Popconfirm>
+
             <Table
               columns={columns}
               dataSource={data}
@@ -98,7 +139,9 @@ const UserOrderHistory = ({ userProfile }) => {
         {userProfile?.ordersHistory?.length ? (
           renderordersHistoryList(userProfile?.ordersHistory)
         ) : (
-          <Empty description={<p>Empty</p>} />
+          <Panel header='You have 0 order'>
+            <Empty description={<p>Empty</p>} />
+          </Panel>
         )}
       </Collapse>
     </div>

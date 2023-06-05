@@ -89,7 +89,6 @@ class Storage {
                 this.clearStorage(ACCESS_TOKEN);
             }
         }
-
         return isLogin;
     }
 };

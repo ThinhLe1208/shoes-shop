@@ -1,15 +1,14 @@
 import LordIcon from "components/LordIcon";
 import { toast } from "react-toastify";
-import { ERROR_ICON_CDN, INFO_ICON_CDN, SUCCESS_ICON_CDN, WARNING_ICON_CDN } from "./constants/settingSystem";
 
 class Notifications {
     success = (content) => {
         const colorSuccess = getComputedStyle(document.documentElement).getPropertyValue('--color-success');
         toast.success(content, {
             icon: <LordIcon
-                src={SUCCESS_ICON_CDN}
+                icon='success'
                 trigger='loop'
-                delay='600'
+                delay='800'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorSuccess}`} />
@@ -19,9 +18,9 @@ class Notifications {
         const colorWarning = getComputedStyle(document.documentElement).getPropertyValue('--color-warning');
         toast.warning(content, {
             icon: <LordIcon
-                src={WARNING_ICON_CDN}
+                icon='warning'
                 trigger='loop'
-                delay='600'
+                delay='800'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorWarning}`} />
@@ -31,9 +30,9 @@ class Notifications {
         const colorError = getComputedStyle(document.documentElement).getPropertyValue('--color-error');
         toast.error(content, {
             icon: <LordIcon
-                src={ERROR_ICON_CDN}
+                icon='error'
                 trigger='loop'
-                delay='600'
+                delay='800'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorError}`} />
@@ -43,9 +42,9 @@ class Notifications {
         const colorInfo = getComputedStyle(document.documentElement).getPropertyValue('--color-info');
         toast.info(content, {
             icon: <LordIcon
-                src={INFO_ICON_CDN}
+                icon='info'
                 trigger='loop'
-                delay='600'
+                delay='800'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorInfo}`} />

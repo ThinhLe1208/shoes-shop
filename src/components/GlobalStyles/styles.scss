@@ -189,6 +189,11 @@ td {
   box-shadow: none;
 }
 
+.ant-popconfirm-message {
+  display: flex !important;
+  align-items: center !important;
+}
+
 // ---------- toastify library ---------
 
 .Toastify__progress-bar--success {

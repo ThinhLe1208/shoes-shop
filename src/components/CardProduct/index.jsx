@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import styles from './styles.module.scss';
 import { addCart } from 'redux/slices/cartSlice';
 import LordIcon from 'components/LordIcon';
-import { EYE_ICON_CDN, HEART_ICON_CDN } from 'utils/constants/settingSystem';
 import { usersThunk } from 'redux/thunks/usersThunk';
 
 const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSalePrice, isLoading }) => {
@@ -47,7 +46,7 @@ const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSal
             icon={
               <LordIcon
                 className={styles.lordIcon + ' ' + (isLike ? styles.isLike : '')}
-                src={HEART_ICON_CDN}
+                icon='heart'
                 trigger='hover'
               />
             }
@@ -69,7 +68,7 @@ const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSal
           size='large'
           icon={
             <LordIcon
-              src={EYE_ICON_CDN}
+              icon='eye'
               trigger='loop'
               delay='500'
               stroke='100'

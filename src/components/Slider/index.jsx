@@ -11,7 +11,6 @@ import styles from './styles.module.scss';
 import CardProduct from 'components/CardProduct';
 import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 import LordIcon from 'components/LordIcon';
-import { ARROW_ICON_CDN } from 'utils/constants/settingSystem';
 
 const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4 }) => {
   const navigationPrevRef = useRef(null);
@@ -56,7 +55,7 @@ const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4
           >
             <LordIcon
               className={styles.lordIcon}
-              src={ARROW_ICON_CDN}
+              icon='arrow'
               state='hover-1'
               trigger='click'
             />
@@ -67,7 +66,7 @@ const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4
           >
             <LordIcon
               className={styles.lordIcon}
-              src={ARROW_ICON_CDN}
+              icon='arrow'
               state='hover-1'
               trigger='click'
             />

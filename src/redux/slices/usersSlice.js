@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { usersThunk } from 'redux/thunks/usersThunk';
 
-import { ACCESS_TOKEN, USER_LOGIN } from 'utils/constants/settingSystem';
-import { history } from 'utils/history';
+import { USER_LOGIN } from 'utils/constants/settingSystem';
 import { storage } from 'utils/storage';
 
 const initialState = {
     userLogin: storage.getStorageJson(USER_LOGIN),
     userProfile: null,
-    favoriteList: null,
+    favoriteList: [],
     isLoading: false,
     currentRequestId: undefined,
 };
@@ -16,20 +15,22 @@ const initialState = {
 const usersSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {},
+    reducers: {
+        clearUsersInfo: (state) => {
+            state.favoriteList = [];
+            state.userLogin = null;
+            state.userProfile = null;
+        }
+    },
     extraReducers: (builder) => {
         builder
-            // signUp
-            .addCase(usersThunk.signUp.fulfilled, (state, { payload }) => {
-                history.push('/signin');
-            })
             // signIn
             .addCase(usersThunk.signIn.fulfilled, (state, { payload }) => {
                 state.userLogin = payload;
-                storage.setStorageJson(USER_LOGIN, payload);
-                storage.setStorageJson(ACCESS_TOKEN, payload.accessToken);
-                storage.setCookieJson(USER_LOGIN, payload, 30);
-                history.push('/index');
+            })
+            // facebooklogin
+            .addCase(usersThunk.facebooklogin.fulfilled, (state, { payload }) => {
+                state.userLogin = payload;
             })
             // getProfile
             .addCase(usersThunk.getProfile.fulfilled, (state, { payload }) => {
@@ -113,10 +114,35 @@ const usersSlice = createSlice({
                     state.isLoading = false;
                     state.currentRequestId = undefined;
                 }
+            })
+            // order
+            .addCase(usersThunk.order.pending, (state, { meta }) => {
+                if (state.isLoading === false) {
+                    state.isLoading = true;
+                    state.currentRequestId = meta.requestId;
+                }
+            })
+            .addCase(usersThunk.order.fulfilled, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
+            })
+            .addCase(usersThunk.order.rejected, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
             });
     }
 });
 
-// export const { } = usersSlice.actions;
+export const { clearUsersInfo } = usersSlice.actions;
 
 export default usersSlice.reducer;

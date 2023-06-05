@@ -19,6 +19,7 @@ const Profile = () => {
 
   useEffect(() => {
     dispatch(usersThunk.getProfile());
+    dispatch(usersThunk.getProductfavorite());
   }, [dispatch]);
 
   return (
