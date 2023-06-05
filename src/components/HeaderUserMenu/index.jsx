@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { Popover, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
-import { UserOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 import { storage } from 'utils/storage';
-import { ACCESS_TOKEN, USER_LOGIN } from 'utils/constants/settingSystem';
+import { ACCESS_TOKEN, USER_ICON_CDN, USER_LOGIN } from 'utils/constants/settingSystem';
+import LordIcon from 'components/LordIcon';
 
 const HeaderUserMenu = () => {
   const [open, setOpen] = useState(false);
@@ -85,7 +85,11 @@ const HeaderUserMenu = () => {
         open={open}
         onOpenChange={handleOpenChange}
       >
-        <UserOutlined />
+        <LordIcon
+          className={styles.lordIcon}
+          src={USER_ICON_CDN}
+          trigger='hover'
+        />
       </Popover>
     </div>
   );

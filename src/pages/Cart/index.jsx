@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { Button, Col, Row, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './styles.module.scss';
 import Container from 'components/Container';
@@ -13,6 +11,8 @@ import { removeCart } from 'redux/slices/cartSlice';
 import { storage } from 'utils/storage';
 import { history } from 'utils/history';
 import { notifications } from 'utils/notifications';
+import LordIcon from 'components/LordIcon';
+import { TRASH_ICON_CDN } from 'utils/constants/settingSystem';
 
 const Cart = () => {
   const { cartList, totalPrice } = useSelector((state) => state.cart);
@@ -83,9 +83,11 @@ const Cart = () => {
               product={data}
               large
             />
-            <FontAwesomeIcon
-              className={styles.trahsIcon}
-              icon={faTrashCan}
+            <LordIcon
+              src={TRASH_ICON_CDN}
+              className={styles.lordIcon}
+              size='24px'
+              state='hover-empty'
               onClick={() => handleDeleteProduct(data?.id)}
             />
           </div>

@@ -1,10 +1,11 @@
 import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 import { changeQuantityDetailByButton, changeQuantityDetailByInput } from 'redux/slices/cartSlice';
 import { useHref } from 'react-router';
+import LordIcon from 'components/LordIcon';
+import { ARROW_DOWN_ICON_CDN, ARROW_UP_ICON_CDN } from 'utils/constants/settingSystem';
 
 const QuantityFieldDelay = memo(({ large }) => {
   const dispatch = useDispatch();
@@ -37,7 +38,14 @@ const QuantityFieldDelay = memo(({ large }) => {
 
   return (
     <div className={styles.wrapper + ' ' + (large && styles.large)}>
-      <MinusOutlined onClick={handleDecreaseQuantity} />
+      <LordIcon
+        src={ARROW_DOWN_ICON_CDN}
+        className={styles.lordIcon}
+        state='hover-1'
+        trigger='click'
+        size={large ? '160px' : '140px'}
+        onClick={handleDecreaseQuantity}
+      />
       <input
         type='number'
         value={quantityDetail ?? 1}
@@ -46,7 +54,14 @@ const QuantityFieldDelay = memo(({ large }) => {
         min={1}
         step={1}
       />
-      <PlusOutlined onClick={handleIncreaseQuantity} />
+      <LordIcon
+        src={ARROW_UP_ICON_CDN}
+        className={styles.lordIcon}
+        state='hover-1'
+        trigger='click'
+        size={large ? '160px' : '140px'}
+        onClick={handleIncreaseQuantity}
+      />
     </div>
   );
 });

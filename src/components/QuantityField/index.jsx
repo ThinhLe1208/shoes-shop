@@ -1,9 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 import { changeQuantityByButton, changeQuantityByInput } from 'redux/slices/cartSlice';
+import LordIcon from 'components/LordIcon';
+import { ARROW_DOWN_ICON_CDN, ARROW_UP_ICON_CDN } from 'utils/constants/settingSystem';
 
 const QuantityField = ({ product, large }) => {
   const dispatch = useDispatch();
@@ -50,7 +51,14 @@ const QuantityField = ({ product, large }) => {
 
   return (
     <div className={styles.wrapper + ' ' + (large && styles.large)}>
-      <MinusOutlined onClick={handleDecreaseQuantity} />
+      <LordIcon
+        src={ARROW_DOWN_ICON_CDN}
+        className={styles.lordIcon}
+        state='hover-1'
+        trigger='click'
+        size={large ? '160px' : '140px'}
+        onClick={handleDecreaseQuantity}
+      />
       <input
         type='number'
         value={product?.qty ?? 1}
@@ -59,7 +67,14 @@ const QuantityField = ({ product, large }) => {
         min={1}
         step={1}
       />
-      <PlusOutlined onClick={handleIncreaseQuantity} />
+      <LordIcon
+        src={ARROW_UP_ICON_CDN}
+        className={styles.lordIcon}
+        state='hover-1'
+        trigger='click'
+        size={large ? '160px' : '140px'}
+        onClick={handleIncreaseQuantity}
+      />
     </div>
   );
 };

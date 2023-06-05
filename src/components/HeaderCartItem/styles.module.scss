@@ -1,3 +1,5 @@
+@use '../../assets/sass/mixin.scss';
+
 .wrapper {
   padding: 0 16px 8px 0;
 
@@ -46,4 +48,8 @@
 
 .wrapper + .wrapper {
   padding: 8px 16px 8px 0;
+}
+
+.lordIcon {
+  @extend %lordIcon;
 }

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Badge, Button, Empty, Popover } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import HeaderCartItem from 'components/HeaderCartItem';
 import { useNavigate } from 'react-router-dom';
+import LordIcon from 'components/LordIcon';
+import { CART_ICON_CDN } from 'utils/constants/settingSystem';
 
 const HeaderCartMenu = () => {
   const { cartList, totalPrice, totalQuantity } = useSelector((state) => state.cart);
@@ -29,7 +30,12 @@ const HeaderCartMenu = () => {
   const renderCartList = (list) => {
     if (Array.isArray(list)) {
       return cartList.map((item, index) => {
-        return <HeaderCartItem key={index} product={item} />;
+        return (
+          <HeaderCartItem
+            key={index}
+            product={item}
+          />
+        );
       });
     }
   };
@@ -59,10 +65,18 @@ const HeaderCartMenu = () => {
           <p className={styles.totalNumber}>${totalPrice}</p>
         </div>
         <div className={styles.buttons}>
-          <Button type='primary' block onClick={handleViewCart}>
+          <Button
+            type='primary'
+            block
+            onClick={handleViewCart}
+          >
             View Cart
           </Button>
-          <Button type='primary' block onClick={handleCheckOut}>
+          <Button
+            type='primary'
+            block
+            onClick={handleCheckOut}
+          >
             Check Out
           </Button>
         </div>
@@ -90,7 +104,12 @@ const HeaderCartMenu = () => {
             backgroundColor: 'var(--color-secondary)',
           }}
         >
-          <ShoppingCartOutlined style={{ fontSize: 'var(--font-size-xl)' }} />
+          <LordIcon
+            className={styles.lordIcon}
+            src={CART_ICON_CDN}
+            trigger='hover'
+            state='hover-1'
+          />
         </Badge>
       </Popover>
     </div>

@@ -11,8 +11,8 @@ class Notifications {
                 trigger='loop'
                 delay='500'
                 state='intro'
-                size={50}
-                colors={{ primary: colorSuccess }} />
+                size='30px'
+                colors={`primary:${colorSuccess}`} />
         });
     };
     warning = (content) => {
@@ -22,8 +22,8 @@ class Notifications {
                 src={WARNING_ICON_CDN} trigger='loop'
                 delay='500'
                 state='intro'
-                size={50}
-                colors={{ primary: colorWarning }} />
+                size='30px'
+                colors={`primary:${colorWarning}`} />
         });
     };
     error = (content) => {
@@ -34,8 +34,8 @@ class Notifications {
                 trigger='loop'
                 delay='500'
                 state='intro'
-                size={50}
-                colors={{ primary: colorError }} />
+                size='30px'
+                colors={`primary:${colorError}`} />
         });
     };
     info = (content) => {
@@ -46,8 +46,8 @@ class Notifications {
                 trigger='loop'
                 delay='500'
                 state='intro'
-                size={50}
-                colors={{ primary: colorInfo }} />
+                size='30px'
+                colors={`primary:${colorInfo}`} />
         });
     };
 }

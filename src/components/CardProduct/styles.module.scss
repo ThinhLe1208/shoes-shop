@@ -1,3 +1,5 @@
+@use '../../assets/sass/mixin.scss';
+
 .wrapper {
   --padding-x: 16px;
 
@@ -46,13 +48,17 @@
         border-radius: var(--border-rad-sm);
       }
 
-      .likeBtn,
-      .likeBtn svg {
+      .likeBtn {
         display: flex;
         justify-content: center;
         align-items: center;
         color: var(--color-cta);
         border-color: var(--border-color) !important;
+      }
+
+      .lordIcon {
+        @extend %lordIcon;
+        --lord-icon-primary: var(--color-secondary);
       }
     }
 

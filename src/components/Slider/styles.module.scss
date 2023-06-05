@@ -3,6 +3,7 @@
 
   .leftBtn,
   .rightBtn {
+    position: relative;
     display: inline-block;
     border: none;
     border-radius: 100%;
@@ -17,35 +18,17 @@
       background-color: var(--color-cta);
     }
 
-    &:hover div {
-      border-color: var(--color-primary);
-    }
-
-    &:hover div::after {
-      background-color: var(--color-primary);
+    &:hover .lordIcon {
+      --lord-icon-primary: var(--color-primary);
     }
   }
 
-  .longArrow {
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-top: 2px solid var(--color-cta);
-    border-left: 2px solid var(--color-cta);
-    transform: rotate(135deg);
+  .lordIcon {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    --lord-icon-primary: var(--color-secondary);
     transition: all linear var(--transition-short);
-
-    &::after {
-      content: '';
-      display: block;
-      width: 2px;
-      height: 30px;
-      background-color: var(--color-cta);
-      transform: rotate(-45deg) translate(10px, 4px);
-      left: 0;
-      top: 0;
-      transition: all linear var(--transition-short);
-    }
   }
 
   .leftBtn {

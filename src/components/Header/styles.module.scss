@@ -1,3 +1,5 @@
+@use '../../assets/sass/mixin.scss';
+
 .wrapper {
   height: var(--padding-top-header);
   position: fixed;
@@ -20,7 +22,6 @@
 
     .nav ul a,
     .icons .icon {
-      // color text secondary
       color: var(--color-text-base);
     }
   }
@@ -116,15 +117,7 @@
     align-items: center;
 
     .icon {
-      // color text secondary
-      color: var(--color-text-base);
-      font-size: var(--font-size-xl);
-      cursor: pointer;
-      transition: all linear var(--transition-short);
-
-      &:hover {
-        color: var(--color-secondary);
-      }
+      @extend %lordIcon;
     }
 
     .icon + .icon {

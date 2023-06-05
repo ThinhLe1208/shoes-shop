@@ -1,12 +1,12 @@
 import React from 'react';
 import { Col, Row } from 'antd';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashCan } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
 import QuantityField from 'components/QuantityField';
 import { removeCart } from 'redux/slices/cartSlice';
+import LordIcon from 'components/LordIcon';
+import { TRASH_ICON_CDN } from 'utils/constants/settingSystem';
 
 const HeaderCartItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -17,15 +17,28 @@ const HeaderCartItem = ({ product }) => {
 
   return (
     <div className={styles.wrapper}>
-      <Row justify='space-between' align='top'>
+      <Row
+        justify='space-between'
+        align='top'
+      >
         <Col span={6}>
-          <img className={styles.image} src={product?.image} alt='img' />
+          <img
+            className={styles.image}
+            src={product?.image}
+            alt='img'
+          />
         </Col>
 
         <Col span={18}>
           <div className={styles.heading}>
             <p className={styles.name}>{product?.name}</p>
-            <FontAwesomeIcon icon={faTrashCan} onClick={handleDeleteProduct} />
+            <LordIcon
+              src={TRASH_ICON_CDN}
+              className={styles.lordIcon}
+              size='20px'
+              state='hover-empty'
+              onClick={handleDeleteProduct}
+            />
           </div>
           <p className={styles.info}>
             <span>Size:</span> 36
@@ -34,7 +47,10 @@ const HeaderCartItem = ({ product }) => {
             <span>Color:</span> Black
           </p>
 
-          <Row justify='space-between' align='middle'>
+          <Row
+            justify='space-between'
+            align='middle'
+          >
             <QuantityField product={product} />
             <p className={styles.price}>${(product?.qty * product?.price).toLocaleString()}</p>
           </Row>

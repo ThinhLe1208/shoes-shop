@@ -1,3 +1,5 @@
+@use '../../assets/sass/mixin.scss';
+
 .emptyContent,
 .filledContent {
   width: 378px;
@@ -44,4 +46,8 @@
       column-gap: 10px;
     }
   }
+}
+
+.lordIcon {
+  @extend %lordIcon;
 }

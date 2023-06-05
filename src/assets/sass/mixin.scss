@@ -1,0 +1,12 @@
+// @use '../../assets/sass/mixin.scss';
+
+// @extend %lordIcon;
+%lordIcon {
+  --lord-icon-primary: var(--color-text-base);
+  transition: all linear var(--transition-short);
+  cursor: pointer;
+
+  &:hover {
+    --lord-icon-primary: var(--color-secondary);
+  }
+}

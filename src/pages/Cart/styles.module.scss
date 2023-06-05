@@ -1,3 +1,5 @@
+@use '../../assets/sass/mixin.scss';
+
 .wrapper {
   background-color: var(--color-primary);
 
@@ -39,14 +41,9 @@
     justify-content: flex-start;
     align-items: center;
 
-    .trahsIcon {
+    .lordIcon {
+      @extend %lordIcon;
       margin-left: 20px;
-      transition: all linear var(--transition-short);
-      cursor: pointer;
-
-      &:hover {
-        color: var(--color-secondary);
-      }
     }
   }
 

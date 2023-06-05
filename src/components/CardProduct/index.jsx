@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button, Rate } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { HeartOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
 import { addCart } from 'redux/slices/cartSlice';
+import LordIcon from 'components/LordIcon';
+import { EYE_ICON_CDN, HEART_ICON_CDN } from 'utils/constants/settingSystem';
 
 const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
   const navigate = useNavigate();
@@ -30,14 +29,38 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
       <div className={styles.header}>
         <div className={styles.top}>
           {randomSalePrice ? <div className={styles.saleTag}>Sale {randomSalePrecent}%</div> : <div></div>}
-          <Button icon={<HeartOutlined />} size='large' ghost className={styles.likeBtn} onClick={handleLikeProduct} />
+          <Button
+            icon={
+              <LordIcon
+                className={styles.lordIcon}
+                src={HEART_ICON_CDN}
+                trigger='hover'
+              />
+            }
+            size='large'
+            ghost
+            className={styles.likeBtn}
+            onClick={handleLikeProduct}
+          />
         </div>
-        <img src={product.image} alt='img' className={styles.image} />
+        <img
+          src={product.image}
+          alt='img'
+          className={styles.image}
+        />
         <Button
           className={styles.detailBtn}
           type='primary'
           size='large'
-          icon={<FontAwesomeIcon icon={faEye} />}
+          icon={
+            <LordIcon
+              src={EYE_ICON_CDN}
+              trigger='loop'
+              delay='500'
+              stroke='100'
+              colors='primary:#ffffff,secondary:#ffffff'
+            />
+          }
           onClick={handleShowDetailProduct}
         />
       </div>
@@ -62,7 +85,11 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
         />
       </div>
       <div className={styles.footer}>
-        <Button type='primary' block onClick={handleAddCart}>
+        <Button
+          type='primary'
+          block
+          onClick={handleAddCart}
+        >
           Add To Cart
         </Button>
       </div>

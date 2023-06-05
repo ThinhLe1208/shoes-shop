@@ -5,11 +5,11 @@
   max-width: 70px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-rad-sm);
-  padding: 4px 6px;
+  padding: 0 6px;
 
   &.large {
     max-width: 100px;
-    padding: 10px 12px;
+    padding: 6px 12px;
 
     span {
       font-size: 14px;
@@ -50,4 +50,8 @@
     //   -moz-appearance: textfield;
     // }
   }
+}
+
+.lordIcon {
+  cursor: pointer;
 }

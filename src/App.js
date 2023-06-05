@@ -25,7 +25,7 @@ function App() {
     setTheme(theme);
     document.documentElement.setAttribute('data-theme', theme);
   };
-  console.log(themeConfig[theme]);
+
   return (
     // a theme config of the antd library 
     < ConfigProvider theme={themeConfig[theme]} >

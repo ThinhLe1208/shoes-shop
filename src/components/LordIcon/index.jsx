@@ -2,22 +2,18 @@ import React from 'react';
 import lottie from 'lottie-web';
 import { defineElement } from 'lord-icon-element';
 
-import styles from './styles.module.scss';
-
-// register lottie and define custom element
 defineElement(lottie.loadAnimation);
 
-const LordIcon = ({ colors, src, size, trigger, delay }) => {
+const LordIcon = ({ src, className, trigger = 'hover', size = '30px', ...rest }) => {
   return (
     <lord-icon
-      colors={`primary:${colors?.primary},secondary:${colors?.secondary}`}
       src={src}
+      class={className}
       trigger={trigger}
-      delay={delay}
       style={{
         width: size,
-        height: size,
       }}
+      {...rest}
     />
   );
 };

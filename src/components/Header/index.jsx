@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { Link, NavLink, useHref } from 'react-router-dom';
 import { Col, Row } from 'antd';
-import { SearchOutlined, HeartOutlined } from '@ant-design/icons';
 
 import styles from './styles.module.scss';
 import Container from 'components/Container';
 import HeaderUserMenu from 'components/HeaderUserMenu';
 import HeaderCartMenu from 'components/HeaderCartMenu';
+import LordIcon from 'components/LordIcon';
+import { HEART_ICON_CDN, SEARCH_ICON_CDN } from 'utils/constants/settingSystem';
 
 const Header = () => {
   const div = useRef();
@@ -55,7 +56,10 @@ const Header = () => {
       return list.map((item, index) => {
         return (
           <li key={index}>
-            <NavLink to={item.path} className={(navLink) => (navLink.isActive ? styles.active : '')}>
+            <NavLink
+              to={item.path}
+              className={(navLink) => (navLink.isActive ? styles.active : '')}
+            >
               {item.name}
             </NavLink>
           </li>
@@ -65,12 +69,24 @@ const Header = () => {
   };
 
   return (
-    <div className={styles.wrapper} ref={div}>
+    <div
+      className={styles.wrapper}
+      ref={div}
+    >
       <Container>
-        <Row justify={'space-between'} align={'middle'}>
+        <Row
+          justify={'space-between'}
+          align={'middle'}
+        >
           <Col>
             <Link to='/'>
-              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' id='Nike' width={80} height={80}>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 16 16'
+                id='Nike'
+                width={80}
+                height={80}
+              >
                 <path
                   fill='var(--color-secondary)'
                   fillRule='evenodd'
@@ -91,13 +107,21 @@ const Header = () => {
           <Col>
             <div className={styles.icons}>
               <div className={styles.icon}>
-                <SearchOutlined />
+                <LordIcon
+                  className={styles.lordIcon}
+                  src={SEARCH_ICON_CDN}
+                  trigger='hover'
+                />
               </div>
               <div className={styles.icon}>
                 <HeaderUserMenu />
               </div>
               <div className={styles.icon}>
-                <HeartOutlined />
+                <LordIcon
+                  className={styles.lordIcon}
+                  src={HEART_ICON_CDN}
+                  trigger='hover'
+                />
               </div>
               <div className={styles.icon}>
                 <HeaderCartMenu />

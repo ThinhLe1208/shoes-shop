@@ -1,3 +1,5 @@
+@use '../../assets/sass/mixin.scss';
+
 .userMenu {
   .userItem {
     color: var(--color-text-base);
@@ -17,4 +19,8 @@
   .userItem + .userItem {
     margin-top: 10px;
   }
+}
+
+.lordIcon {
+  @extend %lordIcon;
 }
