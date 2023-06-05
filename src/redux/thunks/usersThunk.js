@@ -39,6 +39,37 @@ class UsersThunk {
             // return rejectWithValue(err.response.data);
         }
     );
+    like = createAsyncThunk(
+        'users/likeAPI',
+        async (payload, { dispatch, getState, requestId }) => {
+            const { currentRequestId, isLoading } = getState().users;
+            if (isLoading !== true || requestId !== currentRequestId) {
+                return;
+            }
+            const response = await usersService.like(payload);
+            dispatch(this.getProductfavorite());
+            return response.data.content;
+        }
+    );
+    unlike = createAsyncThunk(
+        'users/unlikeAPI',
+        async (payload, { dispatch, getState, requestId }) => {
+            const { currentRequestId, isLoading } = getState().users;
+            if (isLoading !== true || requestId !== currentRequestId) {
+                return;
+            }
+            const response = await usersService.unlike(payload);
+            dispatch(this.getProductfavorite());
+            return response.data.content;
+        }
+    );
+    getProductfavorite = createAsyncThunk(
+        'users/getProductfavoriteAPI',
+        async () => {
+            const response = await usersService.getProductfavorite();
+            return response.data.content;
+        }
+    );
 }
 
 export const usersThunk = new UsersThunk();

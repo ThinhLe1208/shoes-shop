@@ -7,7 +7,8 @@ import Container from 'components/Container';
 import HeaderUserMenu from 'components/HeaderUserMenu';
 import HeaderCartMenu from 'components/HeaderCartMenu';
 import LordIcon from 'components/LordIcon';
-import { HEART_ICON_CDN, SEARCH_ICON_CDN } from 'utils/constants/settingSystem';
+import { SEARCH_ICON_CDN } from 'utils/constants/settingSystem';
+import HeaderFavoriteMenu from 'components/HeaderFavoriteMenu';
 
 const Header = () => {
   const div = useRef();
@@ -117,11 +118,7 @@ const Header = () => {
                 <HeaderUserMenu />
               </div>
               <div className={styles.icon}>
-                <LordIcon
-                  className={styles.lordIcon}
-                  src={HEART_ICON_CDN}
-                  trigger='hover'
-                />
+                <HeaderFavoriteMenu />
               </div>
               <div className={styles.icon}>
                 <HeaderCartMenu />

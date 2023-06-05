@@ -7,30 +7,33 @@ import Breadcrumb from 'components/Breadcrumb';
 import FilterSidebar from 'pages/Search/components/FilterSidebar';
 import SearchBar from 'pages/Search/components/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { productThunk } from 'redux/thunks/productThunk';
 import CardProduct from 'components/CardProduct';
 import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 
 const Search = () => {
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'All products' }];
 
-  // lay thong tin tam thoi
   const dispatch = useDispatch();
-  const productByKeywordList = useSelector((state) => state.product.productByKeywordList);
-  const saleProductList = useSelector((state) => state.product.saleProductList);
-  console.log('Search ~ productByKeywordList:', productByKeywordList.default);
-  useEffect(() => {
-    dispatch(productThunk.getProductByKeyword());
-  }, [dispatch]);
 
-  // ====================================
+  const { productByKeywordList, saleProductList } = useSelector((state) => state.product);
+  const { favoriteList, isLoading } = useSelector((state) => state.users);
+  console.log('Search ~ productByKeywordList:', productByKeywordList.default);
 
   const renderResultList = (list) => {
     if (Array.isArray(list)) {
       return list.map((item, index) => {
         return (
-          <Col key={index} span={8}>
-            <SaleCaculationHOC product={item} saleProductList={saleProductList} Component={CardProduct} />
+          <Col
+            key={index}
+            span={8}
+          >
+            <SaleCaculationHOC
+              product={item}
+              saleProductList={saleProductList}
+              favoriteList={favoriteList}
+              isLoading={isLoading}
+              Component={CardProduct}
+            />
           </Col>
         );
       });

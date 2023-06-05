@@ -1,4 +1,5 @@
 import React, { memo, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,9 +13,12 @@ import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 import LordIcon from 'components/LordIcon';
 import { ARROW_ICON_CDN } from 'utils/constants/settingSystem';
 
-const Slider = memo(({ productList = [], saleProductList = [], title = '', subTitle = '', slidesPerView = 4 }) => {
+const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4 }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+
+  const saleProductList = useSelector((state) => state.product.saleProductList);
+  const { favoriteList, isLoading } = useSelector((state) => state.users);
 
   const renderProductList = (list) => {
     if (Array.isArray(list)) {
@@ -24,6 +28,8 @@ const Slider = memo(({ productList = [], saleProductList = [], title = '', subTi
             <SaleCaculationHOC
               product={item}
               saleProductList={saleProductList}
+              favoriteList={favoriteList}
+              isLoading={isLoading}
               Component={CardProduct}
             />
           </SwiperSlide>

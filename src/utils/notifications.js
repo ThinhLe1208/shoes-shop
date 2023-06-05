@@ -9,7 +9,7 @@ class Notifications {
             icon: <LordIcon
                 src={SUCCESS_ICON_CDN}
                 trigger='loop'
-                delay='500'
+                delay='600'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorSuccess}`} />
@@ -19,8 +19,9 @@ class Notifications {
         const colorWarning = getComputedStyle(document.documentElement).getPropertyValue('--color-warning');
         toast.warning(content, {
             icon: <LordIcon
-                src={WARNING_ICON_CDN} trigger='loop'
-                delay='500'
+                src={WARNING_ICON_CDN}
+                trigger='loop'
+                delay='600'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorWarning}`} />
@@ -32,7 +33,7 @@ class Notifications {
             icon: <LordIcon
                 src={ERROR_ICON_CDN}
                 trigger='loop'
-                delay='500'
+                delay='600'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorError}`} />
@@ -44,7 +45,7 @@ class Notifications {
             icon: <LordIcon
                 src={INFO_ICON_CDN}
                 trigger='loop'
-                delay='500'
+                delay='600'
                 state='intro'
                 size='30px'
                 colors={`primary:${colorInfo}`} />

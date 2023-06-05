@@ -36,7 +36,11 @@ const Detail = () => {
             <SliderDetail product={productById} />
           </Col>
           <Col span={12}>
-            <SaleCaculationHOC product={productById} saleProductList={saleProductList} Component={Info} />
+            <SaleCaculationHOC
+              product={productById}
+              saleProductList={saleProductList}
+              Component={Info}
+            />
           </Col>
         </Row>
 
@@ -45,7 +49,6 @@ const Detail = () => {
         <Slider
           productList={productById.relatedProducts}
           title='You May Also Like'
-          saleProductList={saleProductList}
           slidesPerView={4}
         />
       </Container>

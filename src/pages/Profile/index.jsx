@@ -7,7 +7,8 @@ import { storage } from 'utils/storage';
 import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
 import UserInfo from './components/UserInfo';
-import UserTable from './components/UserTable';
+import UserOrderHistory from './components/UserOrderHistory';
+import UserFavorite from './components/UserFavorite';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -27,11 +28,18 @@ const Profile = () => {
           <Breadcrumb breadCrumbList={breadCrumbList} />
 
           <div className={styles.userInfo}>
-            <UserInfo userProfile={userProfile} isLoading={isLoading} />
+            <UserInfo
+              userProfile={userProfile}
+              isLoading={isLoading}
+            />
           </div>
-          <div className={styles.userTable}>
+          <div className={styles.userFavorite}>
+            <h3 className={styles.title}>Favorite Shoes</h3>
+            <UserFavorite />
+          </div>
+          <div className={styles.userOrders}>
             <h3 className={styles.title}>Orders History</h3>
-            <UserTable userProfile={userProfile} />
+            <UserOrderHistory userProfile={userProfile} />
           </div>
         </Container>
       </div>

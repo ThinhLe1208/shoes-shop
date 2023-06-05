@@ -37,7 +37,6 @@ const Index = () => {
             <Col span={11}>
               <Slider
                 productList={saleProductList}
-                saleProductList={saleProductList}
                 title='Best Sale'
                 subTitle='Products'
                 slidesPerView={2}
@@ -49,7 +48,6 @@ const Index = () => {
         <div className={styles.slider}>
           <Slider
             productList={productByCategoryList[NIKE_CATEGORY_ID]}
-            saleProductList={saleProductList}
             title='Nike Shoes'
             subTitle='Collection'
             slidesPerView={4}
@@ -71,7 +69,6 @@ const Index = () => {
         <div className={styles.slider}>
           <Slider
             productList={productByCategoryList[ADIDAS_CATEGORY_ID]}
-            saleProductList={saleProductList}
             title='Adidas Shoes'
             subTitle='Collection'
             slidesPerView={4}
@@ -100,7 +97,6 @@ const Index = () => {
         <div className={styles.slider}>
           <Slider
             productList={productByCategoryList[VANS_CONVERSE_CATEGORY_ID]}
-            saleProductList={saleProductList}
             title='Vans And Converse Shoes'
             subTitle='Collection'
             slidesPerView={4}

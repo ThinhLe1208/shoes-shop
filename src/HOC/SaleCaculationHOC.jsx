@@ -1,6 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 
-const SaleCaculationHOC = ({ product, saleProductList, Component }) => {
+const SaleCaculationHOC = ({ product, saleProductList, Component, ...rest }) => {
   // make a random point for a rate feature
   const starRef = useRef(Math.floor(Math.random() * 4 + 2));
 
@@ -21,6 +21,7 @@ const SaleCaculationHOC = ({ product, saleProductList, Component }) => {
       star={starRef.current}
       randomSalePrecent={salePrecentRef.current}
       randomSalePrice={randomSalePrice}
+      {...rest}
     />
   );
 };

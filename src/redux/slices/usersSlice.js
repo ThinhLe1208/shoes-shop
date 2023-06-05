@@ -8,6 +8,7 @@ import { storage } from 'utils/storage';
 const initialState = {
     userLogin: storage.getStorageJson(USER_LOGIN),
     userProfile: null,
+    favoriteList: null,
     isLoading: false,
     currentRequestId: undefined,
 };
@@ -51,6 +52,60 @@ const usersSlice = createSlice({
                 }
             })
             .addCase(usersThunk.updateProfile.rejected, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
+            })
+            // getProductfavorite
+            .addCase(usersThunk.getProductfavorite.fulfilled, (state, { payload }) => {
+                state.favoriteList = payload?.productsFavorite;
+            })
+            // like
+            .addCase(usersThunk.like.pending, (state, { meta }) => {
+                if (state.isLoading === false) {
+                    state.isLoading = true;
+                    state.currentRequestId = meta.requestId;
+                }
+            })
+            .addCase(usersThunk.like.fulfilled, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
+            })
+            .addCase(usersThunk.like.rejected, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
+            })
+            // unlike
+            .addCase(usersThunk.unlike.pending, (state, { meta }) => {
+                if (state.isLoading === false) {
+                    state.isLoading = true;
+                    state.currentRequestId = meta.requestId;
+                }
+            })
+            .addCase(usersThunk.unlike.fulfilled, (state, { meta }) => {
+                if (
+                    state.isLoading === true &&
+                    state.currentRequestId === meta.requestId
+                ) {
+                    state.isLoading = false;
+                    state.currentRequestId = undefined;
+                }
+            })
+            .addCase(usersThunk.unlike.rejected, (state, { meta }) => {
                 if (
                     state.isLoading === true &&
                     state.currentRequestId === meta.requestId

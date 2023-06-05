@@ -7,6 +7,7 @@ import Footer from 'components/Footer';
 import Header from 'components/Header';
 import { productThunk } from 'redux/thunks/productThunk';
 import { ADIDAS_CATEGORY_ID, NIKE_CATEGORY_ID, VANS_CONVERSE_CATEGORY_ID } from 'utils/constants/settingSystem';
+import { usersThunk } from 'redux/thunks/usersThunk';
 
 const HomeTemplate = () => {
   const outletRef = useRef();
@@ -30,6 +31,7 @@ const HomeTemplate = () => {
     dispatch(productThunk.getProductByCategory(VANS_CONVERSE_CATEGORY_ID));
     dispatch(productThunk.getProductByKeyword());
     dispatch(productThunk.getProductByFeature(true));
+    dispatch(usersThunk.getProductfavorite());
   }, [dispatch]);
 
   return (

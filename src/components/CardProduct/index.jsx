@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Rate } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -7,10 +7,20 @@ import styles from './styles.module.scss';
 import { addCart } from 'redux/slices/cartSlice';
 import LordIcon from 'components/LordIcon';
 import { EYE_ICON_CDN, HEART_ICON_CDN } from 'utils/constants/settingSystem';
+import { usersThunk } from 'redux/thunks/usersThunk';
 
-const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
+const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSalePrice, isLoading }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLike, setIsLike] = useState(false);
+
+  useEffect(() => {
+    let result;
+    if (Array.isArray(favoriteList)) {
+      result = favoriteList?.some((item) => item.id === product?.id);
+    }
+    setIsLike(result);
+  }, [favoriteList, product]);
 
   const handleShowDetailProduct = () => {
     navigate(`/detail/${product?.id}`);
@@ -21,7 +31,11 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
   };
 
   const handleLikeProduct = () => {
-    console.log('like');
+    if (isLike) {
+      dispatch(usersThunk.unlike(product?.id));
+    } else {
+      dispatch(usersThunk.like(product?.id));
+    }
   };
 
   return (
@@ -32,13 +46,14 @@ const CardProduct = ({ product, star, randomSalePrecent, randomSalePrice }) => {
           <Button
             icon={
               <LordIcon
-                className={styles.lordIcon}
+                className={styles.lordIcon + ' ' + (isLike ? styles.isLike : '')}
                 src={HEART_ICON_CDN}
                 trigger='hover'
               />
             }
             size='large'
-            ghost
+            type={isLike ? 'primary' : 'default'}
+            loading={isLoading}
             className={styles.likeBtn}
             onClick={handleLikeProduct}
           />
