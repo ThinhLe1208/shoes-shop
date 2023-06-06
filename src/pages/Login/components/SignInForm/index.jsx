@@ -18,7 +18,7 @@ const SignInSchema = Yup.object().shape({
   password: Yup.string().required('Please provide password.'),
 });
 
-const SignInForm = () => {
+const SigninForm = () => {
   const dispatch = useDispatch();
 
   const { isLoadingUsers } = useSelector((state) => state.users);
@@ -100,7 +100,7 @@ const SignInForm = () => {
                 onClick={renderProps.onClick}
               >
                 <Space>
-                  Login with Facebook
+                  Sign in with Facebook
                   <Spin
                     spinning={isLoadingUsers}
                     style={{ color: '#fff' }}
@@ -115,4 +115,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SigninForm;

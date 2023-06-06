@@ -4,22 +4,24 @@ import _ from 'lodash';
 
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilterResultListWithCategory } from 'redux/slices/productSlice';
+import { setFilterResultByCategoryList, setFilterResultByPriceList } from 'redux/slices/productSlice';
 
 const { Panel } = Collapse;
 
 const FilterSidebar = () => {
-  const { categoryList } = useSelector((state) => state.product);
+  const { categoryList, priceRangeList } = useSelector((state) => state.product);
   const [categoryCount, setCategoryCount] = useState(0);
   const [sizeCount, setSizeCount] = useState(0);
+  const [priceCount, setPriceCount] = useState(0);
   const [categoryValue, setCategoryValue] = useState([]);
   const [sizeValue, setSizeValue] = useState([]);
+  const [priceValue, setPriceValue] = useState([]);
   const dispatch = useDispatch();
 
   const handleChangeCategory = (checkedValues) => {
     setCategoryCount(checkedValues.length);
     setCategoryValue(checkedValues);
-    dispatch(setFilterResultListWithCategory(checkedValues));
+    dispatch(setFilterResultByCategoryList(checkedValues));
   };
 
   const handleChangeSize = (checkedValues) => {
@@ -27,15 +29,26 @@ const FilterSidebar = () => {
     setSizeValue(checkedValues);
   };
 
+  const handleChangePrice = (checkedValues) => {
+    setPriceCount(checkedValues.length);
+    setPriceValue(checkedValues);
+    dispatch(setFilterResultByPriceList(checkedValues));
+  };
+
   const handleResetCategory = () => {
     setCategoryCount(0);
     setCategoryValue([]);
-    dispatch(setFilterResultListWithCategory([]));
+    dispatch(setFilterResultByCategoryList([]));
   };
 
   const handleResetSize = () => {
     setSizeCount(0);
     setSizeValue([]);
+  };
+
+  const handleResetPrice = () => {
+    setPriceCount(0);
+    setPriceValue([]);
   };
 
   const renderCategoryList = (list) => {
@@ -121,8 +134,34 @@ const FilterSidebar = () => {
 
   const renderPriceContent = () => {
     return (
-      <div>
-        <p>price</p>
+      <div className={styles.price}>
+        <div className={styles.info}>
+          <p>{priceCount} selected</p>
+          <Button
+            size='small'
+            onClick={handleResetPrice}
+          >
+            Reset
+          </Button>
+        </div>
+        <Checkbox.Group
+          style={{
+            width: '100%',
+          }}
+          value={priceValue}
+          onChange={handleChangePrice}
+        >
+          <Space direction='vertical'>
+            {priceRangeList?.map((priceRange, index) => {
+              return (
+                <Checkbox
+                  key={index}
+                  value={priceRange.value}
+                >{`$${priceRange.start} - $${priceRange.end}`}</Checkbox>
+              );
+            })}
+          </Space>
+        </Checkbox.Group>
       </div>
     );
   };

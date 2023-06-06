@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import { productThunk } from 'redux/thunks/productThunk';
 
-// finding matches between multiple array by id then sort that array
+// finding matches between multiple array by id (merge the allProductList with all filter and search lists) then sort that array
 const mergeAndSortList = (type, ...sourceList) => {
     let resultList = _.intersectionBy(...sourceList, 'id');
     switch (type) {
@@ -32,8 +32,15 @@ const initialState = {
     productById: null,
     // states of the search page
     searchResultList: [],
-    filterResultList: [],
+    filterResultByCategoryList: [],
+    filterResultByPriceList: [],
     finalResultList: [],
+    priceRangeList: [
+        { value: 0, start: 100, end: 300 },
+        { value: 1, start: 300, end: 500 },
+        { value: 2, start: 500, end: 800 },
+        { value: 3, start: 800, end: 1100 },
+    ],
     sortBy: 'default',
     // other state
     isLoadingProduct: false,
@@ -50,35 +57,59 @@ const productSlice = createSlice({
         setSortBy: (state, { payload }) => {
             state.sortBy = payload;
         },
-        setFilterResultListWithCategory: (state, { payload }) => { // payload: array of categories used to filter
-            if (Array.isArray(payload)) {
-                let newFilterResultList = payload?.reduce((result, item) => {
-                    switch (item) {
-                        case 'FEATURE':
+        setFilterResultByCategoryList: (state, { payload }) => { // payload: array of categories used to filter
+            if (Array.isArray(payload) && payload.length) {
+                // merge the allProductList with all filter category lists with same product 's id
+                let newFilterResultList = payload?.reduce((result, category) => {
+                    switch (category) {
+                        case 'FEATURE': // feature list from api
                             return _.intersectionBy(result, _.cloneDeep(state.featureProductList), 'id');
-                        default: // categoryList
-                            return _.intersectionBy(result, _.cloneDeep(state.productListByCategory[item]), 'id');
+                        default: // category List from api
+                            return _.intersectionBy(result, _.cloneDeep(state.productListByCategory[category]), 'id');
                     }
                 }, _.cloneDeep(state.allProductList));
 
-                state.filterResultList = newFilterResultList;
-                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultList));
+                state.filterResultByCategoryList = newFilterResultList;
+                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
             } else {
-                state.finalResultList = _.cloneDeep(state.allProductList);
+                state.filterResultByCategoryList = _.cloneDeep(state.allProductList);
+                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
             }
         },
-        // finalResultList state
+        setFilterResultByPriceList: (state, { payload }) => { // payload: array of values used to filter
+            if (Array.isArray(payload) && payload.length) {
+                // take out each product, compare with each price range (note: if the price does not exist, then count the product)
+                let newFilterResultList = _.cloneDeep(state.allProductList).filter((product) => {
+                    let isInRange = payload?.some(value => {
+                        let priceRange = _.cloneDeep(state.priceRangeList).find(item => item.value === value);
+                        if (priceRange) {
+                            return _.inRange(product.price, priceRange.start, priceRange.end);
+                        } else {
+                            return true;
+                        }
+                    });
+                    return isInRange;
+                });
+                state.filterResultByPriceList = newFilterResultList;
+                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
+            } else {
+                state.filterResultByPriceList = _.cloneDeep(state.allProductList);
+                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
+            }
+        },
         setFinalResultList: (state) => {
-            state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultList));
+            state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
         }
     },
     extraReducers: (builder) => {
         builder
             // getAllProductList
             .addCase(productThunk.getAllProductList.fulfilled, (state, { payload }) => {
+                // set initial states of all list used in filter and search
                 state.allProductList = payload;
                 state.searchResultList = payload;
-                state.filterResultList = payload;
+                state.filterResultByCategoryList = payload;
+                state.filterResultByPriceList = payload;
                 state.finalResultList = payload;
             })
             // searchProductName
@@ -97,7 +128,7 @@ const productSlice = createSlice({
                     state.currentRequestIdProduct = undefined;
                 }
                 state.searchResultList = payload;
-                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultList));
+                state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
             })
             .addCase(productThunk.searchProductName.rejected, (state, { meta }) => {
                 if (
@@ -149,9 +180,8 @@ const productSlice = createSlice({
 
 export const {
     setSortBy,
-    setSearchResultList,
-    setFilterResultList,
-    setFilterResultListWithCategory,
+    setFilterResultByCategoryList,
+    setFilterResultByPriceList,
     setFinalResultList
 } = productSlice.actions;
 
