@@ -135,7 +135,7 @@ const UserInfo = ({ userProfile, isLoading }) => {
                     Update
                     <Spin
                       spinning={isLoading}
-                      style={{ color: 'white' }}
+                      style={{ color: '#fff' }}
                     />
                   </Space>
                 </Button>

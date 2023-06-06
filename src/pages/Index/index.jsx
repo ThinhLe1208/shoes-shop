@@ -11,8 +11,8 @@ import { ADIDAS_CATEGORY_ID, NIKE_CATEGORY_ID, VANS_CONVERSE_CATEGORY_ID } from 
 import BannerVideo from 'components/BannerVideo';
 
 const Index = () => {
-  const productByCategoryList = useSelector((state) => state.product.productByCategoryList);
-  const saleProductList = useSelector((state) => state.product.saleProductList);
+  const productListByCategory = useSelector((state) => state.product.productListByCategory);
+  const featureProductList = useSelector((state) => state.product.featureProductList);
 
   return (
     <div className={styles.wrapper}>
@@ -36,7 +36,7 @@ const Index = () => {
             </Col>
             <Col span={11}>
               <Slider
-                productList={saleProductList}
+                productList={featureProductList}
                 title='Best Sale'
                 subTitle='Products'
                 slidesPerView={2}
@@ -47,7 +47,7 @@ const Index = () => {
 
         <div className={styles.slider}>
           <Slider
-            productList={productByCategoryList[NIKE_CATEGORY_ID]}
+            productList={productListByCategory[NIKE_CATEGORY_ID]}
             title='Nike Shoes'
             subTitle='Collection'
             slidesPerView={4}
@@ -68,7 +68,7 @@ const Index = () => {
 
         <div className={styles.slider}>
           <Slider
-            productList={productByCategoryList[ADIDAS_CATEGORY_ID]}
+            productList={productListByCategory[ADIDAS_CATEGORY_ID]}
             title='Adidas Shoes'
             subTitle='Collection'
             slidesPerView={4}
@@ -96,7 +96,7 @@ const Index = () => {
 
         <div className={styles.slider}>
           <Slider
-            productList={productByCategoryList[VANS_CONVERSE_CATEGORY_ID]}
+            productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
             title='Vans And Converse Shoes'
             subTitle='Collection'
             slidesPerView={4}

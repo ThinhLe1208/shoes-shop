@@ -17,14 +17,14 @@ const Detail = () => {
   const dispatch = useDispatch();
 
   const productById = useSelector((state) => state.product.productById);
-  const saleProductList = useSelector((state) => state.product.saleProductList);
+  const featureProductList = useSelector((state) => state.product.featureProductList);
 
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: productById?.name }];
 
   console.log('Detail ~ productById:', productById);
 
   useEffect(() => {
-    dispatch(productThunk.getProductById(param.id));
+    dispatch(productThunk.getProductById(param?.id));
   }, [dispatch, param]);
 
   return (
@@ -38,7 +38,7 @@ const Detail = () => {
           <Col span={12}>
             <SaleCaculationHOC
               product={productById}
-              saleProductList={saleProductList}
+              featureProductList={featureProductList}
               Component={Info}
             />
           </Col>
@@ -47,7 +47,7 @@ const Detail = () => {
         <Divider />
 
         <Slider
-          productList={productById.relatedProducts}
+          productList={productById?.relatedProducts}
           title='You May Also Like'
           slidesPerView={4}
         />

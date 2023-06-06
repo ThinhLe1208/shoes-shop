@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, Col, Row, Spin, Table } from 'antd';
+import { Button, Col, Row, Space, Spin, Table } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ import { usersThunk } from 'redux/thunks/usersThunk';
 
 const Cart = () => {
   const { cartList, totalPrice } = useSelector((state) => state.cart);
-  const { isLoading } = useSelector((state) => state.users);
+  const { isLoadingUsers } = useSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -164,14 +164,16 @@ const Cart = () => {
                 <Button
                   type='primary'
                   block
-                  disabled={isLoading}
+                  disabled={isLoadingUsers}
                   onClick={handleCheckOut}
                 >
-                  Check Out
-                  <Spin
-                    spinning={isLoading}
-                    style={{ color: 'white' }}
-                  />
+                  <Space>
+                    Check Out
+                    <Spin
+                      spinning={isLoadingUsers}
+                      style={{ color: '#fff' }}
+                    />
+                  </Space>
                 </Button>
               </div>
             </Col>

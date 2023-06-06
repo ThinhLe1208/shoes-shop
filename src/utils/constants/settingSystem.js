@@ -9,3 +9,5 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const ADIDAS_CATEGORY_ID = 'ADIDAS';
 export const NIKE_CATEGORY_ID = 'NIKE';
 export const VANS_CONVERSE_CATEGORY_ID = 'VANS_CONVERSE';
+export const MEN_CATEGORY_ID = 'MEN';
+export const WOMEN_CATEGORY_ID = 'WOMEN';

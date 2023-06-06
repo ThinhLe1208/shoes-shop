@@ -12,7 +12,7 @@ import UserFavorite from './components/UserFavorite';
 
 const Profile = () => {
   const dispatch = useDispatch();
-  const { userProfile, isLoading } = useSelector((state) => state.users);
+  const { userProfile, isLoadingUsers } = useSelector((state) => state.users);
   console.log('Profile ~ userProfile:', userProfile);
 
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Profile' }];
@@ -31,7 +31,7 @@ const Profile = () => {
           <div className={styles.userInfo}>
             <UserInfo
               userProfile={userProfile}
-              isLoading={isLoading}
+              isLoading={isLoadingUsers}
             />
           </div>
           <div className={styles.userFavorite}>

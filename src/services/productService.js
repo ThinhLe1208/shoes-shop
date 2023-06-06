@@ -1,7 +1,7 @@
 import { http } from "./baseService";
 
 class ProductService {
-    getProductByKeyword = (keyword) => {
+    getAllProductList = (keyword) => {
         let url = '/api/Product';
         if (keyword) {
             url += `?keyword=${keyword}`;

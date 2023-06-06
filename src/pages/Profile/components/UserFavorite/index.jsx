@@ -9,21 +9,21 @@ import CardProduct from 'components/CardProduct';
 const { Panel } = Collapse;
 
 const UserFavorite = () => {
-  const { favoriteList, isLoading } = useSelector((state) => state.users);
-  const { productByKeywordList, saleProductList } = useSelector((state) => state.product);
+  const { favoriteList, isLoadingUsers } = useSelector((state) => state.users);
+  const { allProductList, featureProductList } = useSelector((state) => state.product);
 
   const [detailFavoriteList, setDetailFavoriteList] = useState([]);
 
   useEffect(() => {
     let detailList = [];
     favoriteList?.forEach((favorItem) => {
-      const item = productByKeywordList?.default?.find((detailItem) => detailItem.id === favorItem.id);
+      const item = allProductList?.find((detailItem) => detailItem?.id === favorItem?.id);
       if (item) {
         detailList.push(item);
       }
     });
     setDetailFavoriteList(detailList);
-  }, [favoriteList, productByKeywordList]);
+  }, [favoriteList, allProductList]);
 
   const renderFavoriteList = (list) => {
     if (Array.isArray(list)) {
@@ -35,10 +35,10 @@ const UserFavorite = () => {
           >
             <SaleCaculationHOC
               product={item}
-              saleProductList={saleProductList}
+              featureProductList={featureProductList}
               Component={CardProduct}
               favoriteList={favoriteList}
-              isLoading={isLoading}
+              isLoading={isLoadingUsers}
             />
           </Col>
         );

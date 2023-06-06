@@ -3,14 +3,25 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { productService } from "services/productService";
 
 class ProductThunk {
-    getProductByKeyword = createAsyncThunk(
-        'product/getProductByKeywordAPI',
-        async (keyword) => {
-            const response = await productService.getProductByKeyword(keyword);
-            return {
-                keyword: keyword,
-                data: response.data.content
-            };
+    // return an object with a keyword and a result list (for an input of the Slider component)
+    getAllProductList = createAsyncThunk(
+        'product/getAllProductListAPI',
+        async () => {
+            const response = await productService.getAllProductList();
+            return response?.data?.content;
+        }
+    );
+
+    // return a result directly
+    searchProductName = createAsyncThunk(
+        'product/searchProductNameAPI',
+        async (keyword, { getState, requestId }) => {
+            const { isLoadingProduct, currentRequestIdProduct } = getState().product;
+            if (isLoadingProduct !== true || requestId !== currentRequestIdProduct) {
+                return;
+            }
+            const response = await productService.getAllProductList(keyword);
+            return response?.data?.content;
         }
     );
 
@@ -20,7 +31,7 @@ class ProductThunk {
             const response = await productService.getProductByCategory(categoryId);
             return {
                 categoryId: categoryId,
-                data: response.data.content
+                data: response?.data?.content
             };
         }
     );
@@ -31,7 +42,7 @@ class ProductThunk {
             const response = await productService.getProductByFeature(feature);
             return {
                 feature: feature,
-                data: response.data.content
+                data: response?.data?.content
             };
         }
     );
@@ -40,7 +51,7 @@ class ProductThunk {
         'product/getAllCategoryAPI',
         async (keyword) => {
             const response = await productService.getAllCategory(keyword);
-            return response.data.content;
+            return response?.data?.content;
         }
     );
 
@@ -48,7 +59,7 @@ class ProductThunk {
         'product/getPagingAPI',
         async ({ pageIndex, pageSize, keywords } = {}) => {
             const response = await productService.getPaging(pageIndex, pageSize, keywords);
-            return response.data.content;
+            return response?.data?.content;
         }
     );
 
@@ -56,7 +67,7 @@ class ProductThunk {
         'product/getProductByIdAPI',
         async (id) => {
             const response = await productService.getProductById(id);
-            return response.data.content;
+            return response?.data?.content;
         }
     );
 
@@ -64,7 +75,7 @@ class ProductThunk {
         'product/getAllStoreAPI',
         async (keyword) => {
             const response = await productService.getAllStore(keyword);
-            return response.data.content;
+            return response?.data?.content;
         }
     );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Col, Row } from 'antd';
+import { Col, Empty, Row } from 'antd';
 
 import styles from './styles.module.scss';
 import Container from 'components/Container';
@@ -9,15 +9,20 @@ import SearchBar from 'pages/Search/components/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import CardProduct from 'components/CardProduct';
 import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
+import { productThunk } from 'redux/thunks/productThunk';
+import { setFinalResultList } from 'redux/slices/productSlice';
 
 const Search = () => {
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'All products' }];
 
+  const { featureProductList, finalResultList } = useSelector((state) => state.product);
+  const { favoriteList, isLoadingUsers } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
-  const { productByKeywordList, saleProductList } = useSelector((state) => state.product);
-  const { favoriteList, isLoading } = useSelector((state) => state.users);
-  console.log('Search ~ productByKeywordList:', productByKeywordList.default);
+  useEffect(() => {
+    dispatch(productThunk.searchProductName());
+    dispatch(setFinalResultList());
+  }, [dispatch]);
 
   const renderResultList = (list) => {
     if (Array.isArray(list)) {
@@ -29,9 +34,9 @@ const Search = () => {
           >
             <SaleCaculationHOC
               product={item}
-              saleProductList={saleProductList}
+              featureProductList={featureProductList}
               favoriteList={favoriteList}
-              isLoading={isLoading}
+              isLoading={isLoadingUsers}
               Component={CardProduct}
             />
           </Col>
@@ -53,7 +58,16 @@ const Search = () => {
             <SearchBar />
 
             <div className={styles.resultList}>
-              <Row gutter={[32, 66]}>{renderResultList(productByKeywordList.default)}</Row>
+              <Row gutter={[32, 66]}>
+                {finalResultList?.length ? (
+                  renderResultList(finalResultList)
+                ) : (
+                  <Empty
+                    style={{ width: '100%' }}
+                    description={<p>Empty</p>}
+                  />
+                )}
+              </Row>
             </div>
           </Col>
         </Row>

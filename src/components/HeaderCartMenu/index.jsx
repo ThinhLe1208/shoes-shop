@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Badge, Button, Empty, Popover, Spin } from 'antd';
+import { Badge, Button, Empty, Popover, Space, Spin } from 'antd';
 
 import styles from './styles.module.scss';
 import HeaderCartItem from 'components/HeaderCartItem';
@@ -12,7 +12,7 @@ import { clearCart } from 'redux/slices/cartSlice';
 
 const HeaderCartMenu = () => {
   const { cartList, totalPrice, totalQuantity } = useSelector((state) => state.cart);
-  const { isLoading } = useSelector((state) => state.users);
+  const { isLoadingUsers } = useSelector((state) => state.users);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
@@ -85,14 +85,16 @@ const HeaderCartMenu = () => {
           <Button
             type='primary'
             block
-            disabled={isLoading}
+            disabled={isLoadingUsers}
             onClick={handleCheckOut}
           >
-            Check Out
-            <Spin
-              spinning={isLoading}
-              style={{ color: 'white' }}
-            />
+            <Space>
+              Check Out
+              <Spin
+                spinning={isLoadingUsers}
+                style={{ color: '#fff' }}
+              />
+            </Space>
           </Button>
         </div>
       </div>

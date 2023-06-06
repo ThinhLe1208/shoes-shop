@@ -1,12 +1,12 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 import styles from './styles.module.scss';
 import InputField from 'components/InputField';
-import { Button, Divider } from 'antd';
-import { useDispatch } from 'react-redux';
+import { Button, Divider, Space, Spin } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { usersThunk } from 'redux/thunks/usersThunk';
 import { notifications } from 'utils/notifications';
 import { storage } from 'utils/storage';
@@ -21,6 +21,7 @@ const SignInSchema = Yup.object().shape({
 const SignInForm = () => {
   const dispatch = useDispatch();
 
+  const { isLoadingUsers } = useSelector((state) => state.users);
   // Formik
   const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
     initialValues: {
@@ -80,18 +81,35 @@ const SignInForm = () => {
           onBlur={handleBlur}
         />
         <Divider />
-        <Button
-          type='primary'
-          htmlType='submit'
-        >
-          Sign In
-        </Button>
-        <FacebookLogin
-          appId='259894119932234'
-          autoLoad={false}
-          fields='name,email,picture'
-          callback={responseFacebook}
-        />
+        <Space>
+          <Button
+            type='primary'
+            htmlType='submit'
+          >
+            Sign In
+          </Button>
+          <FacebookLogin
+            appId='259894119932234'
+            autoLoad={false}
+            fields='name,email,picture'
+            callback={responseFacebook}
+            render={(renderProps) => (
+              <Button
+                type='primary'
+                disabled={isLoadingUsers}
+                onClick={renderProps.onClick}
+              >
+                <Space>
+                  Login with Facebook
+                  <Spin
+                    spinning={isLoadingUsers}
+                    style={{ color: '#fff' }}
+                  />
+                </Space>
+              </Button>
+            )}
+          />
+        </Space>
       </form>
     </div>
   );

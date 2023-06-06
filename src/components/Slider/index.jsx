@@ -16,8 +16,8 @@ const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
 
-  const saleProductList = useSelector((state) => state.product.saleProductList);
-  const { favoriteList, isLoading } = useSelector((state) => state.users);
+  const featureProductList = useSelector((state) => state.product.featureProductList);
+  const { favoriteList, isLoadingUsers } = useSelector((state) => state.users);
 
   const renderProductList = (list) => {
     if (Array.isArray(list)) {
@@ -26,9 +26,9 @@ const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4
           <SwiperSlide key={index}>
             <SaleCaculationHOC
               product={item}
-              saleProductList={saleProductList}
+              featureProductList={featureProductList}
               favoriteList={favoriteList}
-              isLoading={isLoading}
+              isLoading={isLoadingUsers}
               Component={CardProduct}
             />
           </SwiperSlide>

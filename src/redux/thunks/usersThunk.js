@@ -7,83 +7,83 @@ class UsersThunk {
         'users/signUpAPI',
         async (payload) => {
             const response = await usersService.signUp(payload);
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     signIn = createAsyncThunk(
         'users/signInAPI',
-        async (payload, { dispatch }) => {
-            const response = await usersService.signIn(payload);
+        async (userInfoModel, { dispatch }) => {
+            const response = await usersService.signIn(userInfoModel);
             dispatch(this.getProductfavorite(response?.data?.content?.accessToken));
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     facebooklogin = createAsyncThunk(
         'users/facebookloginAPI',
-        async (payload) => {
-            const response = await usersService.facebooklogin({ facebookToken: payload });
-            return response.data.content;
+        async (facebookToken) => {
+            const response = await usersService.facebooklogin({ facebookToken: facebookToken });
+            return response?.data?.content;
         }
     );
     getProfile = createAsyncThunk(
         'users/getProfileAPI',
         async () => {
             const response = await usersService.getProfile();
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     updateProfile = createAsyncThunk(
         'users/updateProfileAPI',
-        async (payload, { dispatch, getState, requestId }) => {
-            const { currentRequestId, isLoading } = getState().users;
-            // run a peding state in usersSlice first ?
-            if (isLoading !== true || requestId !== currentRequestId) {
+        async (userInfoModel, { dispatch, getState, requestId }) => {
+            const { currentRequestIdUsers, isLoadingUsers } = getState().users;
+            // run a peding state in usersSlice first ? (mean isLoadingUsers state and currentRequestIdUsers state are aready updated in pending)
+            if (isLoadingUsers !== true || requestId !== currentRequestIdUsers) {
                 return;
             }
-            const response = await usersService.updateProfile(payload);
+            const response = await usersService.updateProfile(userInfoModel);
             dispatch(this.getProfile());
-            return response.data.content;
+            return response?.data?.content;
             // try catch
             // return rejectWithValue(err.response.data);
         }
     );
     like = createAsyncThunk(
         'users/likeAPI',
-        async (payload, { dispatch, getState, requestId }) => {
-            const { currentRequestId, isLoading } = getState().users;
-            if (isLoading !== true || requestId !== currentRequestId) {
+        async (productId, { dispatch, getState, requestId }) => {
+            const { currentRequestIdUsers, isLoadingUsers } = getState().users;
+            if (isLoadingUsers !== true || requestId !== currentRequestIdUsers) {
                 return;
             }
-            const response = await usersService.like(payload);
+            const response = await usersService.like(productId);
             dispatch(this.getProductfavorite());
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     unlike = createAsyncThunk(
         'users/unlikeAPI',
-        async (payload, { dispatch, getState, requestId }) => {
-            const { currentRequestId, isLoading } = getState().users;
-            if (isLoading !== true || requestId !== currentRequestId) {
+        async (productId, { dispatch, getState, requestId }) => {
+            const { currentRequestIdUsers, isLoadingUsers } = getState().users;
+            if (isLoadingUsers !== true || requestId !== currentRequestIdUsers) {
                 return;
             }
-            const response = await usersService.unlike(payload);
+            const response = await usersService.unlike(productId);
             dispatch(this.getProductfavorite());
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     getProductfavorite = createAsyncThunk(
         'users/getProductfavoriteAPI',
         async (token) => {
             const response = await usersService.getProductfavorite(token);
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     order = createAsyncThunk(
         'users/orderAPI',
-        async (payload, { dispatch, getState, requestId }) => {
-            const { currentRequestId, isLoading, userLogin } = getState().users;
+        async (_, { dispatch, getState, requestId }) => {
+            const { currentRequestIdUsers, isLoadingUsers, userLogin } = getState().users;
             const { cartList } = getState().cart;
-            if (isLoading !== true || requestId !== currentRequestId) {
+            if (isLoadingUsers !== true || requestId !== currentRequestIdUsers) {
                 return;
             }
             const orderDetailList = cartList?.map(item => ({
@@ -95,15 +95,15 @@ class UsersThunk {
                 email: userLogin.email
             });
             dispatch(this.getProfile());
-            return response.data.content;
+            return response?.data?.content;
         }
     );
     deleteOrder = createAsyncThunk(
         'users/facebookloginAPI',
-        async (payload, { dispatch }) => {
-            const response = await usersService.deleteOrder({ orderId: payload });
+        async (orderId, { dispatch }) => {
+            const response = await usersService.deleteOrder({ orderId: orderId });
             dispatch(this.getProfile());
-            return response.data.content;
+            return response?.data?.content;
         }
     );
 }

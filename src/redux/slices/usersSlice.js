@@ -8,8 +8,8 @@ const initialState = {
     userLogin: storage.getStorageJson(USER_LOGIN),
     userProfile: null,
     favoriteList: [],
-    isLoading: false,
-    currentRequestId: undefined,
+    isLoadingUsers: false,
+    currentRequestIdUsers: undefined,
 };
 
 const usersSlice = createSlice({
@@ -29,8 +29,30 @@ const usersSlice = createSlice({
                 state.userLogin = payload;
             })
             // facebooklogin
-            .addCase(usersThunk.facebooklogin.fulfilled, (state, { payload }) => {
+            .addCase(usersThunk.facebooklogin.pending, (state, { meta }) => {
+                if (state.isLoadingUsers === false) {
+                    state.isLoadingUsers = true;
+                    state.currentRequestIdUsers = meta.requestId;
+                }
+            })
+            .addCase(usersThunk.facebooklogin.fulfilled, (state, { payload, meta }) => {
+                if (
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
+                ) {
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
+                }
                 state.userLogin = payload;
+            })
+            .addCase(usersThunk.facebooklogin.rejected, (state, { meta }) => {
+                if (
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
+                ) {
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
+                }
             })
             // getProfile
             .addCase(usersThunk.getProfile.fulfilled, (state, { payload }) => {
@@ -38,27 +60,27 @@ const usersSlice = createSlice({
             })
             // updateProfile
             .addCase(usersThunk.updateProfile.pending, (state, { meta }) => {
-                if (state.isLoading === false) {
-                    state.isLoading = true;
-                    state.currentRequestId = meta.requestId;
+                if (state.isLoadingUsers === false) {
+                    state.isLoadingUsers = true;
+                    state.currentRequestIdUsers = meta.requestId;
                 }
             })
             .addCase(usersThunk.updateProfile.fulfilled, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             .addCase(usersThunk.updateProfile.rejected, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             // getProductfavorite
@@ -67,77 +89,77 @@ const usersSlice = createSlice({
             })
             // like
             .addCase(usersThunk.like.pending, (state, { meta }) => {
-                if (state.isLoading === false) {
-                    state.isLoading = true;
-                    state.currentRequestId = meta.requestId;
+                if (state.isLoadingUsers === false) {
+                    state.isLoadingUsers = true;
+                    state.currentRequestIdUsers = meta.requestId;
                 }
             })
             .addCase(usersThunk.like.fulfilled, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             .addCase(usersThunk.like.rejected, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             // unlike
             .addCase(usersThunk.unlike.pending, (state, { meta }) => {
-                if (state.isLoading === false) {
-                    state.isLoading = true;
-                    state.currentRequestId = meta.requestId;
+                if (state.isLoadingUsers === false) {
+                    state.isLoadingUsers = true;
+                    state.currentRequestIdUsers = meta.requestId;
                 }
             })
             .addCase(usersThunk.unlike.fulfilled, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             .addCase(usersThunk.unlike.rejected, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             // order
             .addCase(usersThunk.order.pending, (state, { meta }) => {
-                if (state.isLoading === false) {
-                    state.isLoading = true;
-                    state.currentRequestId = meta.requestId;
+                if (state.isLoadingUsers === false) {
+                    state.isLoadingUsers = true;
+                    state.currentRequestIdUsers = meta.requestId;
                 }
             })
             .addCase(usersThunk.order.fulfilled, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             })
             .addCase(usersThunk.order.rejected, (state, { meta }) => {
                 if (
-                    state.isLoading === true &&
-                    state.currentRequestId === meta.requestId
+                    state.isLoadingUsers === true &&
+                    state.currentRequestIdUsers === meta.requestId
                 ) {
-                    state.isLoading = false;
-                    state.currentRequestId = undefined;
+                    state.isLoadingUsers = false;
+                    state.currentRequestIdUsers = undefined;
                 }
             });
     }
