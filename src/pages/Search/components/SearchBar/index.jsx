@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Col, Drawer, Input, Row, Select } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
@@ -13,9 +13,19 @@ const { Search } = Input;
 
 const SearchBar = () => {
   const { isLoadingProduct } = useSelector((state) => state.product);
+  const screenWidth = useSelector((state) => state.ui.screenWidth);
   const dispatch = useDispatch();
   const contentRef = useRef('');
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const [widthDrawer, setWidthDrawer] = useState('378px');
+
+  useEffect(() => {
+    if (screenWidth < 576) {
+      setWidthDrawer('100vw');
+    } else {
+      setWidthDrawer('378px');
+    }
+  }, [screenWidth]);
 
   const handleChange = (value) => {
     dispatch(setSortBy(value));
@@ -114,6 +124,7 @@ const SearchBar = () => {
 
       <Drawer
         className={styles.drawer}
+        width={widthDrawer}
         placement='left'
         closable={false}
         onClose={handleHideDrawer}

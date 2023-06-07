@@ -68,7 +68,7 @@ const Search = () => {
             <SearchBar />
 
             <div className={styles.resultList}>
-              <Row gutter={[40, 50]}>
+              <Row gutter={[40, 58]}>
                 {finalResultList?.length ? (
                   renderResultList(finalResultList)
                 ) : (

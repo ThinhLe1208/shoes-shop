@@ -9,11 +9,14 @@ import HeaderCartMenu from 'components/HeaderCartMenu';
 import LordIcon from 'components/LordIcon';
 import HeaderFavoriteMenu from 'components/HeaderFavoriteMenu';
 import { notifications } from 'utils/notifications';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+  const screenWidth = useSelector((state) => state.ui.screenWidth);
   const div = useRef();
   const href = useHref();
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
+  const [widthDrawer, setWidthDrawer] = useState('378px');
 
   const navLinks = [
     { id: 0, name: 'Home', path: 'index' },
@@ -24,6 +27,15 @@ const Header = () => {
     { id: 5, name: 'Blogs', path: null },
   ];
 
+  useEffect(() => {
+    if (screenWidth < 576) {
+      setWidthDrawer('100vw');
+    } else {
+      setWidthDrawer('378px');
+    }
+  }, [screenWidth]);
+
+  // fix header when scorlling
   useEffect(() => {
     const handleWindowScroll = () => {
       if (window.scrollY >= 40) {
@@ -63,7 +75,10 @@ const Header = () => {
     if (Array.isArray(list)) {
       return list.map((item, index) => {
         return (
-          <li key={index}>
+          <li
+            key={index}
+            onClick={() => setIsOpenDrawer(false)}
+          >
             {item.path ? (
               <NavLink
                 to={item.path}
@@ -160,6 +175,7 @@ const Header = () => {
 
       <Drawer
         className={styles.drawer}
+        width={widthDrawer}
         placement='right'
         closable={false}
         onClose={handleHideDrawer}

@@ -230,19 +230,41 @@ td {
   line-height: 1.4;
 }
 
+.Toastify__toast {
+  color: var(--color-text-base);
+  background-color: var(--color-primary);
+}
+
+.Toastify__close-button {
+  color: var(--color-text-base);
+}
+
 .Toastify__toast-container--top-right {
   top: 90px;
+}
+
+@media only screen and (max-width: 576px) {
+  .Toastify__toast {
+    box-shadow: none;
+  }
+
+  .Toastify__toast-container--top-right {
+    top: 82px;
+  }
 }
 
 .Toastify__progress-bar--success {
   background-color: var(--color-success);
 }
+
 .Toastify__progress-bar--warning {
   background-color: var(--color-warning);
 }
+
 .Toastify__progress-bar--error {
   background-color: var(--color-error);
 }
+
 .Toastify__progress-bar--info {
   background-color: var(--color-info);
 }

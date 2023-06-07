@@ -13,13 +13,21 @@
 }
 
 .filledContent {
+  max-height: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+
   .body {
-    max-height: 332px;
+    flex: 1 1 auto;
     overflow-y: auto;
     border-bottom: 1px solid var(--border-color);
   }
 
   .footer {
+    flex: 0 1 auto;
+
     .total {
       display: flex;
       justify-content: space-between;
@@ -48,6 +56,15 @@
   }
 }
 
-.lordIcon {
-  @extend %lordIcon;
+@media only screen and (max-height: 576px) {
+  .filledContent {
+    max-height: calc(100vh - 88px);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .filledContent {
+    height: calc(100vh - 88px);
+    max-height: none;
+  }
 }
