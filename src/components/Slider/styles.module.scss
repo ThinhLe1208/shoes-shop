@@ -41,13 +41,14 @@
 
   .header {
     padding: 0 10px;
+    row-gap: var(--space-md);
     margin-left: -10px;
     margin-right: -10px;
-    margin-bottom: 6px;
 
     .title,
     .subTitle {
       font-size: var(--font-size-xl);
+      line-height: 1.4;
       font-weight: 700;
     }
 

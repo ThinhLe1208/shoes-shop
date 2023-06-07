@@ -1,4 +1,4 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,12 +12,51 @@ import CardProduct from 'components/CardProduct';
 import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 import LordIcon from 'components/LordIcon';
 
-const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4 }) => {
+const Slider = memo(({ productList, title = '', subTitle = '' }) => {
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
+  const sliderWrapperRef = useRef(null);
 
   const featureProductList = useSelector((state) => state.product.featureProductList);
   const { favoriteList, isLoadingUsers } = useSelector((state) => state.users);
+  const [slidesPerView, setSlidesPerView] = useState(0);
+
+  useEffect(() => {
+    // adjust the Slider component according to its offetsetWidth
+    const handleResetSlider = () => {
+      let newSlidePerView;
+      let isShow = true;
+      // set amount of slide per view
+      if (sliderWrapperRef.current?.offsetWidth < 400) {
+        newSlidePerView = 1;
+        isShow = false;
+      } else if (sliderWrapperRef.current?.offsetWidth < 768) {
+        newSlidePerView = 2;
+      } else if (sliderWrapperRef.current?.offsetWidth < 992) {
+        newSlidePerView = 3;
+      } else {
+        newSlidePerView = 4;
+      }
+      // show or hide navigation buttons
+      if (navigationPrevRef.current) {
+        if (isShow) {
+          navigationPrevRef.current.style.display = 'inline-block';
+          navigationNextRef.current.style.display = 'inline-block';
+        } else {
+          navigationPrevRef.current.style.display = 'none';
+          navigationNextRef.current.style.display = 'none';
+        }
+      }
+      setSlidesPerView(newSlidePerView);
+    };
+
+    handleResetSlider();
+    window.addEventListener('resize', handleResetSlider);
+
+    return () => {
+      window.removeEventListener('resize', handleResetSlider);
+    };
+  }, []);
 
   const renderProductList = (list) => {
     if (Array.isArray(list)) {
@@ -38,7 +77,10 @@ const Slider = memo(({ productList, title = '', subTitle = '', slidesPerView = 4
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      ref={sliderWrapperRef}
+    >
       <Row
         className={styles.header}
         justify={'space-between'}

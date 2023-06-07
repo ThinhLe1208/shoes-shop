@@ -4,7 +4,7 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './styles.module.scss';
 
-const BannerVideo = ({ image }) => {
+const BannerVideo = ({ image, height }) => {
   const videoRef = useRef();
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -20,11 +20,21 @@ const BannerVideo = ({ image }) => {
   };
 
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      style={{ height: height }}
+    >
       {!isPlaying && (
         <>
-          <img className={styles.image} src={require(`../../assets/images/${image}`)} alt={image} />
-          <button className={styles.playButton} onClick={handlePlayVideo}>
+          <img
+            className={styles.image}
+            src={require(`../../assets/images/${image}`)}
+            alt={image}
+          />
+          <button
+            className={styles.playButton}
+            onClick={handlePlayVideo}
+          >
             <FontAwesomeIcon icon={faPlay} />
           </button>
         </>

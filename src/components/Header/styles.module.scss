@@ -40,7 +40,6 @@
   &.fixed.index {
     .nav ul a,
     .icons .icon {
-      // color text secondary
       color: var(--color-text-base);
     }
 
@@ -55,7 +54,7 @@
   }
 
   .nav {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -125,7 +124,7 @@
     }
 
     .menuButton {
-      display: block;
+      display: none;
     }
   }
 }
@@ -148,16 +147,16 @@
   }
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (max-width: 992px) {
   .wrapper {
     .icons {
       .menuButton {
-        display: none;
+        display: block;
       }
     }
 
     .nav {
-      display: flex;
+      display: none;
     }
   }
 }

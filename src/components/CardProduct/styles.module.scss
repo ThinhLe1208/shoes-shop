@@ -112,6 +112,9 @@
       font-size: var(--font-size-md);
       color: var(--color-text-base);
       margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     p {

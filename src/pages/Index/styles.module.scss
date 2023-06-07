@@ -11,23 +11,21 @@
   }
 
   .banner1 {
-    margin-bottom: calc(var(--space-bottom) + 30px);
-
-    .image {
-      img {
-        height: 454px;
-      }
-    }
+    margin-bottom: calc(var(--space-bottom) + 60px);
+    max-height: 400px;
   }
-
+  .banner1,
   .banner2,
   .banner3 {
     margin-bottom: calc(var(--space-bottom) + 60px);
   }
+}
 
-  .banner3 {
-    img {
-      height: 340px;
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    .banner1 {
+      max-height: none;
+      margin-bottom: 0;
     }
   }
 }

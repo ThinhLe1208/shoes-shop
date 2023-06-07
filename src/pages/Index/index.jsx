@@ -22,8 +22,11 @@ const Index = () => {
 
       <Container>
         <div className={styles.banner1}>
-          <Row gutter={[32, 32]}>
-            <Col span={13}>
+          <Row gutter={[32, 64]}>
+            <Col
+              span={24}
+              lg={13}
+            >
               <Banner
                 className={styles.image}
                 position='right'
@@ -32,9 +35,13 @@ const Index = () => {
                 title='Leather Shoes Collection'
                 content='30% Off Sale'
                 path='/search'
+                height='400px'
               />
             </Col>
-            <Col span={11}>
+            <Col
+              span={24}
+              lg={11}
+            >
               <Slider
                 productList={featureProductList}
                 title='Best Sale'
@@ -63,6 +70,7 @@ const Index = () => {
             buttonContent='Discover More'
             buttonType='primary'
             path='/search'
+            height='300px'
           />
         </div>
 
@@ -77,10 +85,19 @@ const Index = () => {
 
         <div className={styles.banner3}>
           <Row gutter={[32, 32]}>
-            <Col span={15}>
-              <BannerVideo image='banner_3.png' />
+            <Col
+              span={24}
+              lg={15}
+            >
+              <BannerVideo
+                image='banner_3.png'
+                height='300px'
+              />
             </Col>
-            <Col span={9}>
+            <Col
+              span={24}
+              lg={9}
+            >
               <Banner
                 position='left'
                 image='banner_4.png'
@@ -89,6 +106,7 @@ const Index = () => {
                 buttonContent='Shop Now'
                 buttonType='default'
                 path='/search'
+                height='300px'
               />
             </Col>
           </Row>

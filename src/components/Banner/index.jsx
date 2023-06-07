@@ -14,6 +14,7 @@ const Banner = ({
   buttonContent,
   buttonType = 'primary',
   path,
+  height = '300px',
 }) => {
   const positionStyle = useMemo(() => {
     switch (position) {
@@ -42,10 +43,20 @@ const Banner = ({
   }, [position]);
 
   return (
-    <div className={styles.wrapper + ' ' + className}>
+    <div
+      className={styles.wrapper + ' ' + className}
+      style={{ height: height }}
+    >
       <Link to={path}>
-        <img className={styles.image} src={require(`../../assets/images/${image}`)} alt={image} />
-        <div className={styles.content} style={positionStyle}>
+        <img
+          className={styles.image}
+          src={require(`../../assets/images/${image}`)}
+          alt={image}
+        />
+        <div
+          className={styles.content}
+          style={positionStyle}
+        >
           {subTitle && <h3>{subTitle}</h3>}
           {title && <h2>{title}</h2>}
           {content && <p>{content}</p>}
