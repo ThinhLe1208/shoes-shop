@@ -79,13 +79,15 @@ const UserOrderHistory = ({ userProfile }) => {
   const renderordersHistoryList = (ordersHistory) => {
     if (Array.isArray(ordersHistory)) {
       return ordersHistory.map((order, index) => {
-        const data = order?.orderDetail?.map((item, index) => ({
-          key: order?.id,
-          product: item,
-          name: item,
-          price: item,
-          description: item,
-        }));
+        const data = order?.orderDetail?.map((item, index) => {
+          return {
+            key: index,
+            product: item,
+            name: item,
+            price: item,
+            description: item,
+          };
+        });
         return (
           <Panel
             header={moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}

@@ -45,6 +45,9 @@
 
   --padding-top-header: 110px;
   --max-width: 1440px;
+
+  // -------- toastify react ------------
+  --toastify-font-family: var(--font-family-base);
 }
 
 [data-theme='red'] {
@@ -195,6 +198,10 @@ td {
 }
 
 // ---------- toastify library ---------
+
+.Toastify__toast-container {
+  line-height: 1.4;
+}
 
 .Toastify__toast-container--top-right {
   top: 90px;

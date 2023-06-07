@@ -7,6 +7,7 @@ import styles from './styles.module.scss';
 import { addCart } from 'redux/slices/cartSlice';
 import LordIcon from 'components/LordIcon';
 import { usersThunk } from 'redux/thunks/usersThunk';
+import { notifications } from 'utils/notifications';
 
 const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSalePrice, isLoading }) => {
   const navigate = useNavigate();
@@ -29,11 +30,21 @@ const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSal
     dispatch(addCart({ product: product, qty: 1 }));
   };
 
-  const handleLikeProduct = () => {
+  const handleLikeProduct = async () => {
     if (isLike) {
-      dispatch(usersThunk.unlike(product?.id));
+      try {
+        await dispatch(usersThunk.unlike(product?.id)).unwrap();
+        notifications.success('Remove shoes from favorite list successfully.');
+      } catch (err) {
+        notifications.error('Failed to remvoe shoes from favorite list.');
+      }
     } else {
-      dispatch(usersThunk.like(product?.id));
+      try {
+        await dispatch(usersThunk.like(product?.id)).unwrap();
+        notifications.success('Add shoes to favorite list successfully.');
+      } catch (err) {
+        notifications.error('Failed to add shoes to favorite list.');
+      }
     }
   };
 
