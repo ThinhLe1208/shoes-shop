@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useHref } from 'react-router-dom';
-import { Col, Drawer, Row } from 'antd';
+import { Button, Col, Drawer, Row } from 'antd';
 
 import styles from './styles.module.scss';
 import Container from 'components/Container';
@@ -119,12 +119,16 @@ const Header = () => {
           <Col>
             <div className={styles.icons}>
               <div className={styles.icon}>
-                <LordIcon
-                  className={styles.lordIcon}
-                  icon='search'
-                  trigger='hover'
+                <Button
+                  type='link'
                   onClick={() => notifications.info('New feature coming soon!')}
-                />
+                >
+                  <LordIcon
+                    className='lordIcon'
+                    icon='search'
+                    trigger='hover'
+                  />
+                </Button>
               </div>
               <div className={styles.icon}>
                 <HeaderUserMenu />
@@ -136,13 +140,18 @@ const Header = () => {
                 <HeaderCartMenu />
               </div>
               <div className={styles.icon + ' ' + styles.menuButton}>
-                <LordIcon
-                  icon='menu'
-                  trigger='loop'
-                  delay='2000'
-                  state='hover'
+                <Button
+                  type='link'
                   onClick={handleShowDrawer}
-                />
+                >
+                  <LordIcon
+                    className='lordIcon'
+                    icon='menu'
+                    trigger='loop'
+                    delay='2000'
+                    state='hover'
+                  />
+                </Button>
               </div>
             </div>
           </Col>
@@ -152,25 +161,32 @@ const Header = () => {
       <Drawer
         className={styles.drawer}
         placement='right'
-        closable={true}
-        closeIcon={
-          <LordIcon
-            icon='close'
-            trigger='loop'
-            delay='2000'
-            state='hover-1'
-          />
-        }
+        closable={false}
         onClose={handleHideDrawer}
         open={isOpenDrawer}
         bodyStyle={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
-        <ul>{renderNavLinkList(navLinks)}</ul>
+        <Button
+          className={styles.closeButton}
+          type='link'
+          onClick={handleHideDrawer}
+        >
+          <LordIcon
+            className='lordIcon'
+            icon='close'
+            trigger='loop'
+            delay='2000'
+            state='hover-1'
+          />
+        </Button>
+        <nav className={styles.sideNavigation}>
+          <ul>{renderNavLinkList(navLinks)}</ul>
+        </nav>
       </Drawer>
     </div>
   );

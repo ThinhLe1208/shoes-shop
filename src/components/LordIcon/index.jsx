@@ -12,6 +12,7 @@ const ICONS = {
   arrowDown: require('../../assets/icons/arrowDown.json'),
   arrow: require('../../assets/icons/arrow.json'),
   menu: require('../../assets/icons/menu.json'),
+  filter: require('../../assets/icons/filter.json'),
   eye: require('../../assets/icons/eye.json'),
   trash: require('../../assets/icons/trash.json'),
   close: require('../../assets/icons/close.json'),

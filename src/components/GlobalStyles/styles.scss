@@ -189,25 +189,39 @@ td {
 }
 
 .ant-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   box-shadow: none;
+}
+
+.ant-btn.ant-btn-link {
+  padding: 0;
 }
 
 // pop over
 .ant-popover {
-  width: 380px;
-  max-height: 70vh;
-  overflow-y: auto;
+  max-width: 380px;
+  // max-height: 70vh;
+  // overflow-y: auto;
+  box-shadow: var(--box-shadow-3);
 
   @media only screen and (max-width: 576px) {
     width: 100vw;
+    max-width: none;
     left: 0 !important;
     right: 0 !important;
   }
 }
 
-.ant-popconfirm-message {
+.ant-popconfirm-message,
+.ant-popconfirm-buttons {
   display: flex !important;
   align-items: center !important;
+}
+
+.ant-popconfirm-buttons {
+  justify-content: flex-end;
 }
 
 // ---------- toastify library ---------
@@ -231,4 +245,16 @@ td {
 }
 .Toastify__progress-bar--info {
   background-color: var(--color-info);
+}
+
+// ------- lord icon ------------
+
+.lordIcon {
+  --lord-icon-primary: var(--color-text-base);
+  transition: all linear var(--transition-short);
+  cursor: pointer;
+
+  &:hover {
+    --lord-icon-primary: var(--color-secondary);
+  }
 }

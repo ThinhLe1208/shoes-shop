@@ -3,8 +3,27 @@
   border-radius: var(--border-rad-sm);
   padding: 10px;
 
+  .filterButton {
+    display: none;
+  }
+
   .sortLabel {
     display: inline-block;
     margin-right: 10px;
+  }
+}
+
+.closeButton {
+  display: block;
+  padding: 0;
+  margin-bottom: 24px;
+  margin-left: auto;
+}
+
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    .filterButton {
+      display: inline-block;
+    }
   }
 }

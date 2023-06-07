@@ -31,7 +31,10 @@ const Search = () => {
         return (
           <Col
             key={index}
-            span={8}
+            span={24}
+            sm={12}
+            md={8}
+            xl={6}
           >
             <SaleCaculationHOC
               product={item}
@@ -52,14 +55,20 @@ const Search = () => {
         <Breadcrumb breadCrumbList={breadCrumbList} />
 
         <Row gutter={16}>
-          <Col span={6}>
+          <Col
+            span={0}
+            lg={6}
+          >
             <FilterSidebar />
           </Col>
-          <Col span={18}>
+          <Col
+            span={24}
+            lg={18}
+          >
             <SearchBar />
 
             <div className={styles.resultList}>
-              <Row gutter={[32, 66]}>
+              <Row gutter={[40, 50]}>
                 {finalResultList?.length ? (
                   renderResultList(finalResultList)
                 ) : (

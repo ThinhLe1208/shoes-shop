@@ -130,18 +130,31 @@
 }
 
 .drawer {
-  li {
-    margin-bottom: var(--space-xl) !important;
+  .closeButton {
+    display: block;
+    margin-right: auto;
+  }
 
-    a {
-      font-size: var(--font-size-xl);
+  .sideNavigation {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-      &:hover {
-        color: var(--color-secondary) !important;
-      }
+    li {
+      margin-bottom: var(--space-xl) !important;
 
-      &.active {
-        color: var(--color-secondary) !important;
+      a {
+        font-size: var(--font-size-xl);
+
+        &:hover {
+          color: var(--color-secondary) !important;
+        }
+
+        &.active {
+          color: var(--color-secondary) !important;
+        }
       }
     }
   }
