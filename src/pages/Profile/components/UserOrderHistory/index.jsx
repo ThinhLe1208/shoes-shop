@@ -79,9 +79,8 @@ const UserOrderHistory = ({ userProfile }) => {
   const renderordersHistoryList = (ordersHistory) => {
     if (Array.isArray(ordersHistory)) {
       return ordersHistory.map((order, index) => {
-        console.log('returnordersHistory.map ~ order:', order);
         const data = order?.orderDetail?.map((item, index) => ({
-          key: index,
+          key: order?.id,
           product: item,
           name: item,
           price: item,
@@ -90,7 +89,7 @@ const UserOrderHistory = ({ userProfile }) => {
         return (
           <Panel
             header={moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}
-            key={index}
+            key={order?.id}
           >
             <Popconfirm
               placement='topLeft'

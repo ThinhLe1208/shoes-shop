@@ -96,9 +96,6 @@ const productSlice = createSlice({
                 state.filterResultByPriceList = _.cloneDeep(state.allProductList);
                 state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
             }
-        },
-        setFinalResultList: (state) => {
-            state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
         }
     },
     extraReducers: (builder) => {
@@ -182,7 +179,6 @@ export const {
     setSortBy,
     setFilterResultByCategoryList,
     setFilterResultByPriceList,
-    setFinalResultList
 } = productSlice.actions;
 
 export default productSlice.reducer;

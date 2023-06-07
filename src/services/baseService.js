@@ -32,15 +32,15 @@ http.interceptors.response.use(
         if (error?.response?.status === 401 || error?.response?.status === 403) {
             const isLogin = storage.checkLogin();
             if (!isLogin) {
-                notifications.error('You must log in first.');
+                notifications.error('You must log in first.', { toastId: 'login request' });
                 history.push('/login');
             }
         }
         if (error.response?.status === 400 || error.response?.status === 404) {
             if (error?.response?.data?.message === 'Email đã được sử dụng!') {
-                notifications.error('The email has already been taken.');
+                notifications.error('The email has already been taken.', { toastId: 'duplicated email' });
             } else {
-                notifications.error('The data was not found.');
+                notifications.error('The data was not found.', { toastId: '400/404' });
             }
         }
         return Promise.reject(error);

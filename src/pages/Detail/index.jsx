@@ -48,7 +48,7 @@ const Detail = () => {
 
         <Slider
           productList={productById?.relatedProducts}
-          title='You May Also Like'
+          subTitle='You May Also Like'
           slidesPerView={4}
         />
       </Container>

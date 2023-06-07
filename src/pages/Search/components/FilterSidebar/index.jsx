@@ -5,6 +5,7 @@ import _ from 'lodash';
 import styles from './styles.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilterResultByCategoryList, setFilterResultByPriceList } from 'redux/slices/productSlice';
+import { notifications } from 'utils/notifications';
 
 const { Panel } = Collapse;
 
@@ -27,6 +28,7 @@ const FilterSidebar = () => {
   const handleChangeSize = (checkedValues) => {
     setSizeCount(checkedValues.length);
     setSizeValue(checkedValues);
+    notifications.info('Oops! This API is so weird.');
   };
 
   const handleChangePrice = (checkedValues) => {
@@ -49,6 +51,7 @@ const FilterSidebar = () => {
   const handleResetPrice = () => {
     setPriceCount(0);
     setPriceValue([]);
+    dispatch(setFilterResultByPriceList([]));
   };
 
   const renderCategoryList = (list) => {

@@ -8,19 +8,19 @@ import HeaderUserMenu from 'components/HeaderUserMenu';
 import HeaderCartMenu from 'components/HeaderCartMenu';
 import LordIcon from 'components/LordIcon';
 import HeaderFavoriteMenu from 'components/HeaderFavoriteMenu';
+import { notifications } from 'utils/notifications';
 
 const Header = () => {
   const div = useRef();
   const href = useHref();
 
   const navLinks = [
-    { id: 1, name: 'Home', path: 'index' },
-    { id: 1, name: 'Detail', path: 'detail/12' },
-    { id: 1, name: 'Login', path: 'login' },
-    { id: 1, name: 'Register', path: 'register' },
-    { id: 1, name: 'Cart', path: 'cart' },
-    { id: 1, name: 'Profile', path: 'profile' },
-    { id: 1, name: 'Search', path: 'search' },
+    { id: 0, name: 'Home', path: 'index' },
+    { id: 1, name: 'Browse', path: 'search' },
+    { id: 2, name: 'Cart', path: 'cart' },
+    { id: 3, name: 'Stores', path: null },
+    { id: 4, name: 'Top Products', path: null },
+    { id: 5, name: 'Blogs', path: null },
   ];
 
   useEffect(() => {
@@ -56,12 +56,16 @@ const Header = () => {
       return list.map((item, index) => {
         return (
           <li key={index}>
-            <NavLink
-              to={item.path}
-              className={(navLink) => (navLink.isActive ? styles.active : '')}
-            >
-              {item.name}
-            </NavLink>
+            {item.path ? (
+              <NavLink
+                to={item.path}
+                className={(navLink) => (navLink.isActive ? styles.active : '')}
+              >
+                {item.name}
+              </NavLink>
+            ) : (
+              <Link onClick={() => notifications.info('New feature coming soon!')}>{item.name}</Link>
+            )}
           </li>
         );
       });
@@ -111,6 +115,7 @@ const Header = () => {
                   className={styles.lordIcon}
                   icon='search'
                   trigger='hover'
+                  onClick={() => notifications.info('New feature coming soon!')}
                 />
               </div>
               <div className={styles.icon}>

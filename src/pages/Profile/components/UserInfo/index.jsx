@@ -143,6 +143,7 @@ const UserInfo = ({ userProfile, isLoading }) => {
               <Button
                 type='primary'
                 block
+                onClick={() => notifications.info('New feature coming soon!')}
               >
                 Change Password
               </Button>

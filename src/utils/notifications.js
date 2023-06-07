@@ -2,7 +2,7 @@ import LordIcon from "components/LordIcon";
 import { toast } from "react-toastify";
 
 class Notifications {
-    success = (content) => {
+    success = (content, options) => {
         const colorSuccess = getComputedStyle(document.documentElement).getPropertyValue('--color-success');
         toast.success(content, {
             icon: <LordIcon
@@ -11,10 +11,11 @@ class Notifications {
                 delay='800'
                 state='intro'
                 size='30px'
-                colors={`primary:${colorSuccess}`} />
+                colors={`primary:${colorSuccess}`} />,
+            ...options
         });
     };
-    warning = (content) => {
+    warning = (content, options) => {
         const colorWarning = getComputedStyle(document.documentElement).getPropertyValue('--color-warning');
         toast.warning(content, {
             icon: <LordIcon
@@ -23,10 +24,11 @@ class Notifications {
                 delay='800'
                 state='intro'
                 size='30px'
-                colors={`primary:${colorWarning}`} />
+                colors={`primary:${colorWarning}`} />,
+            ...options
         });
     };
-    error = (content) => {
+    error = (content, options) => {
         const colorError = getComputedStyle(document.documentElement).getPropertyValue('--color-error');
         toast.error(content, {
             icon: <LordIcon
@@ -35,10 +37,11 @@ class Notifications {
                 delay='800'
                 state='intro'
                 size='30px'
-                colors={`primary:${colorError}`} />
+                colors={`primary:${colorError}`} />,
+            ...options
         });
     };
-    info = (content) => {
+    info = (content, options) => {
         const colorInfo = getComputedStyle(document.documentElement).getPropertyValue('--color-info');
         toast.info(content, {
             icon: <LordIcon
@@ -47,7 +50,8 @@ class Notifications {
                 delay='800'
                 state='intro'
                 size='30px'
-                colors={`primary:${colorInfo}`} />
+                colors={`primary:${colorInfo}`} />,
+            ...options
         });
     };
 }

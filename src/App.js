@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { unstable_HistoryRouter as HistoryRouter, Route, Routes } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BgColorsOutlined } from '@ant-design/icons';
@@ -30,6 +30,7 @@ function App() {
     // a theme config of the antd library 
     < ConfigProvider theme={themeConfig[theme]} >
       <ToastContainer
+        className="toast-position"
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -72,6 +73,7 @@ function App() {
             <Route path='checkout' element={<Checkout />} />
             <Route path='profile' element={<Profile />} />
             <Route path='search' element={<Search />} />
+            <Route path='*' element={<Navigate to='index' />} />
           </Route>
         </Routes>
       </HistoryRouter >

@@ -10,18 +10,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardProduct from 'components/CardProduct';
 import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
 import { productThunk } from 'redux/thunks/productThunk';
-import { setFinalResultList } from 'redux/slices/productSlice';
+import { setSortBy } from 'redux/slices/productSlice';
 
 const Search = () => {
-  const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'All products' }];
+  const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Browse' }];
 
   const { featureProductList, finalResultList } = useSelector((state) => state.product);
   const { favoriteList, isLoadingUsers } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(productThunk.searchProductName());
-    dispatch(setFinalResultList());
+    // reset all filter list and search list
+    dispatch(productThunk.getAllProductList());
+    dispatch(setSortBy('default'));
   }, [dispatch]);
 
   const renderResultList = (list) => {

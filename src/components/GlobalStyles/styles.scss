@@ -196,6 +196,10 @@ td {
 
 // ---------- toastify library ---------
 
+.Toastify__toast-container--top-right {
+  top: 90px;
+}
+
 .Toastify__progress-bar--success {
   background-color: var(--color-success);
 }

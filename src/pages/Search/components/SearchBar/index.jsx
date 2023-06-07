@@ -41,7 +41,7 @@ const SearchBar = () => {
         <Col>
           <span className={styles.sortLabel}>Sort by :</span>
           <Select
-            defaultValue='Default'
+            defaultValue='default'
             style={{
               minWidth: 180,
             }}
