@@ -4,4 +4,12 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: var(--color-primary);
+
+  // fix header overflow right side in small screen devices
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  .header {
+    width: 100%;
+  }
 }

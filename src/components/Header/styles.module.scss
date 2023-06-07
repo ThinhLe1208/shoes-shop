@@ -55,7 +55,7 @@
   }
 
   .nav {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 
@@ -122,6 +122,42 @@
 
     .icon + .icon {
       margin-left: 20px;
+    }
+
+    .menuButton {
+      display: block;
+    }
+  }
+}
+
+.drawer {
+  li {
+    margin-bottom: var(--space-xl) !important;
+
+    a {
+      font-size: var(--font-size-xl);
+
+      &:hover {
+        color: var(--color-secondary) !important;
+      }
+
+      &.active {
+        color: var(--color-secondary) !important;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .wrapper {
+    .icons {
+      .menuButton {
+        display: none;
+      }
+    }
+
+    .nav {
+      display: flex;
     }
   }
 }

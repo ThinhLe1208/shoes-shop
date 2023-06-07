@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,14 +17,20 @@ import Search from 'pages/Search';
 import ScrollToTopAuto from 'components/ScrollToTopAuto';
 import { history } from 'utils/history';
 import { themeConfig } from 'utils/themes/antdTheme.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTheme } from 'redux/slices/uiSlice';
 
 function App() {
-  const [theme, setTheme] = useState('blue');
+  const theme = useSelector(state => state.ui.theme);
+  const dispatch = useDispatch();
 
   const handleChangeTheme = (theme) => {
-    setTheme(theme);
-    document.documentElement.setAttribute('data-theme', theme);
+    dispatch(setTheme(theme));
   };
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
 
   return (
     // a theme config of the antd library 

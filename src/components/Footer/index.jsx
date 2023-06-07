@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { Select } from 'antd';
 
 const Footer = () => {
   return (
@@ -66,29 +65,6 @@ const Footer = () => {
           <div className={styles.item}>
             <h1>Language & Currency</h1>
             <ul>
-              <li>
-                <Select
-                  defaultValue='lucy'
-                  style={{
-                    width: 120,
-                    backgroundColor: 'red',
-                  }}
-                  options={[
-                    {
-                      value: 'jack',
-                      label: 'Jack',
-                    },
-                    {
-                      value: 'lucy',
-                      label: 'Lucy',
-                    },
-                    {
-                      value: 'Yiminghe',
-                      label: 'yiminghe',
-                    },
-                  ]}
-                />
-              </li>
               <li>a</li>
               <li>a</li>
             </ul>

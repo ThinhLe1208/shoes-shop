@@ -6,12 +6,28 @@ import styles from './styles.module.scss';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import { productThunk } from 'redux/thunks/productThunk';
+import { setScreenWidth } from 'redux/slices/uiSlice';
 
 const HomeTemplate = () => {
   const categoryList = useSelector((state) => state.product.categoryList);
   const outletRef = useRef();
   const href = useHref();
   const dispatch = useDispatch();
+
+  // get a current screenwidth to make website responsive with the ant library
+  useEffect(() => {
+    const handleSetScreenWidth = () => {
+      dispatch(setScreenWidth(window.innerWidth));
+    };
+
+    window.addEventListener('load', handleSetScreenWidth);
+    window.addEventListener('resize', handleSetScreenWidth);
+
+    return () => {
+      window.removeEventListener('load', handleSetScreenWidth);
+      window.removeEventListener('resize', handleSetScreenWidth);
+    };
+  }, [dispatch]);
 
   // the index page dont need a paddding-top
   useEffect(() => {
@@ -36,7 +52,7 @@ const HomeTemplate = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Header />
+      <Header className={styles.header} />
       <div ref={outletRef}>
         <Outlet />
       </div>

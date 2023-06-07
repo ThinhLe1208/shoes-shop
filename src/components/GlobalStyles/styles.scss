@@ -192,6 +192,19 @@ td {
   box-shadow: none;
 }
 
+// pop over
+.ant-popover {
+  width: 380px;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  @media only screen and (max-width: 576px) {
+    width: 100vw;
+    left: 0 !important;
+    right: 0 !important;
+  }
+}
+
 .ant-popconfirm-message {
   display: flex !important;
   align-items: center !important;

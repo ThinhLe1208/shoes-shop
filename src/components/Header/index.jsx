@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useHref } from 'react-router-dom';
-import { Col, Row } from 'antd';
+import { Col, Drawer, Row } from 'antd';
 
 import styles from './styles.module.scss';
 import Container from 'components/Container';
@@ -13,6 +13,7 @@ import { notifications } from 'utils/notifications';
 const Header = () => {
   const div = useRef();
   const href = useHref();
+  const [isOpenDrawer, setIsOpenDrawer] = useState(false);
 
   const navLinks = [
     { id: 0, name: 'Home', path: 'index' },
@@ -50,6 +51,13 @@ const Header = () => {
       window.removeEventListener('scroll', handleWindowScroll);
     };
   }, [href]);
+
+  const handleShowDrawer = () => {
+    setIsOpenDrawer(true);
+  };
+  const handleHideDrawer = () => {
+    setIsOpenDrawer(false);
+  };
 
   const renderNavLinkList = (list) => {
     if (Array.isArray(list)) {
@@ -127,10 +135,43 @@ const Header = () => {
               <div className={styles.icon}>
                 <HeaderCartMenu />
               </div>
+              <div className={styles.icon + ' ' + styles.menuButton}>
+                <LordIcon
+                  icon='menu'
+                  trigger='loop'
+                  delay='2000'
+                  state='hover'
+                  onClick={handleShowDrawer}
+                />
+              </div>
             </div>
           </Col>
         </Row>
       </Container>
+
+      <Drawer
+        className={styles.drawer}
+        placement='right'
+        closable={true}
+        closeIcon={
+          <LordIcon
+            icon='close'
+            trigger='loop'
+            delay='2000'
+            state='hover-1'
+          />
+        }
+        onClose={handleHideDrawer}
+        open={isOpenDrawer}
+        bodyStyle={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <ul>{renderNavLinkList(navLinks)}</ul>
+      </Drawer>
     </div>
   );
 };
