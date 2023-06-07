@@ -53,7 +53,10 @@ const HomeTemplate = () => {
   return (
     <div className={styles.wrapper}>
       <Header className={styles.header} />
-      <div ref={outletRef}>
+      <div
+        ref={outletRef}
+        className={styles.outlet}
+      >
         <Outlet />
       </div>
       <Footer />

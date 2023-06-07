@@ -53,6 +53,8 @@ const Cart = () => {
       title: 'PRODUCT',
       dataIndex: 'product',
       key: 'product',
+      align: 'center',
+      responsive: ['sm'],
       width: 160,
       render: (data) => {
         return (
@@ -70,6 +72,11 @@ const Cart = () => {
       render: (data) => {
         return (
           <div className={styles.infoCell}>
+            <img
+              className={styles.imageInfo}
+              src={data?.image}
+              alt='img'
+            />
             <Link
               className={styles.name}
               to={`/detail/${data?.id}`}
@@ -83,6 +90,20 @@ const Cart = () => {
               <span>Color:</span> black
             </p>
             <p className={styles.price}>${data?.price}</p>
+
+            <div className={styles.quantityInfoCell}>
+              <QuantityField
+                product={data}
+                large
+              />
+              <LordIcon
+                icon='trash'
+                className='lordIcon'
+                size='24px'
+                state='hover-empty'
+                onClick={() => handleDeleteProduct(data?.id)}
+              />
+            </div>
           </div>
         );
       },
@@ -91,6 +112,9 @@ const Cart = () => {
       title: 'QUANTITY',
       dataIndex: 'quantity',
       key: 'quantity',
+      align: 'center',
+      width: '20%',
+      responsive: ['md'],
       render: (data) => {
         return (
           <div className={styles.quantityCell}>
@@ -114,6 +138,7 @@ const Cart = () => {
       dataIndex: 'total',
       key: 'total',
       align: 'right',
+      width: '24%',
       render: (data) => {
         return <p className={styles.subPrice}>${(data?.qty * data?.price).toLocaleString()}</p>;
       },
@@ -137,17 +162,23 @@ const Cart = () => {
 
           <Row
             align={'top'}
-            gutter={16}
+            gutter={[32, 32]}
           >
-            <Col span={18}>
+            <Col
+              span={24}
+              xl={18}
+            >
               <Table
                 columns={columns}
                 dataSource={data}
                 rowKey={'key'}
-                pagination={{ position: ['bottomRight'], defaultPageSize: 4 }}
+                pagination={{ position: ['bottomLeft'], defaultPageSize: 4 }}
               />
             </Col>
-            <Col span={6}>
+            <Col
+              span={24}
+              xl={6}
+            >
               <div className={styles.tableFooter}>
                 <p className={styles.price}>
                   <span>Subtotal :</span>

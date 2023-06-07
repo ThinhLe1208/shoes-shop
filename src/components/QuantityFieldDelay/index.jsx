@@ -39,7 +39,7 @@ const QuantityFieldDelay = memo(({ large }) => {
     <div className={styles.wrapper + ' ' + (large && styles.large)}>
       <LordIcon
         icon='arrowDown'
-        className={styles.lordIcon}
+        className='lordIcon'
         state='hover-1'
         trigger='click'
         size={large ? '160px' : '140px'}
@@ -55,7 +55,7 @@ const QuantityFieldDelay = memo(({ large }) => {
       />
       <LordIcon
         icon='arrowUp'
-        className={styles.lordIcon}
+        className='lordIcon'
         state='hover-1'
         trigger='click'
         size={large ? '160px' : '140px'}

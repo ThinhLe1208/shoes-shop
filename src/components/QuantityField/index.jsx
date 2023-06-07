@@ -52,7 +52,7 @@ const QuantityField = ({ product, large }) => {
     <div className={styles.wrapper + ' ' + (large && styles.large)}>
       <LordIcon
         icon='arrowDown'
-        className={styles.lordIcon}
+        className='lordIcon'
         state='hover-1'
         trigger='click'
         size={large ? '160px' : '140px'}
@@ -68,7 +68,7 @@ const QuantityField = ({ product, large }) => {
       />
       <LordIcon
         icon='arrowUp'
-        className={styles.lordIcon}
+        className='lordIcon'
         state='hover-1'
         trigger='click'
         size={large ? '160px' : '140px'}
