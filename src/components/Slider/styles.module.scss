@@ -1,6 +1,12 @@
 .wrapper {
   background-color: var(--color-primary);
 
+  .navigationButtons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
   .leftBtn,
   .rightBtn {
     position: relative;
@@ -62,5 +68,13 @@
     padding: 14px 10px 68px;
     margin-left: -10px;
     margin-right: -10px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .wrapper {
+    .rightBtn {
+      margin-left: 16px;
+    }
   }
 }

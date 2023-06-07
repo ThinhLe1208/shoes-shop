@@ -25,27 +25,15 @@ const Slider = memo(({ productList, title = '', subTitle = '' }) => {
     // adjust the Slider component according to its offetsetWidth
     const handleResetSlider = () => {
       let newSlidePerView;
-      let isShow = true;
       // set amount of slide per view
       if (sliderWrapperRef.current?.offsetWidth < 400) {
         newSlidePerView = 1;
-        isShow = false;
       } else if (sliderWrapperRef.current?.offsetWidth < 768) {
         newSlidePerView = 2;
       } else if (sliderWrapperRef.current?.offsetWidth < 992) {
         newSlidePerView = 3;
       } else {
         newSlidePerView = 4;
-      }
-      // show or hide navigation buttons
-      if (navigationPrevRef.current) {
-        if (isShow) {
-          navigationPrevRef.current.style.display = 'inline-block';
-          navigationNextRef.current.style.display = 'inline-block';
-        } else {
-          navigationPrevRef.current.style.display = 'none';
-          navigationNextRef.current.style.display = 'none';
-        }
       }
       setSlidesPerView(newSlidePerView);
     };
@@ -85,34 +73,37 @@ const Slider = memo(({ productList, title = '', subTitle = '' }) => {
         className={styles.header}
         justify={'space-between'}
         align={'middle'}
+        gutter={[0, 0]}
       >
-        <Col>
+        <Col span={16}>
           <span className={styles.title}>{title}</span>
           <span className={styles.subTitle}>{subTitle}</span>
         </Col>
-        <Col>
-          <Button
-            ref={navigationPrevRef}
-            className={styles.leftBtn}
-          >
-            <LordIcon
-              className={styles.lordIcon}
-              icon='arrow'
-              state='hover-1'
-              trigger='click'
-            />
-          </Button>
-          <Button
-            ref={navigationNextRef}
-            className={styles.rightBtn}
-          >
-            <LordIcon
-              className={styles.lordIcon}
-              icon='arrow'
-              state='hover-1'
-              trigger='click'
-            />
-          </Button>
+        <Col span={8}>
+          <div className={styles.navigationButtons}>
+            <Button
+              ref={navigationPrevRef}
+              className={styles.leftBtn}
+            >
+              <LordIcon
+                className={styles.lordIcon}
+                icon='arrow'
+                state='hover-1'
+                trigger='click'
+              />
+            </Button>
+            <Button
+              ref={navigationNextRef}
+              className={styles.rightBtn}
+            >
+              <LordIcon
+                className={styles.lordIcon}
+                icon='arrow'
+                state='hover-1'
+                trigger='click'
+              />
+            </Button>
+          </div>
         </Col>
       </Row>
 
