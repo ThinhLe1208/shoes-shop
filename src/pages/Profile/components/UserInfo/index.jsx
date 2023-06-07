@@ -60,8 +60,11 @@ const UserInfo = ({ userProfile, isLoading }) => {
       </div>
 
       <form className={styles.form}>
-        <Row gutter={[36, 36]}>
-          <Col span={12}>
+        <Row gutter={[32, 32]}>
+          <Col
+            span={24}
+            lg={12}
+          >
             <InputField
               label='Email'
               name='email'
@@ -73,7 +76,10 @@ const UserInfo = ({ userProfile, isLoading }) => {
               onBlur={handleBlur}
             />
           </Col>
-          <Col span={12}>
+          <Col
+            span={24}
+            lg={12}
+          >
             <InputField
               label='Name'
               name='name'
@@ -85,7 +91,10 @@ const UserInfo = ({ userProfile, isLoading }) => {
               onBlur={handleBlur}
             />
           </Col>
-          <Col span={12}>
+          <Col
+            span={24}
+            lg={12}
+          >
             <InputField
               label='Phone'
               name='phone'
@@ -97,7 +106,10 @@ const UserInfo = ({ userProfile, isLoading }) => {
               onBlur={handleBlur}
             />
           </Col>
-          <Col span={12}>
+          <Col
+            sspan={24}
+            lg={12}
+          >
             <label className={styles.label}>Gender</label>
             <Radio.Group
               onChange={handleChangeGender}
@@ -107,7 +119,10 @@ const UserInfo = ({ userProfile, isLoading }) => {
               <Radio value={false}>Female</Radio>
             </Radio.Group>
           </Col>
-          <Col span={12}>
+          <Col
+            span={24}
+            lg={12}
+          >
             <Space>
               <Popconfirm
                 placement='topLeft'

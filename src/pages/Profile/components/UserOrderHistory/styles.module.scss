@@ -1,6 +1,15 @@
 @use '../../../../assets//sass/mixin.scss';
 
 .wrapper {
+  .productCell {
+    .nameProduct {
+      display: none;
+      color: var(--color-cta);
+      font-weight: 700;
+      text-align: center;
+    }
+  }
+
   .name {
     color: var(--color-cta);
     font-weight: 700;
@@ -15,4 +24,14 @@
 
 .lordWarningIcon {
   --lord-icon-primary: var(--color-warning);
+}
+
+@media only screen and (max-width: 576px) {
+  .wrapper {
+    .productCell {
+      .nameProduct {
+        display: block;
+      }
+    }
+  }
 }

@@ -18,21 +18,42 @@ const SliderDetail = memo(({ product }) => {
   const swiperList = (
     <>
       <SwiperSlide className={styles.swiperSlide}>
-        <img src={product?.image} alt='img' />
+        <img
+          src={product?.image}
+          alt='img'
+        />
       </SwiperSlide>
       <SwiperSlide className={styles.swiperSlide}>
-        <img src={product?.image} alt='img' style={{ transform: 'scaleX(-1)' }} />
+        <img
+          src={product?.image}
+          alt='img'
+          style={{ transform: 'scaleX(-1)' }}
+        />
       </SwiperSlide>
       <SwiperSlide className={styles.swiperSlide}>
-        <img src={product?.image} alt='img' style={{ transform: 'rotate(90deg)' }} />
+        <img
+          src={product?.image}
+          alt='img'
+          style={{ transform: 'rotate(90deg)' }}
+        />
       </SwiperSlide>
       <SwiperSlide className={styles.swiperSlide}>
-        <img src={product?.image} alt='img' style={{ transform: 'rotate(270deg)' }} />
+        <img
+          src={product?.image}
+          alt='img'
+          style={{ transform: 'rotate(270deg)' }}
+        />
       </SwiperSlide>
       {product?.relatedProducts?.map((item, index) => {
         return (
-          <SwiperSlide key={index} className={styles.swiperSlide}>
-            <img src={item?.image} alt='img' />
+          <SwiperSlide
+            key={index}
+            className={styles.swiperSlide}
+          >
+            <img
+              src={item?.image}
+              alt='img'
+            />
           </SwiperSlide>
         );
       })}
@@ -47,7 +68,7 @@ const SliderDetail = memo(({ product }) => {
             '--swiper-navigation-color': 'var(--color-secondary)',
             '--swiper-pagination-color': 'var(--color-secondary)',
           }}
-          spaceBetween={10}
+          spaceBetween={6}
           navigation={true}
           thumbs={{ swiper: thumbsSwiper }}
           modules={[FreeMode, Navigation, Thumbs]}
@@ -57,12 +78,26 @@ const SliderDetail = memo(({ product }) => {
         </Swiper>
         <Swiper
           onSwiper={setThumbsSwiper}
-          spaceBetween={10}
-          slidesPerView={4}
+          spaceBetween={0}
+          slidesPerView={3}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}
           className={styles.subSwiper}
+          breakpoints={{
+            576: {
+              slidesPerView: 3,
+            },
+            640: {
+              slidesPerView: 4,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            992: {
+              slidesPerView: 4,
+            },
+          }}
         >
           {swiperList}
         </Swiper>

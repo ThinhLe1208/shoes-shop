@@ -23,10 +23,18 @@ const UserOrderHistory = ({ userProfile }) => {
       width: 160,
       render: (data) => {
         return (
-          <img
-            src={data?.image}
-            alt='img'
-          />
+          <div className={styles.productCell}>
+            <img
+              src={data?.image}
+              alt='img'
+            />
+            <Link
+              className={styles.nameProduct}
+              to={`/detail/${data?.id}`}
+            >
+              {data?.name}
+            </Link>
+          </div>
         );
       },
     },
@@ -35,12 +43,12 @@ const UserOrderHistory = ({ userProfile }) => {
       dataIndex: 'name',
       key: 'name',
       align: 'center',
+      responsive: ['sm'],
       render: (data) => {
         return (
           <Link
             className={styles.name}
             to={`/detail/${data?.id}`}
-            style={{ textAlign: 'start' }}
           >
             {data?.name}
           </Link>
@@ -61,6 +69,7 @@ const UserOrderHistory = ({ userProfile }) => {
       dataIndex: 'description',
       key: 'description',
       align: 'center',
+      responsive: ['md'],
       render: (data) => {
         return <p>{data.description}</p>;
       },

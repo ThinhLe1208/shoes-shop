@@ -31,7 +31,10 @@ const UserFavorite = () => {
         return (
           <Col
             key={index}
-            span={6}
+            span={24}
+            sm={12}
+            md={8}
+            lg={6}
           >
             <SaleCaculationHOC
               product={item}
@@ -59,7 +62,7 @@ const UserFavorite = () => {
         >
           {favoriteList?.length ? (
             <Row
-              gutter={[32, 66]}
+              gutter={[40, 50]}
               className={styles.pannel}
             >
               {renderFavoriteList(detailFavoriteList)}

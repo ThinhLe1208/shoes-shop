@@ -46,7 +46,6 @@ const Index = () => {
                 productList={featureProductList}
                 title='Best Sale'
                 subTitle='Products'
-                slidesPerView={2}
               />
             </Col>
           </Row>
@@ -57,7 +56,6 @@ const Index = () => {
             productList={productListByCategory[NIKE_CATEGORY_ID]}
             title='Nike Shoes'
             subTitle='Collection'
-            slidesPerView={4}
           />
         </div>
 
@@ -79,7 +77,6 @@ const Index = () => {
             productList={productListByCategory[ADIDAS_CATEGORY_ID]}
             title='Adidas Shoes'
             subTitle='Collection'
-            slidesPerView={4}
           />
         </div>
 
@@ -117,7 +114,6 @@ const Index = () => {
             productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
             title='Vans And Converse Shoes'
             subTitle='Collection'
-            slidesPerView={4}
           />
         </div>
       </Container>

@@ -32,10 +32,16 @@ const Detail = () => {
       <Container>
         <Breadcrumb breadCrumbList={breadCrumbList} />
         <Row gutter={[32, 32]}>
-          <Col span={12}>
+          <Col
+            span={24}
+            md={12}
+          >
             <SliderDetail product={productById} />
           </Col>
-          <Col span={12}>
+          <Col
+            span={24}
+            md={12}
+          >
             <SaleCaculationHOC
               product={productById}
               featureProductList={featureProductList}
@@ -49,7 +55,6 @@ const Detail = () => {
         <Slider
           productList={productById?.relatedProducts}
           subTitle='You May Also Like'
-          slidesPerView={4}
         />
       </Container>
     </div>
