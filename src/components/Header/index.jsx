@@ -20,11 +20,9 @@ const Header = () => {
 
   const navLinks = [
     { id: 0, name: 'Home', path: 'index' },
-    { id: 1, name: 'Browse', path: 'search' },
-    { id: 2, name: 'Cart', path: 'cart' },
-    { id: 3, name: 'Stores', path: null },
-    { id: 4, name: 'Top Products', path: null },
-    { id: 5, name: 'Blogs', path: null },
+    { id: 1, name: 'Stores', path: null },
+    { id: 2, name: 'Top Products', path: null },
+    { id: 3, name: 'Blogs', path: null },
   ];
 
   useEffect(() => {
@@ -134,16 +132,16 @@ const Header = () => {
           <Col>
             <div className={styles.icons}>
               <div className={styles.icon}>
-                <Button
-                  type='link'
-                  onClick={() => notifications.info('New feature coming soon!')}
+                <Link
+                  to='/search'
+                  className={styles.searchLink}
                 >
                   <LordIcon
                     className='lordIcon'
                     icon='search'
                     trigger='hover'
                   />
-                </Button>
+                </Link>
               </div>
               <div className={styles.icon}>
                 <HeaderUserMenu />

@@ -11,13 +11,14 @@ import SliderDetail from './components/SliderDetail';
 import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
 import SaleCaculationHOC from 'HOC/SaleCaculationHOC';
+import { DETAIL_ID } from 'utils/constants/settingSystem';
 
 const Detail = () => {
-  const param = useParams();
-  const dispatch = useDispatch();
-
   const productById = useSelector((state) => state.product.productById);
   const featureProductList = useSelector((state) => state.product.featureProductList);
+  const hideLoadingSkeleton = useSelector((state) => state.ui.hideLoadingSkeleton);
+  const param = useParams();
+  const dispatch = useDispatch();
 
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: productById?.name }];
 
@@ -31,12 +32,14 @@ const Detail = () => {
     <div className={styles.wrapper}>
       <Container>
         <Breadcrumb breadCrumbList={breadCrumbList} />
+
         <Row gutter={[32, 32]}>
           <Col
             span={24}
             md={12}
           >
-            <SliderDetail product={productById} />
+            {!hideLoadingSkeleton?.[DETAIL_ID] && <SliderDetail.Loading />}
+            {hideLoadingSkeleton?.[DETAIL_ID] && <SliderDetail product={productById} />}
           </Col>
           <Col
             span={24}
@@ -45,7 +48,7 @@ const Detail = () => {
             <SaleCaculationHOC
               product={productById}
               featureProductList={featureProductList}
-              Component={Info}
+              Component={hideLoadingSkeleton?.[DETAIL_ID] ? Info : Info.Loading}
             />
           </Col>
         </Row>
@@ -55,6 +58,7 @@ const Detail = () => {
         <Slider
           productList={productById?.relatedProducts}
           subTitle='You May Also Like'
+          loadingSkeletonType={DETAIL_ID}
         />
       </Container>
     </div>

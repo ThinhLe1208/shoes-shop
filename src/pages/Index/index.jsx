@@ -7,7 +7,12 @@ import Carousel from 'components/Carousel';
 import Slider from 'components/Slider';
 import Container from 'components/Container';
 import Banner from 'components/Banner';
-import { ADIDAS_CATEGORY_ID, NIKE_CATEGORY_ID, VANS_CONVERSE_CATEGORY_ID } from 'utils/constants/settingSystem';
+import {
+  ADIDAS_CATEGORY_ID,
+  FEATURE_ID,
+  NIKE_CATEGORY_ID,
+  VANS_CONVERSE_CATEGORY_ID,
+} from 'utils/constants/settingSystem';
 import BannerVideo from 'components/BannerVideo';
 
 const Index = () => {
@@ -46,6 +51,7 @@ const Index = () => {
                 productList={featureProductList}
                 title='Best Sale'
                 subTitle='Products'
+                loadingSkeletonType={FEATURE_ID}
               />
             </Col>
           </Row>
@@ -56,6 +62,7 @@ const Index = () => {
             productList={productListByCategory[NIKE_CATEGORY_ID]}
             title='Nike Shoes'
             subTitle='Collection'
+            loadingSkeletonType={NIKE_CATEGORY_ID}
           />
         </div>
 
@@ -77,6 +84,7 @@ const Index = () => {
             productList={productListByCategory[ADIDAS_CATEGORY_ID]}
             title='Adidas Shoes'
             subTitle='Collection'
+            loadingSkeletonType={ADIDAS_CATEGORY_ID}
           />
         </div>
 
@@ -114,6 +122,7 @@ const Index = () => {
             productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
             title='Vans And Converse Shoes'
             subTitle='Collection'
+            loadingSkeletonType={VANS_CONVERSE_CATEGORY_ID}
           />
         </div>
       </Container>

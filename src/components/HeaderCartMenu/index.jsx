@@ -111,25 +111,23 @@ const HeaderCartMenu = () => {
         open={open}
         onOpenChange={handleOpenChange}
       >
-        <Button type='link'>
-          <Badge
-            count={totalQuantity}
-            overflowCount={99}
-            style={{
-              lineHeight: '26px',
-              boxShadow: '0 0 0 1.5px #fff',
-              color: 'var(--color-text-secondary )',
-              backgroundColor: 'var(--color-secondary)',
-            }}
-          >
-            <LordIcon
-              className='lordIcon'
-              icon='cart'
-              trigger='hover'
-              state='hover-1'
-            />
-          </Badge>
-        </Button>
+        <Badge
+          count={totalQuantity}
+          overflowCount={99}
+          style={{
+            lineHeight: '26px',
+            boxShadow: '0 0 0 1.5px #fff',
+            color: 'var(--color-text-secondary )',
+            backgroundColor: 'var(--color-secondary)',
+          }}
+        >
+          <LordIcon
+            className='lordIcon'
+            icon='cart'
+            trigger='hover'
+            state='hover-1'
+          />
+        </Badge>
       </Popover>
     </div>
   );

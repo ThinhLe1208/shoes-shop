@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Rate } from 'antd';
+import { Button, Rate, Skeleton } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -68,11 +68,13 @@ const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSal
             onClick={handleLikeProduct}
           />
         </div>
-        <img
-          src={product.image}
-          alt='img'
-          className={styles.image}
-        />
+        <div className={styles.imageContainer}>
+          <img
+            src={product?.image}
+            alt='img'
+            className={styles.image}
+          />
+        </div>
         <Button
           className={styles.detailBtn}
           type='primary'
@@ -90,15 +92,17 @@ const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSal
         />
       </div>
       <div className={styles.body}>
-        <h3 className={styles.name}>{product.name}</h3>
-        {randomSalePrice ? (
+        {/* test */}
+        <h3 className={styles.name}>{product?.name}</h3>
+        {randomSalePrice && (
           <div className={styles.price}>
-            <p className={styles.mainPrice}>${product.price}</p>
+            <p className={styles.mainPrice}>${product?.price}</p>
             <p className={styles.subPrice}>${randomSalePrice}</p>
           </div>
-        ) : (
+        )}
+        {!randomSalePrice && (
           <div className={styles.price}>
-            <p className={styles.mainPrice}>${product.price}</p>
+            <p className={styles.mainPrice}>${product?.price}</p>
           </div>
         )}
         <Rate
@@ -121,5 +125,32 @@ const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSal
     </div>
   );
 };
+
+const Loading = () => {
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        <Skeleton.Image
+          className={styles.imageSkeleton}
+          active
+        />
+      </div>
+      <div className={styles.body}>
+        <Skeleton
+          active
+          paragraph={{ rows: 1 }}
+        />
+      </div>
+      <div className={styles.footer}>
+        <Skeleton.Button
+          block
+          active
+        />
+      </div>
+    </div>
+  );
+};
+
+CardProduct.Loading = Loading;
 
 export default CardProduct;

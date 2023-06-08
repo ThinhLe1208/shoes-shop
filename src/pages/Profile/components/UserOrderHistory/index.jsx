@@ -87,7 +87,7 @@ const UserOrderHistory = ({ userProfile }) => {
 
   const renderordersHistoryList = (ordersHistory) => {
     if (Array.isArray(ordersHistory)) {
-      return ordersHistory.map((order, index) => {
+      return ordersHistory.map((order) => {
         const data = order?.orderDetail?.map((item, index) => {
           return {
             key: index,
@@ -97,35 +97,39 @@ const UserOrderHistory = ({ userProfile }) => {
             description: item,
           };
         });
+        console.log(order);
         return (
           <Panel
             header={moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}
             key={order?.id}
           >
-            <Popconfirm
-              placement='topLeft'
-              title={<p>Are you sure to delete this order?</p>}
-              icon={
+            <div className={styles.orderId}>
+              <span>Order ID: {order?.id}</span>
+              <Popconfirm
+                placement='topLeft'
+                title={<p>Are you sure to delete this order?</p>}
+                icon={
+                  <LordIcon
+                    icon='warning'
+                    className={styles.lordWarningIcon}
+                    trigger='loop'
+                    delay='800'
+                    state='intro'
+                    size='20px'
+                  />
+                }
+                okText='Delete'
+                cancelText='Cancel'
+                onConfirm={() => handleDeleteOrder(order?.id)}
+              >
                 <LordIcon
-                  icon='warning'
-                  className={styles.lordWarningIcon}
-                  trigger='loop'
-                  delay='800'
-                  state='intro'
-                  size='20px'
+                  icon='trash'
+                  className={styles.lordIcon}
+                  size='30px'
+                  state='hover-empty'
                 />
-              }
-              okText='Delete'
-              cancelText='Cancel'
-              onConfirm={() => handleDeleteOrder(order?.id)}
-            >
-              <LordIcon
-                icon='trash'
-                className={styles.lordIcon}
-                size='30px'
-                state='hover-empty'
-              />
-            </Popconfirm>
+              </Popconfirm>
+            </div>
 
             <Table
               columns={columns}
@@ -145,10 +149,8 @@ const UserOrderHistory = ({ userProfile }) => {
         defaultActiveKey={[]}
         expandIconPosition='end'
       >
-        {}
-        {userProfile?.ordersHistory?.length ? (
-          renderordersHistoryList(userProfile?.ordersHistory)
-        ) : (
+        {userProfile?.ordersHistory?.length && renderordersHistoryList(userProfile?.ordersHistory)}
+        {!userProfile?.ordersHistory?.length && (
           <Panel header='You have 0 order'>
             <Empty description={<p>Empty</p>} />
           </Panel>

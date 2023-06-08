@@ -24,6 +24,14 @@ const mergeAndSortList = (type, ...sourceList) => {
     return resultList;
 };
 
+// this initial list and a list in FilterSide are the same
+const initialPriceRangeList = [
+    { value: 0, start: 100, end: 300 },
+    { value: 1, start: 300, end: 500 },
+    { value: 2, start: 500, end: 800 },
+    { value: 3, start: 800, end: 1100 },
+];
+
 const initialState = {
     allProductList: [],
     productListByCategory: {},
@@ -35,12 +43,7 @@ const initialState = {
     filterResultByCategoryList: [],
     filterResultByPriceList: [],
     finalResultList: [],
-    priceRangeList: [
-        { value: 0, start: 100, end: 300 },
-        { value: 1, start: 300, end: 500 },
-        { value: 2, start: 500, end: 800 },
-        { value: 3, start: 800, end: 1100 },
-    ],
+    priceRangeList: initialPriceRangeList,
     sortBy: 'default',
     // other state
     isLoadingProduct: false,

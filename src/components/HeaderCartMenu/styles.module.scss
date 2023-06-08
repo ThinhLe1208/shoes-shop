@@ -59,6 +59,7 @@
 @media only screen and (max-height: 576px) {
   .filledContent {
     max-height: calc(100vh - 88px);
+    position: fixed;
   }
 }
 

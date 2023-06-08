@@ -89,11 +89,16 @@
       }
     }
 
-    .image {
-      object-position: center;
-      transform: scale(0.9);
-      transition: all ease 0.3s;
-      user-select: none;
+    .imageContainer {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+
+      .image {
+        object-position: center;
+        transform: scale(0.9);
+        transition: all ease 0.3s;
+        user-select: none;
+      }
     }
 
     .detailBtn {
@@ -151,11 +156,36 @@
   }
 }
 
+.imageSkeleton {
+  width: 100% !important;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
 @keyframes showDetailBtn {
   from {
     transform: translate(-50%, -50%) scale(0.6);
   }
   to {
     transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .wrapper {
+    .header {
+      .top {
+        .saleTag {
+          font-size: var(--font-size-sm);
+          width: 40px;
+          height: 40px;
+
+          &::after {
+            border-width: 0 20px 4px;
+          }
+        }
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Button, Popover, Space } from 'antd';
+import { Popover, Space } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -102,13 +102,11 @@ const HeaderUserMenu = () => {
         open={open}
         onOpenChange={handleOpenChange}
       >
-        <Button type='link'>
-          <LordIcon
-            className='lordIcon'
-            icon='user'
-            trigger='hover'
-          />
-        </Button>
+        <LordIcon
+          className='lordIcon'
+          icon='user'
+          trigger='hover'
+        />
       </Popover>
     </div>
   );

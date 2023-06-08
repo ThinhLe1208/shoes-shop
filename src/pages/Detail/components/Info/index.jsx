@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Rate, Space } from 'antd';
+import { Button, Rate, Skeleton, Space } from 'antd';
 import { useNavigate } from 'react-router';
 
 import styles from './styles.module.scss';
@@ -115,5 +115,55 @@ const Info = ({ product, star, randomSalePrecent, randomSalePrice }) => {
     </div>
   );
 };
+
+const Loading = () => {
+  return (
+    <div className={styles.wrapper}>
+      <Skeleton
+        active
+        paragraph={{ rows: 1 }}
+      />
+      <Skeleton active />
+      <Skeleton
+        active
+        paragraph={{ rows: 1 }}
+      />
+      <Space>
+        {Array(5)
+          .fill(0)
+          .map((_, index) => (
+            <Skeleton.Button
+              key={index}
+              active
+            />
+          ))}
+      </Space>
+      <Skeleton
+        active
+        paragraph={{ rows: 1 }}
+      />
+      <Space>
+        {Array(3)
+          .fill(0)
+          .map((_, index) => (
+            <Skeleton.Button
+              key={index}
+              active
+            />
+          ))}
+      </Space>
+      <Skeleton.Button
+        block
+        active
+      />
+      <Skeleton.Button
+        block
+        active
+      />
+    </div>
+  );
+};
+
+Info.Loading = Loading;
 
 export default Info;

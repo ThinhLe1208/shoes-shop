@@ -1,0 +1,9 @@
+.wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-secondary);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

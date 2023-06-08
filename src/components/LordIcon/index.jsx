@@ -3,23 +3,40 @@ import lottie from 'lottie-web';
 import { defineElement } from 'lord-icon-element';
 import { Element } from 'lord-icon-element/element';
 
+import search from 'assets/icons/search.json';
+import user from 'assets/icons/user.json';
+import heart from 'assets/icons/heart.json';
+import cart from 'assets/icons/cart.json';
+import arrowUp from 'assets/icons/arrowUp.json';
+import arrowDown from 'assets/icons/arrowDown.json';
+import arrow from 'assets/icons/arrow.json';
+import menu from 'assets/icons/menu.json';
+import filter from 'assets/icons/filter.json';
+import eye from 'assets/icons/eye.json';
+import trash from 'assets/icons/trash.json';
+import close from 'assets/icons/close.json';
+import success from 'assets/icons/success.json';
+import warning from 'assets/icons/warning.json';
+import error from 'assets/icons/error.json';
+import info from 'assets/icons/info.json';
+
 const ICONS = {
-  search: require('../../assets/icons/search.json'),
-  user: require('../../assets/icons/user.json'),
-  heart: require('../../assets/icons/heart.json'),
-  cart: require('../../assets/icons/cart.json'),
-  arrowUp: require('../../assets/icons/arrowUp.json'),
-  arrowDown: require('../../assets/icons/arrowDown.json'),
-  arrow: require('../../assets/icons/arrow.json'),
-  menu: require('../../assets/icons/menu.json'),
-  filter: require('../../assets/icons/filter.json'),
-  eye: require('../../assets/icons/eye.json'),
-  trash: require('../../assets/icons/trash.json'),
-  close: require('../../assets/icons/close.json'),
-  success: require('../../assets/icons/success.json'),
-  warning: require('../../assets/icons/warning.json'),
-  error: require('../../assets/icons/error.json'),
-  info: require('../../assets/icons/info.json'),
+  search,
+  user,
+  heart,
+  cart,
+  arrowUp,
+  arrowDown,
+  arrow,
+  menu,
+  filter,
+  eye,
+  trash,
+  close,
+  success,
+  warning,
+  error,
+  info,
 };
 
 Element.setIconLoader((name) => {

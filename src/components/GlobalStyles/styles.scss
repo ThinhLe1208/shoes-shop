@@ -224,6 +224,11 @@ td {
   justify-content: flex-end;
 }
 
+// skeleton
+.ant-skeleton-image {
+  height: 100% !important;
+}
+
 // ---------- toastify library ---------
 
 .Toastify__toast-container {
