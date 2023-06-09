@@ -27,18 +27,7 @@ class UsersService {
         return http.get(url);
     };
 
-    getProductfavorite = (token) => {
-        // when user sign in, favorite count cant be updated in header because token is delayed (401) -> set token directly after user sign in 
-        let config = {};
-        if (token) {
-            config = {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            };
-        }
-        return http.get('/api/Users/getproductfavorite', null, config);
-    };
+    getProductfavorite = () => http.get('/api/Users/getproductfavorite');
 
     order = (payload) => http.post('/api/Users/order', payload);
 

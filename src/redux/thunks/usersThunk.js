@@ -15,8 +15,6 @@ class UsersThunk {
         'users/signInAPI',
         async (userInfoModel, { dispatch }) => {
             const response = await usersService.signIn(userInfoModel);
-            const token = response?.data?.content?.accessToken;
-            dispatch(this.getProductfavorite(token));
             return response?.data?.content;
         }
     );
@@ -81,8 +79,8 @@ class UsersThunk {
 
     getProductfavorite = createAsyncThunk(
         'users/getProductfavoriteAPI',
-        async (token) => {
-            const response = await usersService.getProductfavorite(token);
+        async () => {
+            const response = await usersService.getProductfavorite();
             return response?.data?.content;
         }
     );

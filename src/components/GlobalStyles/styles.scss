@@ -72,7 +72,7 @@
   --color-text-sub: rgba(255, 255, 255, 0.5);
 }
 
-[data-theme='dark'] {
+[data-theme='grey'] {
   --color-primary: #2c3333;
   --color-secondary: rgb(165, 201, 202);
   --color-cta: #e7f6f2;
@@ -279,7 +279,6 @@ td {
 .lordIcon {
   --lord-icon-primary: var(--color-text-base);
   transition: all linear var(--transition-short);
-  // test
   cursor: pointer;
 
   &:hover {

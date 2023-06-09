@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button, Space } from 'antd';
 
 import styles from './styles.module.scss';
 import { storage } from 'utils/storage';
@@ -16,19 +15,10 @@ const Checkout = () => {
     }
   }, []);
 
-  const handleChangeThem = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme);
-  };
-
   return (
     storage.checkLogin() && (
       <div className={styles.wrapper}>
-        <Container>
-          <Space>
-            <Button onClick={() => handleChangeThem('red')}>Red</Button>
-            <Button onClick={() => handleChangeThem('blue')}>Blue</Button>
-          </Space>
-        </Container>
+        <Container></Container>
       </div>
     )
   );

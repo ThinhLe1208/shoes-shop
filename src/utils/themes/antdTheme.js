@@ -1,5 +1,7 @@
+import { BLUE_COLOR_THEME, GREEN_COLOR_THEME, GREY_COLOR_THEME, RED_COLOR_THEME } from "utils/constants/settingSystem";
+
 class ThemeConfig {
-  blue = {
+  [BLUE_COLOR_THEME] = {
     token: {
       fontFamily: 'var(--font-family-base)',
       fontSize: 16,
@@ -19,7 +21,7 @@ class ThemeConfig {
     }
   };
 
-  red = {
+  [RED_COLOR_THEME] = {
     token: {
       fontFamily: 'var(--font-family-base)',
       fontSize: 16,
@@ -39,7 +41,7 @@ class ThemeConfig {
     }
   };
 
-  green = {
+  [GREEN_COLOR_THEME] = {
     token: {
       fontFamily: 'var(--font-family-base)',
       fontSize: 16,
@@ -59,7 +61,7 @@ class ThemeConfig {
     }
   };
 
-  dark = {
+  [GREY_COLOR_THEME] = {
     token: {
       fontFamily: 'var(--font-family-base)',
       fontSize: 16,

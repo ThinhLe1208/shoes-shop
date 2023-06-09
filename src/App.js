@@ -20,10 +20,18 @@ import { themeConfig } from 'utils/themes/antdTheme.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { setTheme } from 'redux/slices/uiSlice';
 import LoadingScreen from 'components/LoadingScreen';
+import { BLUE_COLOR_THEME, GREEN_COLOR_THEME, GREY_COLOR_THEME, RED_COLOR_THEME } from 'utils/constants/settingSystem';
 
 // const Index = lazy(() => import('pages/Index'));
 // const Detail = lazy(() => import('pages/Detail'));
 // const Search = lazy(() => import('pages/Search'));
+
+const themeList = [
+  { id: 0, color: BLUE_COLOR_THEME },
+  { id: 1, color: RED_COLOR_THEME },
+  { id: 2, color: GREEN_COLOR_THEME },
+  { id: 3, color: GREY_COLOR_THEME },
+];
 
 function App() {
   const theme = useSelector(state => state.ui.theme);
@@ -67,10 +75,7 @@ function App() {
           bottom: 100,
         }}
       >
-        <FloatButton icon={<BgColorsOutlined style={{ color: 'red' }} />} onClick={() => handleChangeTheme('red')} />
-        <FloatButton icon={<BgColorsOutlined style={{ color: 'grey' }} />} onClick={() => handleChangeTheme('dark')} />
-        <FloatButton icon={<BgColorsOutlined style={{ color: 'green' }} />} onClick={() => handleChangeTheme('green')} />
-        <FloatButton icon={<BgColorsOutlined style={{ color: 'blue' }} />} onClick={() => handleChangeTheme('blue')} />
+        {themeList?.map(theme => <FloatButton key={theme.id} icon={<BgColorsOutlined style={{ color: theme.color }} />} onClick={() => handleChangeTheme(theme.color)} />)}
       </FloatButton.Group>
 
       <HistoryRouter history={history}>
