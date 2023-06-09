@@ -9,14 +9,7 @@ import LordIcon from 'components/LordIcon';
 import { usersThunk } from 'redux/thunks/usersThunk';
 import { notifications } from 'utils/notifications';
 
-const CardProduct = ({
-  product,
-  favoriteList,
-  star,
-  randomSalePrecent,
-  randomSalePrice,
-  isLoading, // used for favorite feature
-}) => {
+const CardProduct = ({ product, favoriteList, star, randomSalePrecent, randomSalePrice, isLoading }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLike, setIsLike] = useState(false);

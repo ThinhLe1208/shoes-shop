@@ -24,7 +24,7 @@ const mergeAndSortList = (type, ...sourceList) => {
     return resultList;
 };
 
-// this initial list and a list in the FilterSide component must be the same
+// this initial list and a list in FilterSide are the same
 const initialPriceRangeList = [
     { value: 0, start: 100, end: 300 },
     { value: 1, start: 300, end: 500 },
@@ -57,13 +57,13 @@ const productSlice = createSlice({
     name: 'product',
     initialState,
     reducers: {
-        setSortBy: (state, { payload: sortType }) => {
-            state.sortBy = sortType;
+        setSortBy: (state, { payload }) => {
+            state.sortBy = payload;
         },
-        setFilterResultByCategoryList: (state, { payload: selectedCategoryList }) => {
-            if (Array.isArray(selectedCategoryList) && selectedCategoryList.length) {
+        setFilterResultByCategoryList: (state, { payload }) => { // payload: array of categories used to filter
+            if (Array.isArray(payload) && payload.length) {
                 // merge the allProductList with all filter category lists with same product 's id
-                let newFilterResultList = selectedCategoryList?.reduce((result, category) => {
+                let newFilterResultList = payload?.reduce((result, category) => {
                     switch (category) {
                         case 'FEATURE': // feature list from api
                             return _.intersectionBy(result, _.cloneDeep(state.featureProductList), 'id');
@@ -79,11 +79,11 @@ const productSlice = createSlice({
                 state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
             }
         },
-        setFilterResultByPriceList: (state, { payload: selectedPriceList }) => {
-            if (Array.isArray(selectedPriceList) && selectedPriceList.length) {
+        setFilterResultByPriceList: (state, { payload }) => { // payload: array of values used to filter
+            if (Array.isArray(payload) && payload.length) {
                 // take out each product, compare with each price range (note: if the price does not exist, then count the product)
                 let newFilterResultList = _.cloneDeep(state.allProductList).filter((product) => {
-                    let isInRange = selectedPriceList?.some(value => {
+                    let isInRange = payload?.some(value => {
                         let priceRange = _.cloneDeep(state.priceRangeList).find(item => item.value === value);
                         if (priceRange) {
                             return _.inRange(product.price, priceRange.start, priceRange.end);
@@ -104,13 +104,13 @@ const productSlice = createSlice({
     extraReducers: (builder) => {
         builder
             // getAllProductList
-            .addCase(productThunk.getAllProductList.fulfilled, (state, { payload: newAllProductList }) => {
+            .addCase(productThunk.getAllProductList.fulfilled, (state, { payload }) => {
                 // set initial states of all list used in filter and search
-                state.allProductList = newAllProductList;
-                state.searchResultList = newAllProductList;
-                state.filterResultByCategoryList = newAllProductList;
-                state.filterResultByPriceList = newAllProductList;
-                state.finalResultList = newAllProductList;
+                state.allProductList = payload;
+                state.searchResultList = payload;
+                state.filterResultByCategoryList = payload;
+                state.filterResultByPriceList = payload;
+                state.finalResultList = payload;
             })
             // searchProductName
             .addCase(productThunk.searchProductName.pending, (state, { meta }) => {
@@ -119,7 +119,7 @@ const productSlice = createSlice({
                     state.currentRequestIdProduct = meta.requestId;
                 }
             })
-            .addCase(productThunk.searchProductName.fulfilled, (state, { payload: newSearchResultList, meta }) => {
+            .addCase(productThunk.searchProductName.fulfilled, (state, { payload, meta }) => {
                 if (
                     state.isLoadingProduct === true &&
                     state.currentRequestIdProduct === meta.requestId
@@ -127,7 +127,7 @@ const productSlice = createSlice({
                     state.isLoadingProduct = false;
                     state.currentRequestIdProduct = undefined;
                 }
-                state.searchResultList = newSearchResultList;
+                state.searchResultList = payload;
                 state.finalResultList = mergeAndSortList(state.sortBy, _.cloneDeep(state.searchResultList), _.cloneDeep(state.filterResultByCategoryList), _.cloneDeep(state.filterResultByPriceList));
             })
             .addCase(productThunk.searchProductName.rejected, (state, { meta }) => {
@@ -141,35 +141,35 @@ const productSlice = createSlice({
             })
             // getProductByCategory
             .addCase(productThunk.getProductByCategory.fulfilled, (state, { payload }) => {
-                if (payload?.categoryId) {
+                if (payload.categoryId) {
                     state.productListByCategory = {
                         ...state.productListByCategory,
-                        [payload.categoryId]: payload?.newProductByCategoryList
+                        [payload.categoryId]: payload.data
                     };
                 } else {
                     state.productListByCategory = {
                         ...state.productListByCategory,
-                        default: payload?.newProductByCategoryList
+                        default: payload.data
                     };
                 }
             })
             // getProductByFeature
             .addCase(productThunk.getProductByFeature.fulfilled, (state, { payload }) => {
                 if (payload.feature) {
-                    state.featureProductList = payload?.newProductByFeatureList;
+                    state.featureProductList = payload.data;
                 }
             })
             // getAllCategory
-            .addCase(productThunk.getAllCategory.fulfilled, (state, { payload: allCategoryList }) => {
-                state.categoryList = allCategoryList;
-            })
-            // getProductById
-            .addCase(productThunk.getProductById.fulfilled, (state, { payload: productById }) => {
-                state.productById = productById;
+            .addCase(productThunk.getAllCategory.fulfilled, (state, { payload }) => {
+                state.categoryList = payload;
             })
             // getPaging
             .addCase(productThunk.getPaging.fulfilled, (state, { payload }) => {
                 state.pagingList = payload;
+            })
+            // getProductById
+            .addCase(productThunk.getProductById.fulfilled, (state, { payload }) => {
+                state.productById = payload;
             })
             // getAllStore
             .addCase(productThunk.getAllStore.fulfilled, (state, { payload }) => {

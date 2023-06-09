@@ -11,7 +11,7 @@ const QuantityField = ({ product, large }) => {
   const handleDecreaseQuantity = () => {
     dispatch(
       changeQuantityByButton({
-        productId: product?.id,
+        id: product?.id,
         qty: -1,
       })
     );
@@ -20,7 +20,7 @@ const QuantityField = ({ product, large }) => {
   const handleIncreaseQuantity = () => {
     dispatch(
       changeQuantityByButton({
-        productId: product?.id,
+        id: product?.id,
         qty: 1,
       })
     );
@@ -29,7 +29,7 @@ const QuantityField = ({ product, large }) => {
   const handleChangeQuantity = (e) => {
     dispatch(
       changeQuantityByInput({
-        productId: product?.id,
+        id: product?.id,
         qty: Number(e.target.value),
       })
     );
@@ -42,7 +42,7 @@ const QuantityField = ({ product, large }) => {
     }
     dispatch(
       changeQuantityByInput({
-        productId: product?.id,
+        id: product?.id,
         qty: Math.floor(qty),
       })
     );

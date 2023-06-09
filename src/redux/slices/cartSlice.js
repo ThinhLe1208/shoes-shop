@@ -35,24 +35,24 @@ const cartSlice = createSlice({
             }
             caculateTotal(state);
         },
-        removeCart: (state, { payload: productId }) => {
-            state.cartList = state.cartList.filter(item => item.id !== productId);
+        removeCart: (state, { payload }) => {
+            state.cartList = state.cartList.filter(item => item.id !== payload);
             caculateTotal(state);
         },
-        clearCart: (state) => {
+        clearCart: (state, { payload }) => {
             state.cartList = [];
             caculateTotal(state);
         },
         // QuantityField component
         changeQuantityByInput: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload?.productId);
+            let index = state.cartList.findIndex(item => item.id === payload?.id);
             if (index !== -1) {
                 state.cartList[index].qty = payload?.qty;
             }
             caculateTotal(state);
         },
         changeQuantityByButton: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload?.productId);
+            let index = state.cartList.findIndex(item => item.id === payload?.id);
             if (index !== -1) {
                 const result = state.cartList[index].qty + payload?.qty;
                 if (result > 0) {
@@ -64,11 +64,11 @@ const cartSlice = createSlice({
             caculateTotal(state);
         },
         // QuantityFieldDelay component
-        changeQuantityDetailByInput: (state, { payload: newQuantityDetail }) => {
-            state.quantityDetail = newQuantityDetail;
+        changeQuantityDetailByInput: (state, { payload }) => {
+            state.quantityDetail = payload;
         },
-        changeQuantityDetailByButton: (state, { payload: changedQuantityDetail }) => {
-            const result = state.quantityDetail + changedQuantityDetail;
+        changeQuantityDetailByButton: (state, { payload }) => {
+            const result = state.quantityDetail + payload;
             if (result > 0) {
                 state.quantityDetail = result;
             }

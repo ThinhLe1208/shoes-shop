@@ -97,7 +97,7 @@ const UserOrderHistory = ({ userProfile }) => {
             description: item,
           };
         });
-
+        console.log(order);
         return (
           <Panel
             header={moment(order.date).format('MMMM Do YYYY, h:mm:ss a')}

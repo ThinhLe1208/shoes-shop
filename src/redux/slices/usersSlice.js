@@ -25,8 +25,8 @@ const usersSlice = createSlice({
     extraReducers: (builder) => {
         builder
             // signIn
-            .addCase(usersThunk.signIn.fulfilled, (state, { payload: userLoginInfo }) => {
-                state.userLogin = userLoginInfo;
+            .addCase(usersThunk.signIn.fulfilled, (state, { payload }) => {
+                state.userLogin = payload;
             })
             // facebooklogin
             .addCase(usersThunk.facebooklogin.pending, (state, { meta }) => {
@@ -35,7 +35,7 @@ const usersSlice = createSlice({
                     state.currentRequestIdUsers = meta.requestId;
                 }
             })
-            .addCase(usersThunk.facebooklogin.fulfilled, (state, { payload: userLoginInfo, meta }) => {
+            .addCase(usersThunk.facebooklogin.fulfilled, (state, { payload, meta }) => {
                 if (
                     state.isLoadingUsers === true &&
                     state.currentRequestIdUsers === meta.requestId
@@ -43,7 +43,7 @@ const usersSlice = createSlice({
                     state.isLoadingUsers = false;
                     state.currentRequestIdUsers = undefined;
                 }
-                state.userLogin = userLoginInfo;
+                state.userLogin = payload;
             })
             .addCase(usersThunk.facebooklogin.rejected, (state, { meta }) => {
                 if (
@@ -55,8 +55,8 @@ const usersSlice = createSlice({
                 }
             })
             // getProfile
-            .addCase(usersThunk.getProfile.fulfilled, (state, { payload: userProfileInfo }) => {
-                state.userProfile = userProfileInfo;
+            .addCase(usersThunk.getProfile.fulfilled, (state, { payload }) => {
+                state.userProfile = payload;
             })
             // updateProfile
             .addCase(usersThunk.updateProfile.pending, (state, { meta }) => {

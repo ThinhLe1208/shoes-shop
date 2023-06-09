@@ -244,7 +244,7 @@ td {
   color: var(--color-text-base);
 }
 
-.Toastify__toast-container--top-left {
+.Toastify__toast-container--top-right {
   top: 90px;
 }
 
@@ -253,8 +253,8 @@ td {
     box-shadow: none;
   }
 
-  .Toastify__toast-container--top-left {
-    top: 68px;
+  .Toastify__toast-container--top-right {
+    top: 82px;
   }
 }
 

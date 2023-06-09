@@ -31,7 +31,8 @@ const UserFavorite = () => {
         return (
           <Col
             key={index}
-            span={12}
+            span={24}
+            sm={12}
             md={8}
             lg={6}
           >
@@ -61,15 +62,7 @@ const UserFavorite = () => {
         >
           {favoriteList?.length ? (
             <Row
-              gutter={[
-                {
-                  lg: 40,
-                  md: 32,
-                  sm: 24,
-                  xs: 10,
-                },
-                58,
-              ]}
+              gutter={[40, 50]}
               className={styles.pannel}
             >
               {renderFavoriteList(detailFavoriteList)}

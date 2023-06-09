@@ -10,17 +10,14 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     signIn = createAsyncThunk(
         'users/signInAPI',
         async (userInfoModel, { dispatch }) => {
             const response = await usersService.signIn(userInfoModel);
-            const token = response?.data?.content?.accessToken;
-            dispatch(this.getProductfavorite(token));
+            dispatch(this.getProductfavorite(response?.data?.content?.accessToken));
             return response?.data?.content;
         }
     );
-
     facebooklogin = createAsyncThunk(
         'users/facebookloginAPI',
         async (facebookToken) => {
@@ -28,7 +25,6 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     getProfile = createAsyncThunk(
         'users/getProfileAPI',
         async () => {
@@ -36,7 +32,6 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     updateProfile = createAsyncThunk(
         'users/updateProfileAPI',
         async (userInfoModel, { dispatch, getState, requestId }) => {
@@ -52,7 +47,6 @@ class UsersThunk {
             // return rejectWithValue(err.response.data);
         }
     );
-
     like = createAsyncThunk(
         'users/likeAPI',
         async (productId, { dispatch, getState, requestId }) => {
@@ -65,7 +59,6 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     unlike = createAsyncThunk(
         'users/unlikeAPI',
         async (productId, { dispatch, getState, requestId }) => {
@@ -78,7 +71,6 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     getProductfavorite = createAsyncThunk(
         'users/getProductfavoriteAPI',
         async (token) => {
@@ -86,7 +78,6 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     order = createAsyncThunk(
         'users/orderAPI',
         async (_, { dispatch, getState, requestId }) => {
@@ -107,7 +98,6 @@ class UsersThunk {
             return response?.data?.content;
         }
     );
-
     deleteOrder = createAsyncThunk(
         'users/facebookloginAPI',
         async (orderId, { dispatch }) => {
