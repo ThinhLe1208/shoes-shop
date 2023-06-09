@@ -279,6 +279,7 @@ td {
 .lordIcon {
   --lord-icon-primary: var(--color-text-base);
   transition: all linear var(--transition-short);
+  // test
   cursor: pointer;
 
   &:hover {
