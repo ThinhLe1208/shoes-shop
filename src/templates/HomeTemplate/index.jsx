@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Outlet, useHref } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
 import Footer from 'components/Footer';
@@ -9,7 +9,6 @@ import { productThunk } from 'redux/thunks/productThunk';
 import { setScreenWidth } from 'redux/slices/uiSlice';
 
 const HomeTemplate = () => {
-  const categoryList = useSelector((state) => state.product.categoryList);
   const outletRef = useRef();
   const href = useHref();
   const dispatch = useDispatch();
@@ -44,11 +43,11 @@ const HomeTemplate = () => {
     dispatch(productThunk.getProductByFeature(true));
   }, [dispatch]);
 
-  useEffect(() => {
-    categoryList?.forEach((item) => {
-      dispatch(productThunk.getProductByCategory(item?.id));
-    });
-  }, [dispatch, categoryList]);
+  // useEffect(() => {
+  //   categoryList?.forEach((item) => {
+  //     dispatch(productThunk.getProductByCategory(item?.id));
+  //   });
+  // }, [dispatch, categoryList]);
 
   return (
     <div className={styles.wrapper}>

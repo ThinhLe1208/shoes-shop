@@ -1,6 +1,7 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Row } from 'antd';
+import _ from 'lodash';
 
 import styles from './styles.module.scss';
 import Carousel from 'components/Carousel';
@@ -14,10 +15,40 @@ import {
   VANS_CONVERSE_CATEGORY_ID,
 } from 'utils/constants/settingSystem';
 import BannerVideo from 'components/BannerVideo';
+import { productThunk } from 'redux/thunks/productThunk';
 
 const Index = () => {
   const productListByCategory = useSelector((state) => state.product.productListByCategory);
   const featureProductList = useSelector((state) => state.product.featureProductList);
+  const dispatch = useDispatch();
+  const sliedersRef = useRef({});
+
+  // lazy loading all sliders (expect feature slider)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // check to call API of each type of category only once
+          if (entry.isIntersecting && !productListByCategory[entry.target?.id]) {
+            dispatch(productThunk.getProductByCategory(entry.target?.id));
+          }
+        });
+      }
+      // observer function will trigger in range
+      // { rootMargin: '-300px' }
+    );
+
+    _.forEach(sliedersRef.current, (slider) => observer.observe(slider));
+
+    return () => observer.disconnect();
+  }, [dispatch, productListByCategory]);
+
+  // make a list of all slider elements in the Index page
+  const handleRef = (target) => {
+    if (target) {
+      sliedersRef.current[target?.id] = target;
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -58,12 +89,17 @@ const Index = () => {
         </div>
 
         <div className={styles.slider}>
-          <Slider
-            productList={productListByCategory[NIKE_CATEGORY_ID]}
-            title='Nike Shoes'
-            subTitle='Collection'
-            loadingSkeletonType={NIKE_CATEGORY_ID}
-          />
+          <div
+            ref={handleRef}
+            id={NIKE_CATEGORY_ID}
+          >
+            <Slider
+              productList={productListByCategory[NIKE_CATEGORY_ID]}
+              title='Nike Shoes'
+              subTitle='Collection'
+              loadingSkeletonType={NIKE_CATEGORY_ID}
+            />
+          </div>
         </div>
 
         <div className={styles.banner2}>
@@ -79,7 +115,11 @@ const Index = () => {
           />
         </div>
 
-        <div className={styles.slider}>
+        <div
+          className={styles.slider}
+          ref={handleRef}
+          id={ADIDAS_CATEGORY_ID}
+        >
           <Slider
             productList={productListByCategory[ADIDAS_CATEGORY_ID]}
             title='Adidas Shoes'
@@ -117,7 +157,11 @@ const Index = () => {
           </Row>
         </div>
 
-        <div className={styles.slider}>
+        <div
+          className={styles.slider}
+          ref={handleRef}
+          id={VANS_CONVERSE_CATEGORY_ID}
+        >
           <Slider
             productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
             title='Vans And Converse Shoes'

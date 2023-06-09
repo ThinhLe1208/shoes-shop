@@ -15,15 +15,22 @@ import { setSortBy } from 'redux/slices/productSlice';
 const Search = () => {
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Browse' }];
 
-  const { featureProductList, finalResultList } = useSelector((state) => state.product);
+  const { featureProductList, finalResultList, categoryList } = useSelector((state) => state.product);
   const { favoriteList, isLoadingUsers } = useSelector((state) => state.users);
   const dispatch = useDispatch();
 
+  // reset all filter list and search list
   useEffect(() => {
-    // reset all filter list and search list
     dispatch(productThunk.getAllProductList());
     dispatch(setSortBy('default'));
   }, [dispatch]);
+
+  // get all products according to category
+  useEffect(() => {
+    categoryList?.forEach((item) => {
+      dispatch(productThunk.getProductByCategory(item?.id));
+    });
+  }, [dispatch, categoryList]);
 
   const renderResultList = (list) => {
     if (Array.isArray(list)) {
@@ -67,26 +74,26 @@ const Search = () => {
             <SearchBar />
 
             <div className={styles.resultList}>
-              <Row
-                gutter={[
-                  {
-                    lg: 40,
-                    md: 32,
-                    sm: 24,
-                    xs: 10,
-                  },
-                  58,
-                ]}
-              >
-                {finalResultList?.length ? (
-                  renderResultList(finalResultList)
-                ) : (
-                  <Empty
-                    style={{ width: '100%' }}
-                    description={<p>Empty</p>}
-                  />
-                )}
-              </Row>
+              {finalResultList?.length ? (
+                <Row
+                  gutter={[
+                    {
+                      lg: 40,
+                      md: 32,
+                      sm: 24,
+                      xs: 10,
+                    },
+                    58,
+                  ]}
+                >
+                  {renderResultList(finalResultList)}
+                </Row>
+              ) : (
+                <Empty
+                  style={{ width: '100%' }}
+                  description={<p>Empty</p>}
+                />
+              )}
             </div>
           </Col>
         </Row>
