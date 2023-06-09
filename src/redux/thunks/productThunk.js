@@ -31,7 +31,7 @@ class ProductThunk {
             const response = await productService.getProductByCategory(categoryId);
             return {
                 categoryId: categoryId,
-                data: response?.data?.content
+                newProductByCategoryList: response?.data?.content
             };
         }
     );
@@ -42,7 +42,7 @@ class ProductThunk {
             const response = await productService.getProductByFeature(feature);
             return {
                 feature: feature,
-                data: response?.data?.content
+                newProductByFeatureList: response?.data?.content
             };
         }
     );

@@ -22,8 +22,6 @@ const Detail = () => {
 
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: productById?.name }];
 
-  console.log('Detail ~ productById:', productById);
-
   useEffect(() => {
     dispatch(productThunk.getProductById(param?.id));
   }, [dispatch, param]);

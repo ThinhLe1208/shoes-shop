@@ -35,24 +35,24 @@ const cartSlice = createSlice({
             }
             caculateTotal(state);
         },
-        removeCart: (state, { payload }) => {
-            state.cartList = state.cartList.filter(item => item.id !== payload);
+        removeCart: (state, { payload: productId }) => {
+            state.cartList = state.cartList.filter(item => item.id !== productId);
             caculateTotal(state);
         },
-        clearCart: (state, { payload }) => {
+        clearCart: (state) => {
             state.cartList = [];
             caculateTotal(state);
         },
         // QuantityField component
         changeQuantityByInput: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload?.id);
+            let index = state.cartList.findIndex(item => item.id === payload?.productId);
             if (index !== -1) {
                 state.cartList[index].qty = payload?.qty;
             }
             caculateTotal(state);
         },
         changeQuantityByButton: (state, { payload }) => {
-            let index = state.cartList.findIndex(item => item.id === payload?.id);
+            let index = state.cartList.findIndex(item => item.id === payload?.productId);
             if (index !== -1) {
                 const result = state.cartList[index].qty + payload?.qty;
                 if (result > 0) {
@@ -64,11 +64,11 @@ const cartSlice = createSlice({
             caculateTotal(state);
         },
         // QuantityFieldDelay component
-        changeQuantityDetailByInput: (state, { payload }) => {
-            state.quantityDetail = payload;
+        changeQuantityDetailByInput: (state, { payload: newQuantityDetail }) => {
+            state.quantityDetail = newQuantityDetail;
         },
-        changeQuantityDetailByButton: (state, { payload }) => {
-            const result = state.quantityDetail + payload;
+        changeQuantityDetailByButton: (state, { payload: changedQuantityDetail }) => {
+            const result = state.quantityDetail + changedQuantityDetail;
             if (result > 0) {
                 state.quantityDetail = result;
             }

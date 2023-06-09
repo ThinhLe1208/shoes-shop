@@ -13,7 +13,6 @@ import UserFavorite from './components/UserFavorite';
 const Profile = () => {
   const dispatch = useDispatch();
   const { userProfile, isLoadingUsers } = useSelector((state) => state.users);
-  console.log('Profile ~ userProfile:', userProfile);
 
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Profile' }];
 
