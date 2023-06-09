@@ -31,8 +31,7 @@ const Search = () => {
         return (
           <Col
             key={index}
-            span={24}
-            sm={12}
+            span={12}
             md={8}
             xl={6}
           >
@@ -68,7 +67,17 @@ const Search = () => {
             <SearchBar />
 
             <div className={styles.resultList}>
-              <Row gutter={[40, 58]}>
+              <Row
+                gutter={[
+                  {
+                    lg: 40,
+                    md: 32,
+                    sm: 24,
+                    xs: 10,
+                  },
+                  58,
+                ]}
+              >
                 {finalResultList?.length ? (
                   renderResultList(finalResultList)
                 ) : (

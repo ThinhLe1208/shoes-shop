@@ -12,7 +12,7 @@
   z-index: 999;
 
   &.fixed {
-    height: calc(var(--padding-top-header) - 24px);
+    height: calc(var(--padding-top-header) - 40px);
     background-color: var(--color-primary);
     box-shadow: var(--box-shadow-1);
 
