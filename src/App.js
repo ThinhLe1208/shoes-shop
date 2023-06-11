@@ -89,7 +89,6 @@ function App() {
         {/* auto scroll to top when changing page */}
         <ScrollToTopAuto />
         {/* React.lazy */}
-
         <Suspense fallback={<LoadingScreen />}>
           <Routes>
             <Route path='' element={<HomeTemplate />} >

@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles.module.scss';
 
-const Carousel = () => {
+const CarouselTemp = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.slider}>
@@ -108,10 +108,16 @@ const Carousel = () => {
         {/* SLIDE CONTROL */}
         <div className={styles.slideControl}>
           <div className='slideControlItem'>
-            <img src={require('../../assets/images/zoomx-vaporfly-next-running-shoe-4Q5jfG.png')} alt='placeholder' />
+            <img
+              src={require('../../assets/images/zoomx-vaporfly-next-running-shoe-4Q5jfG.png')}
+              alt='placeholder'
+            />
           </div>
           <div className='slideControlItem'>
-            <img src={require('../../assets/images/zoom-fly-3-mens-running-shoe-XhzpPH.png')} alt='placeholder' />
+            <img
+              src={require('../../assets/images/zoom-fly-3-mens-running-shoe-XhzpPH.png')}
+              alt='placeholder'
+            />
           </div>
           <div className='slideControlItem'>
             <img
@@ -132,4 +138,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default CarouselTemp;

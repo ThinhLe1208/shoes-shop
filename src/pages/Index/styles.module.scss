@@ -3,7 +3,7 @@
   background-color: var(--color-primary);
 
   .carousel {
-    margin-bottom: calc(var(--space-bottom) + 60px);
+    // margin-bottom: calc(var(--space-bottom) + 60px);
   }
 
   .slider {
@@ -11,6 +11,7 @@
   }
 
   .banner1 {
+    margin-top: calc(var(--space-bottom) + 60px);
     margin-bottom: calc(var(--space-bottom) + 60px);
     max-height: 400px;
   }
@@ -23,7 +24,12 @@
 
 @media only screen and (max-width: 992px) {
   .wrapper {
+    .carousel {
+      display: none;
+    }
+
     .banner1 {
+      margin-top: calc(var(--space-bottom) + 110px);
       max-height: none;
       margin-bottom: 0;
     }
