@@ -3,7 +3,7 @@ import { Outlet, useHref } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
-import Footer from 'components/Footer';
+import FooterTemp from 'components/FooterTemp';
 import Header from 'components/Header';
 import { productThunk } from 'redux/thunks/productThunk';
 import { setScreenWidth } from 'redux/slices/uiSlice';
@@ -43,12 +43,6 @@ const HomeTemplate = () => {
     dispatch(productThunk.getProductByFeature(true));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   categoryList?.forEach((item) => {
-  //     dispatch(productThunk.getProductByCategory(item?.id));
-  //   });
-  // }, [dispatch, categoryList]);
-
   return (
     <div className={styles.wrapper}>
       <Header className={styles.header} />
@@ -58,7 +52,7 @@ const HomeTemplate = () => {
       >
         <Outlet />
       </div>
-      <Footer />
+      <FooterTemp />
     </div>
   );
 };

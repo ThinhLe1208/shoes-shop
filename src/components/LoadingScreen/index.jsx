@@ -7,10 +7,10 @@ const LoadingScreen = () => {
   return (
     // <AnimatePresence>
     <motion.div
-      initial={{ height: 0 }}
-      animate={{ height: '100vh' }}
-      // exit={{ height: 0 }}
-      transition={{ duration: 0.4 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      // exit={{ opacity: 0 }}
+      transition={{ duration: 0.1 }}
       className={styles.wrapper}
     >
       <motion.div

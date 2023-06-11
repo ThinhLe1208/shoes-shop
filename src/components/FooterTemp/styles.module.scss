@@ -1,0 +1,131 @@
+.wrapper {
+  .container {
+    background: url('https://cdn.shopify.com/s/files/1/0567/9169/5421/files/footer_1920x721.jpg?v=1650368832');
+    .header {
+      padding-top: 60px;
+      text-align: center;
+      font-size: 25px;
+      h1 {
+        color: white;
+      }
+      p {
+        color: white;
+        margin-top: 15px;
+      }
+      .contactEmail {
+        width: 70%;
+        margin-left: 20%;
+        .sub {
+          background-color: transparent;
+          position: relative;
+          top: 70px;
+          left: 40%;
+          z-index: 5;
+        }
+      }
+      @media screen and (max-width: 526px) {
+        h1,
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+    .body {
+      display: flex;
+      justify-content: space-around;
+
+      .item {
+        h1 {
+          font-size: 30px;
+          color: white;
+          margin-bottom: 15px;
+
+          @media screen and (max-width: 800px) {
+            img {
+              width: 150px;
+            }
+          }
+        }
+        ul {
+          li {
+            color: white;
+            margin-bottom: 15px;
+            @media screen and (max-width: 800px) {
+              font-size: 13px;
+            }
+            .icon {
+              background-color: white;
+              color: black;
+              margin-right: 15px;
+              font-size: 40px;
+              border-radius: 5px;
+              cursor: pointer;
+              svg {
+                padding-top: 10px;
+              }
+              &:hover {
+                background-color: red;
+                color: white;
+                transition: all 0.25s;
+              }
+            }
+          }
+        }
+        @media screen and (max-width: 800px) {
+          h1 {
+            font-size: 20px;
+          }
+        }
+      }
+
+      @media screen and (max-width: 694px) {
+        .item {
+          &:nth-child(4) {
+            display: none;
+          }
+        }
+      }
+      @media screen and (max-width: 421px) {
+        .item {
+          &:nth-child(1) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .footer {
+    background-color: red;
+    padding: 10px;
+    .content {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 5%;
+      .contentLeft {
+        display: flex;
+        align-items: center;
+        span {
+          margin: 0 3px;
+        }
+      }
+      .contentRight {
+        display: flex;
+        img {
+          width: 25px;
+          height: 20px;
+          margin-left: 5px;
+        }
+      }
+      @media screen and (max-width: 526px) {
+        .contentRight {
+          display: none;
+        }
+      }
+    }
+    @media screen and (max-width: 526px) {
+      .content {
+        justify-content: center;
+      }
+    }
+  }
+}
