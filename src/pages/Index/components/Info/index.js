@@ -4,8 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styles from './styles.module.scss';
 
 const Info = ({ product, delayCarousel }) => {
-    console.log('render Info');
-
     const staggerChildren = 0.1;
 
     return (

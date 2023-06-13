@@ -4,7 +4,6 @@ import { Col, Row } from 'antd';
 import _ from 'lodash';
 
 import styles from './styles.module.scss';
-import CarouselTemp from 'components/CarouselTemp';
 import Slider from 'components/Slider';
 import Container from 'components/Container';
 import Banner from 'components/Banner';
@@ -54,7 +53,6 @@ const Index = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.carousel}>
-        {/* <CarouselTemp /> */}
         <Carousel />
       </div>
 

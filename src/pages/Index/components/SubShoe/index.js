@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import styles from './styles.module.scss';
 
 const SubShoe = ({ product, delayCarousel }) => {
-    console.log('render SubShoe');
     const staggerChildren = 0.2;
     const delaySub = 1.4;
     const exitDur = 0.3;

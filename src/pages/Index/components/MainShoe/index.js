@@ -27,7 +27,6 @@ const variants = {
 };
 
 const MainShoe = ({ product, delayCarousel }) => {
-    console.log('render MainShoe');
     return (
         <AnimatePresence>
             <motion.div

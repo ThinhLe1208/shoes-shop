@@ -7,7 +7,6 @@ const Navigation = memo(({
     handleSetProduct,
     updatedList
 }) => {
-    console.log('render Navigation');
     const delayAnimateChild = 2;
     const delayExitChild = 0;
 

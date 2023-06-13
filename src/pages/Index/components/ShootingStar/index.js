@@ -7,7 +7,6 @@ const ShootingStar = ({
     delay,
     product,
 }) => {
-    console.log('render ShootingStar');
     const opacityDur = 0.2;
     const transformDur = 0.3;
 

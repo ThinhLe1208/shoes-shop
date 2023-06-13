@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 
 import styles from './styles.module.scss';
 
 const NikePath = ({ delayCarousel }) => {
-    console.log('render NikePath');
+    const imgRef = useRef();
+
+    // reset .gif file
+    useEffect(() => {
+        const imgEle = imgRef.current;
+        if (imgEle) {
+            imgEle.setAttribute('src', require('../../../../assets/images/ink.webp'));
+        }
+        return () => {
+            if (imgEle) {
+                imgEle.setAttribute('src', '');
+            }
+        };
+    }, []);
 
     return (
         <motion.div
@@ -16,6 +29,7 @@ const NikePath = ({ delayCarousel }) => {
 
             <motion.img
                 className={styles.video}
+                ref={imgRef}
                 src={require('../../../../assets/images/ink.webp')}
                 alt="blue_ink_gif"
                 initial={{ opacity: 0 }}
