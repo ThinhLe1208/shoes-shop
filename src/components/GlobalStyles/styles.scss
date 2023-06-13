@@ -284,4 +284,8 @@ td {
   &:hover {
     --lord-icon-primary: var(--color-secondary);
   }
+
+  &.index {
+    --lord-icon-primary: #fff !important;
+  }
 }

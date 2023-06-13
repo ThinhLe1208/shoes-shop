@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Outlet, useHref } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -7,11 +7,13 @@ import FooterTemp from 'components/FooterTemp';
 import Header from 'components/Header';
 import { productThunk } from 'redux/thunks/productThunk';
 import { setScreenWidth } from 'redux/slices/uiSlice';
+import HeaderIndex from 'components/HeaderIndex';
 
 const HomeTemplate = () => {
   const outletRef = useRef();
   const href = useHref();
   const dispatch = useDispatch();
+  const [isIndexPage, setIsIndexPage] = useState(true);
 
   // get a current screenwidth to make website responsive with the ant library
   useEffect(() => {
@@ -32,8 +34,10 @@ const HomeTemplate = () => {
   useEffect(() => {
     if (href === '/' || href === '/index') {
       outletRef.current.style.paddingTop = 0;
+      setIsIndexPage(true);
     } else {
       outletRef.current.style.paddingTop = 'calc(var(--space-lg) + var(--padding-top-header))';
+      setIsIndexPage(false);
     }
   }, [href]);
 
@@ -45,7 +49,9 @@ const HomeTemplate = () => {
 
   return (
     <div className={styles.wrapper}>
-      <Header className={styles.header} />
+      {isIndexPage && <HeaderIndex className={styles.header} />}
+      {!isIndexPage && <Header className={styles.header} />}
+
       <div
         ref={outletRef}
         className={styles.outlet}

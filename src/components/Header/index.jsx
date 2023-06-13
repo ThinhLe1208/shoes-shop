@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, NavLink, useHref } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Button, Col, Drawer, Row } from 'antd';
 import { motion } from 'framer-motion';
 
@@ -43,7 +43,6 @@ const variants = {
 const Header = () => {
   const screenWidth = useSelector((state) => state.ui.screenWidth);
   const div = useRef();
-  const href = useHref();
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const [widthDrawer, setWidthDrawer] = useState('378px');
 
@@ -60,33 +59,19 @@ const Header = () => {
     const handleWindowScroll = () => {
       if (div.current) {
         if (window.scrollY >= 40) {
-          div.current.style.backgroundColor = 'var(--color-primary)';
           div.current.classList.add(styles.fixed);
         } else {
-          if (href === '/index' || href === '/') {
-            div.current.style.backgroundColor = 'transparent';
-          }
           div.current.classList.remove(styles.fixed);
         }
       }
     };
-
-    if (div.current) {
-      if (href === '/index' || href === '/') {
-        div.current.style.backgroundColor = 'transparent';
-        div.current.classList.add(styles.index);
-      } else {
-        div.current.style.backgroundColor = 'var(--color-primary)';
-        div.current.classList.remove(styles.index);
-      }
-    }
 
     window.addEventListener('scroll', handleWindowScroll);
 
     return () => {
       window.removeEventListener('scroll', handleWindowScroll);
     };
-  }, [href]);
+  }, []);
 
   const handleShowDrawer = () => {
     setIsOpenDrawer(true);

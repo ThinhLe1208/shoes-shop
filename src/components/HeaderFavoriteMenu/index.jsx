@@ -6,7 +6,7 @@ import { Badge } from 'antd';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const HeaderFavoriteMenu = () => {
+const HeaderFavoriteMenu = ({ iconClass = 'lordIcon' }) => {
   const favoriteList = useSelector((state) => state.users.favoriteList);
 
   return (
@@ -23,7 +23,7 @@ const HeaderFavoriteMenu = () => {
       >
         <Link to='/profile'>
           <LordIcon
-            className='lordIcon'
+            className={iconClass}
             icon='heart'
             trigger='hover'
           />

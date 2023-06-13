@@ -14,9 +14,8 @@ import { clearCartInfo } from 'redux/slices/cartSlice';
 import { persistor } from 'redux/configStore';
 import { notifications } from 'utils/notifications';
 
-const HeaderUserMenu = () => {
+const HeaderUserMenu = ({ iconClass = 'lordIcon' }) => {
   const dispatch = useDispatch();
-
   const [open, setOpen] = useState(false);
 
   const handleHidePopup = () => {
@@ -103,7 +102,7 @@ const HeaderUserMenu = () => {
         onOpenChange={handleOpenChange}
       >
         <LordIcon
-          className='lordIcon'
+          className={iconClass}
           icon='user'
           trigger='hover'
         />

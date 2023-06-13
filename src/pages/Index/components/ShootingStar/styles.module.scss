@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 8px;
+  transform: rotate(-50deg);
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .line {
+    width: 360px;
+    height: 6px;
+    border-radius: 4px;
+    transform-origin: right;
+  }
+}

@@ -1,0 +1,59 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .images,
+  .backgrounds {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+  }
+
+  .background,
+  .imgContainer {
+    width: 100%;
+    height: 26%;
+  }
+
+  .backgrounds {
+    transform: skewX(-40deg);
+    overflow: hidden;
+
+    z-index: 30;
+
+    .background {
+      border-radius: 4px;
+      background-color: #4158d0;
+      background-image: linear-gradient(43deg, #4158d0 0%, #c850c0 46%, #ffcc70 100%);
+
+      transform-origin: right;
+    }
+  }
+
+  .images {
+    align-items: flex-end;
+
+    .imgContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image {
+      position: relative;
+      object-fit: contain;
+      max-width: none;
+      height: 80%;
+      z-index: 31;
+    }
+  }
+}

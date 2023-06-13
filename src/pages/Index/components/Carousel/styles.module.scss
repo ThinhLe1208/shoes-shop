@@ -1,0 +1,61 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  background: linear-gradient(151deg, rgba(45, 45, 50, 1) 0%, rgba(13, 14, 19, 1) 100%);
+
+  .backgroundNike {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9, 1.3);
+    color: rgba(20, 20, 26, 0.6);
+    font-size: 400px;
+    font-weight: 900;
+    z-index: 2;
+  }
+
+  .overlayBackground {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 1) 0%, rgba(37, 37, 37, 0) 40%);
+    opacity: 0.2;
+    z-index: 3;
+  }
+
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 21;
+
+    .infoContainer,
+    .mainShoeContainer,
+    .navContainer {
+      height: 100%;
+      position: relative;
+    }
+
+    .infoContainer {
+      width: 32%;
+      height: 100%;
+    }
+
+    .mainShoeContainer {
+      width: 42%;
+    }
+
+    .navContainer {
+      width: 26%;
+    }
+  }
+}

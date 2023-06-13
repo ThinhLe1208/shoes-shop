@@ -16,6 +16,7 @@ import {
 } from 'utils/constants/settingSystem';
 import BannerVideo from 'components/BannerVideo';
 import { productThunk } from 'redux/thunks/productThunk';
+import Carousel from './components/Carousel';
 
 const Index = () => {
   const productListByCategory = useSelector((state) => state.product.productListByCategory);
@@ -53,7 +54,8 @@ const Index = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.carousel}>
-        <CarouselTemp />
+        {/* <CarouselTemp /> */}
+        <Carousel />
       </div>
 
       <Container>

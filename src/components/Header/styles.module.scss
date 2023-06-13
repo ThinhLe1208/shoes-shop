@@ -15,42 +15,6 @@
     height: calc(var(--padding-top-header) - 40px);
     background-color: var(--color-primary);
     box-shadow: var(--box-shadow-1);
-
-    .logo {
-      filter: invert(1);
-    }
-
-    .nav ul a,
-    .icons .icon {
-      color: var(--color-text-base);
-    }
-  }
-
-  &.index {
-    .nav ul a,
-    .icons .icon {
-      color: var(--color-text-base);
-    }
-
-    .logo {
-      filter: invert(0);
-    }
-  }
-
-  &.fixed.index {
-    .nav ul a,
-    .icons .icon {
-      color: var(--color-text-base);
-    }
-
-    .logo {
-      filter: invert(1);
-    }
-  }
-
-  .logo {
-    width: 60px;
-    filter: invert(1);
   }
 
   .nav {

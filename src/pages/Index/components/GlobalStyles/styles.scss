@@ -1,0 +1,38 @@
+:root {
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+html {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+img {
+  display: block;
+  // max-width: 100%;
+  user-select: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+textarea {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  //   font-family: var(--font-family-base);
+  background-color: transparent;
+}

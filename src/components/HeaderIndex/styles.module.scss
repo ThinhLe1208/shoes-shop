@@ -1,0 +1,163 @@
+@use '../../assets/sass/mixin.scss';
+
+.wrapper {
+  height: calc(var(--padding-top-header) - 20px);
+  position: fixed;
+  inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  transition: all linear var(--transition-short);
+  z-index: 999;
+
+  &:not(.fixed) {
+    .navItem {
+      color: #fff;
+    }
+
+    .indexIcon {
+      --lord-icon-primary: #fff !important;
+    }
+  }
+
+  &.fixed {
+    height: calc(var(--padding-top-header) - 40px);
+    background-color: var(--color-primary);
+    box-shadow: var(--box-shadow-1);
+
+    .navItem {
+      color: var(--color-text-base);
+    }
+  }
+
+  .logo {
+    width: 60px;
+    filter: invert(1);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .active {
+      color: var(--color-secondary) !important;
+
+      &::after {
+        width: 100%;
+      }
+    }
+
+    ul {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      a {
+        position: relative;
+        // color text secondary
+        color: var(--color-text-base);
+        font-size: var(--font-size-md);
+        font-weight: 600;
+        margin: 0px 15px;
+        padding: 12px 0px;
+        text-align: center;
+        text-transform: capitalize;
+        transition: all linear var(--transition-short);
+
+        &:hover {
+          color: var(--color-secondary);
+        }
+
+        & + & {
+          margin-left: 15px;
+        }
+
+        &::after {
+          position: absolute;
+          content: '';
+          display: block;
+          width: 0;
+          height: 2px;
+          bottom: 2px;
+          left: 0;
+          background-color: var(--color-secondary);
+          transition: all linear 0.3s;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+
+    .icon {
+      @extend %lordIcon;
+
+      .searchLink {
+        display: block;
+        height: 100%;
+      }
+    }
+
+    .icon + .icon {
+      margin-left: 20px;
+    }
+
+    .menuButton {
+      display: none;
+    }
+  }
+}
+
+.drawer {
+  .closeButton {
+    display: block;
+    margin-right: auto;
+  }
+
+  .sideNavigation {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      margin-bottom: var(--space-xl) !important;
+
+      a {
+        font-size: var(--font-size-xl);
+
+        &:hover {
+          color: var(--color-secondary) !important;
+        }
+
+        &.active {
+          color: var(--color-secondary) !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    .icons {
+      .menuButton {
+        display: block;
+      }
+    }
+
+    .nav {
+      display: none;
+    }
+  }
+}

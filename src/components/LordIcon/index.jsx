@@ -45,7 +45,7 @@ Element.setIconLoader((name) => {
 
 defineElement(lottie.loadAnimation);
 
-const LordIcon = ({ icon, className, trigger = 'hover', size = '30px', ...rest }) => {
+const LordIcon = ({ icon, className, trigger = 'hover', size = '30px', style, ...rest }) => {
   return (
     <lord-icon
       icon={icon}
@@ -53,6 +53,7 @@ const LordIcon = ({ icon, className, trigger = 'hover', size = '30px', ...rest }
       trigger={trigger}
       style={{
         width: size,
+        ...style,
       }}
       {...rest}
     />

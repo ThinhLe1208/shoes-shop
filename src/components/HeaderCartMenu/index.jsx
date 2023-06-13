@@ -10,7 +10,7 @@ import { notifications } from 'utils/notifications';
 import { usersThunk } from 'redux/thunks/usersThunk';
 import { clearCart } from 'redux/slices/cartSlice';
 
-const HeaderCartMenu = () => {
+const HeaderCartMenu = ({ iconClass = 'lordIcon' }) => {
   const { cartList, totalPrice, totalQuantity } = useSelector((state) => state.cart);
   const { isLoadingUsers } = useSelector((state) => state.users);
   const navigate = useNavigate();
@@ -122,7 +122,7 @@ const HeaderCartMenu = () => {
           }}
         >
           <LordIcon
-            className='lordIcon'
+            className={iconClass}
             icon='cart'
             trigger='hover'
             state='hover-1'
