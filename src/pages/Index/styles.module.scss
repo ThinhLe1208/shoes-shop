@@ -1,45 +1,84 @@
 .wrapper {
-  --space-bottom: 0px;
-  background-color: var(--color-primary);
+  position: relative;
+  z-index: 10;
 
-  height: 1000vh;
+  // & .hideSpace {
+  //   scroll-snap-align: start;
+  // }
+
+  // & .showSpace {
+  //   scroll-snap-align: center;
+  // }
+
+  .hideSpace {
+    width: 100%;
+    height: 100vh;
+  }
+
+  .showSpace {
+    position: relative;
+    background-color: var(--color-primary);
+    padding: 56px 0;
+
+    &.slider {
+      padding-bottom: 0;
+    }
+  }
 
   .carousel {
-    // margin-bottom: calc(var(--space-bottom) + 60px);
+    // margin-bottom: 60px;
+    position: relative;
+
+    .overlay {
+      position: absolute;
+      z-index: 12;
+      bottom: -240px;
+      left: 0;
+      pointer-events: none;
+      background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 1) 58%,
+        rgba(0, 0, 0, 1) 80%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      width: 100%;
+      height: 300px;
+    }
   }
 
   .slider {
-    margin-bottom: var(--space-bottom);
+    margin-bottom: 0;
   }
 
+  // .banner1,
+  // .banner2,
+  // .banner3 {
+  //   position: relative;
+  //   margin-bottom: 60px;
+  // }
+
   .banner1 {
-    margin-top: calc(var(--space-bottom) + 60px);
-    margin-bottom: calc(var(--space-bottom) + 60px);
+    // margin-top: 60px;
+    // margin-bottom: 60px;
     max-height: 400px;
-  }
-  .banner1,
-  .banner2,
-  .banner3 {
-    margin-bottom: calc(var(--space-bottom) + 60px);
   }
 }
 
 @media only screen and (max-width: 992px) {
   .wrapper {
+    .hideSpace:nth-child(2) {
+      display: none;
+    }
+
     .carousel {
       display: none;
     }
 
     .banner1 {
-      margin-top: calc(var(--space-bottom) + 110px);
+      margin-top: 110px;
       max-height: none;
       margin-bottom: 0;
     }
   }
-}
-
-.space {
-  width: 100%;
-  height: 80vh;
-  background-color: rgba(255, 0, 0, 0.1);
 }

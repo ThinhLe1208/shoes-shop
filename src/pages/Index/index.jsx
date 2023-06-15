@@ -53,13 +53,19 @@ const Index = () => {
 
   return (
     <div className={styles.wrapper}>
+      {/* 3d scroll effect */}
       <CameraScroll />
+
+      {/* main content */}
       <div className={styles.carousel}>
         <Carousel />
+        <div className={styles.overlay}></div>
       </div>
 
-      <Container>
-        <div className={styles.banner1}>
+      <div className={styles.hideSpace} />
+
+      <div className={styles.showSpace + ' ' + styles.banner1}>
+        <Container>
           <Row gutter={[32, 64]}>
             <Col
               span={24}
@@ -88,31 +94,30 @@ const Index = () => {
               />
             </Col>
           </Row>
-        </div>
-      </Container>
+        </Container>
+      </div>
 
-      <div className={styles.space} />
+      <div className={styles.hideSpace} />
 
-      <Container>
-        <div className={styles.slider}>
-          <div
-            ref={handleRef}
-            id={NIKE_CATEGORY_ID}
-          >
-            <Slider
-              productList={productListByCategory[NIKE_CATEGORY_ID]}
-              title='Nike Shoes'
-              subTitle='Collection'
-              loadingSkeletonType={NIKE_CATEGORY_ID}
-            />
-          </div>
-        </div>
-      </Container>
+      <div
+        className={styles.showSpace + ' ' + styles.slider}
+        ref={handleRef}
+        id={NIKE_CATEGORY_ID}
+      >
+        <Container>
+          <Slider
+            productList={productListByCategory[NIKE_CATEGORY_ID]}
+            title='Nike Shoes'
+            subTitle='Collection'
+            loadingSkeletonType={NIKE_CATEGORY_ID}
+          />
+        </Container>
+      </div>
 
-      <div className={styles.space} />
+      <div className={styles.hideSpace} />
 
-      <Container>
-        <div className={styles.banner2}>
+      <div className={styles.showSpace + ' ' + styles.banner2}>
+        <Container>
           <Banner
             position='middle'
             image='banner_2.png'
@@ -123,30 +128,30 @@ const Index = () => {
             path='/search'
             height='300px'
           />
-        </div>
-      </Container>
+        </Container>
+      </div>
 
-      <div className={styles.space} />
+      <div className={styles.hideSpace} />
 
-      <Container>
-        <div
-          className={styles.slider}
-          ref={handleRef}
-          id={ADIDAS_CATEGORY_ID}
-        >
+      <div
+        className={styles.showSpace + ' ' + styles.slider}
+        ref={handleRef}
+        id={ADIDAS_CATEGORY_ID}
+      >
+        <Container>
           <Slider
             productList={productListByCategory[ADIDAS_CATEGORY_ID]}
             title='Adidas Shoes'
             subTitle='Collection'
             loadingSkeletonType={ADIDAS_CATEGORY_ID}
           />
-        </div>
-      </Container>
+        </Container>
+      </div>
 
-      <div className={styles.space} />
+      <div className={styles.hideSpace} />
 
-      <Container>
-        <div className={styles.banner3}>
+      <div className={styles.showSpace + ' ' + styles.banner3}>
+        <Container>
           <Row gutter={[32, 32]}>
             <Col
               span={24}
@@ -173,25 +178,27 @@ const Index = () => {
               />
             </Col>
           </Row>
-        </div>
-      </Container>
+        </Container>
+      </div>
 
-      <div className={styles.space} />
+      <div className={styles.hideSpace} />
 
-      <Container>
-        <div
-          className={styles.slider}
-          ref={handleRef}
-          id={VANS_CONVERSE_CATEGORY_ID}
-        >
+      <div
+        className={styles.showSpace + ' ' + styles.slider}
+        ref={handleRef}
+        id={VANS_CONVERSE_CATEGORY_ID}
+      >
+        <Container>
           <Slider
             productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
             title='Vans And Converse Shoes'
             subTitle='Collection'
             loadingSkeletonType={VANS_CONVERSE_CATEGORY_ID}
           />
-        </div>
-      </Container>
+        </Container>
+      </div>
+
+      <div className={styles.hideSpace} />
     </div>
   );
 };

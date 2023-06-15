@@ -14,7 +14,7 @@ const Shoe = () => {
     require('../../../../assets/models/nike_air_zoom_pegasus_36-transformed.glb')
   );
   const shoeRef = useRef();
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress, scrollY } = useScroll();
 
   useEffect(() => {
     scene.traverse((object) => {
@@ -27,7 +27,13 @@ const Shoe = () => {
 
   useFrame((state, delta) => {
     // scroll threater
-    demoSheet.sequence.position = scrollYProgress.current * 7;
+    if (scrollY.current > window.innerHeight) {
+      const bodyHeight = document.querySelector('body').scrollHeight;
+      const delay = window.innerHeight / (bodyHeight - window.innerHeight);
+      if (scrollYProgress.current - delay > 0) {
+        demoSheet.sequence.position = (scrollYProgress.current - delay) * 7;
+      }
+    }
     // shoes s animation
     const t = state.clock.getElapsedTime();
     shoeRef.current.rotation.set(Math.cos(t / 4) / 8, Math.sin(t / 3) / 4 + 3, 0.15 + Math.sin(t / 2) / 8);
