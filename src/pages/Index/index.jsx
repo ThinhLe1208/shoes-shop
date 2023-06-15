@@ -16,6 +16,7 @@ import {
 import BannerVideo from 'components/BannerVideo';
 import { productThunk } from 'redux/thunks/productThunk';
 import Carousel from './components/Carousel';
+import CameraScroll from './components/CameraScroll';
 
 const Index = () => {
   const productListByCategory = useSelector((state) => state.product.productListByCategory);
@@ -52,6 +53,7 @@ const Index = () => {
 
   return (
     <div className={styles.wrapper}>
+      <CameraScroll />
       <div className={styles.carousel}>
         <Carousel />
       </div>
@@ -87,7 +89,11 @@ const Index = () => {
             </Col>
           </Row>
         </div>
+      </Container>
 
+      <div className={styles.space} />
+
+      <Container>
         <div className={styles.slider}>
           <div
             ref={handleRef}
@@ -101,7 +107,11 @@ const Index = () => {
             />
           </div>
         </div>
+      </Container>
 
+      <div className={styles.space} />
+
+      <Container>
         <div className={styles.banner2}>
           <Banner
             position='middle'
@@ -114,7 +124,11 @@ const Index = () => {
             height='300px'
           />
         </div>
+      </Container>
 
+      <div className={styles.space} />
+
+      <Container>
         <div
           className={styles.slider}
           ref={handleRef}
@@ -127,7 +141,11 @@ const Index = () => {
             loadingSkeletonType={ADIDAS_CATEGORY_ID}
           />
         </div>
+      </Container>
 
+      <div className={styles.space} />
+
+      <Container>
         <div className={styles.banner3}>
           <Row gutter={[32, 32]}>
             <Col
@@ -156,7 +174,11 @@ const Index = () => {
             </Col>
           </Row>
         </div>
+      </Container>
 
+      <div className={styles.space} />
+
+      <Container>
         <div
           className={styles.slider}
           ref={handleRef}
