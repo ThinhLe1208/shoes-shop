@@ -25,7 +25,7 @@ const Shoe = () => {
     });
   }, [scene]);
 
-  useFrame((state, delta) => {
+  useFrame((state) => {
     // scroll threater
     if (scrollY.current > window.innerHeight) {
       const bodyHeight = document.querySelector('body').scrollHeight;

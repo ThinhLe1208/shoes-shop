@@ -17,6 +17,7 @@ import BannerVideo from 'components/BannerVideo';
 import { productThunk } from 'redux/thunks/productThunk';
 import Carousel from './components/Carousel';
 import CameraScroll from './components/CameraScroll';
+import Slogan from './components/Slogan';
 
 const Index = () => {
   const productListByCategory = useSelector((state) => state.product.productListByCategory);
@@ -62,9 +63,13 @@ const Index = () => {
         <div className={styles.overlay}></div>
       </div>
 
-      <div className={styles.hideSpace} />
+      <div className={styles.hideSpace + ' ' + styles.first}>
+        <Container>
+          <Slogan />
+        </Container>
+      </div>
 
-      <div className={styles.showSpace + ' ' + styles.banner1}>
+      <div className={styles.showSpace}>
         <Container>
           <Row gutter={[32, 64]}>
             <Col
@@ -72,14 +77,14 @@ const Index = () => {
               lg={13}
             >
               <Banner
-                className={styles.image}
+                className={styles.banner1}
                 position='right'
                 image='banner_1.png'
                 subTitle='THE BEST COLLECTIONS'
                 title='Leather Shoes Collection'
                 content='30% Off Sale'
                 path='/search'
-                height='400px'
+                height='350px'
               />
             </Col>
             <Col
@@ -94,31 +99,43 @@ const Index = () => {
               />
             </Col>
           </Row>
+
+          <div
+            className={styles.slider}
+            ref={handleRef}
+            id={NIKE_CATEGORY_ID}
+          >
+            <Slider
+              productList={productListByCategory[NIKE_CATEGORY_ID]}
+              title='Nike Shoes'
+              subTitle='Collection'
+              loadingSkeletonType={NIKE_CATEGORY_ID}
+            />
+          </div>
         </Container>
       </div>
 
-      <div className={styles.hideSpace} />
-
-      <div
-        className={styles.showSpace + ' ' + styles.slider}
-        ref={handleRef}
-        id={NIKE_CATEGORY_ID}
-      >
+      <div className={styles.hideSpace}>
         <Container>
-          <Slider
-            productList={productListByCategory[NIKE_CATEGORY_ID]}
-            title='Nike Shoes'
-            subTitle='Collection'
-            loadingSkeletonType={NIKE_CATEGORY_ID}
+          <Slogan.Sub
+            title='Instant Go'
+            content='The Nike Epic React Flyknit 2 takes smooth, lightweight
+          performance to the next level. Designed to feel soft
+          and responsive even after hundreds of miles, it packs
+          a burst of bouncy energy so you can get on the go
+          and stay there.'
+            style={{
+              justifyContent: 'flex-end',
+              alignItems: 'flex-end',
+            }}
           />
         </Container>
       </div>
 
-      <div className={styles.hideSpace} />
-
-      <div className={styles.showSpace + ' ' + styles.banner2}>
+      <div className={styles.showSpace}>
         <Container>
           <Banner
+            className={styles.banner2}
             position='middle'
             image='banner_2.png'
             subTitle='THE BEST COLLECTIONS'
@@ -128,29 +145,40 @@ const Index = () => {
             path='/search'
             height='300px'
           />
+          <div
+            className={styles.slider}
+            ref={handleRef}
+            id={ADIDAS_CATEGORY_ID}
+          >
+            <Slider
+              productList={productListByCategory[ADIDAS_CATEGORY_ID]}
+              title='Adidas Shoes'
+              subTitle='Collection'
+              loadingSkeletonType={ADIDAS_CATEGORY_ID}
+            />
+          </div>
         </Container>
       </div>
 
-      <div className={styles.hideSpace} />
-
-      <div
-        className={styles.showSpace + ' ' + styles.slider}
-        ref={handleRef}
-        id={ADIDAS_CATEGORY_ID}
-      >
+      <div className={styles.hideSpace}>
         <Container>
-          <Slider
-            productList={productListByCategory[ADIDAS_CATEGORY_ID]}
-            title='Adidas Shoes'
-            subTitle='Collection'
-            loadingSkeletonType={ADIDAS_CATEGORY_ID}
+          <Slogan.Sub
+            title='Hugs Your Foot'
+            content='A lightweight Flyknit upper hugs your foot like a sock,
+            giving you a comfortable stretch, plenty of airflow
+            and all the support you need.'
+            style={{
+              justifyContent: 'flex-start',
+              alignItems: 'flex-start',
+            }}
+            listStyle={{
+              width: '42%',
+            }}
           />
         </Container>
       </div>
 
-      <div className={styles.hideSpace} />
-
-      <div className={styles.showSpace + ' ' + styles.banner3}>
+      <div className={styles.showSpace}>
         <Container>
           <Row gutter={[32, 32]}>
             <Col
@@ -167,6 +195,7 @@ const Index = () => {
               lg={9}
             >
               <Banner
+                className={styles.banner3}
                 position='left'
                 image='banner_4.png'
                 subTitle='THE BEST COLLECTIONS'
@@ -178,27 +207,39 @@ const Index = () => {
               />
             </Col>
           </Row>
+
+          <div
+            className={styles.slider}
+            ref={handleRef}
+            id={VANS_CONVERSE_CATEGORY_ID}
+          >
+            <Slider
+              productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
+              title='Vans And Converse Shoes'
+              subTitle='Collection'
+              loadingSkeletonType={VANS_CONVERSE_CATEGORY_ID}
+            />
+          </div>
         </Container>
       </div>
 
-      <div className={styles.hideSpace} />
-
-      <div
-        className={styles.showSpace + ' ' + styles.slider}
-        ref={handleRef}
-        id={VANS_CONVERSE_CATEGORY_ID}
-      >
+      <div className={styles.hideSpace}>
         <Container>
-          <Slider
-            productList={productListByCategory[VANS_CONVERSE_CATEGORY_ID]}
-            title='Vans And Converse Shoes'
-            subTitle='Collection'
-            loadingSkeletonType={VANS_CONVERSE_CATEGORY_ID}
+          <Slogan.Sub
+            title='Stable And Secure'
+            content='A moulded heel piece locks your foot over the
+            cushioning for maximum bounce and an effortlessly
+            stable stride.'
+            style={{
+              justifyContent: 'flex-end',
+              alignItems: 'flex-start',
+            }}
+            listStyle={{
+              width: '26%',
+            }}
           />
         </Container>
       </div>
-
-      <div className={styles.hideSpace} />
     </div>
   );
 };

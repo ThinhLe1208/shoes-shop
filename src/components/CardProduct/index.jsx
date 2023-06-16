@@ -43,7 +43,7 @@ const CardProduct = ({
         await dispatch(usersThunk.unlike(product?.id)).unwrap();
         notifications.success('Remove shoes from favorite list successfully.');
       } catch (err) {
-        notifications.error('Failed to remvoe shoes from favorite list.');
+        notifications.error('Failed to remove shoes from favorite list.');
       }
     } else {
       try {

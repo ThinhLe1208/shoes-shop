@@ -2,31 +2,23 @@
   position: relative;
   z-index: 10;
 
-  // & .hideSpace {
-  //   scroll-snap-align: start;
-  // }
-
-  // & .showSpace {
-  //   scroll-snap-align: center;
-  // }
-
   .hideSpace {
+    position: relative;
     width: 100%;
     height: 100vh;
-  }
 
-  .showSpace {
-    position: relative;
-    background-color: var(--color-primary);
-    padding: 56px 0;
-
-    &.slider {
-      padding-bottom: 0;
+    // set height of the Container component to adjust a position of an ul elelement in the Slogan component
+    & > div {
+      height: 100%;
     }
   }
 
+  .showSpace {
+    background-color: var(--color-primary);
+    padding-top: 68px;
+  }
+
   .carousel {
-    // margin-bottom: 60px;
     position: relative;
 
     .overlay {
@@ -47,38 +39,20 @@
     }
   }
 
-  .slider {
-    margin-bottom: 0;
-  }
-
-  // .banner1,
-  // .banner2,
-  // .banner3 {
-  //   position: relative;
-  //   margin-bottom: 60px;
-  // }
-
-  .banner1 {
-    // margin-top: 60px;
-    // margin-bottom: 60px;
-    max-height: 400px;
+  .banner2,
+  .banner3 {
+    margin-bottom: 60px;
   }
 }
 
 @media only screen and (max-width: 992px) {
   .wrapper {
-    .hideSpace:nth-child(2) {
-      display: none;
+    .hideSpace.first {
+      margin-top: 110px;
     }
 
     .carousel {
       display: none;
-    }
-
-    .banner1 {
-      margin-top: 110px;
-      max-height: none;
-      margin-bottom: 0;
     }
   }
 }
