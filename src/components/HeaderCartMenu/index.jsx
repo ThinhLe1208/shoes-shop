@@ -53,7 +53,7 @@ const HeaderCartMenu = ({ iconClass = 'lordIcon' }) => {
   const emptyContent = (
     <div className={styles.emptyContent}>
       <Empty
-        image={require('../../assets/images/empty_cart.png')}
+        image={require('assets/images/empty_cart.png')}
         imageStyle={{
           height: 100,
           display: 'flex',

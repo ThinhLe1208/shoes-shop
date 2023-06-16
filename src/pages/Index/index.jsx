@@ -6,14 +6,14 @@ import _ from 'lodash';
 import styles from './styles.module.scss';
 import Slider from 'components/Slider';
 import Container from 'components/Container';
-import Banner from 'components/Banner';
+import Banner from 'pages/Index/components/Banner';
 import {
   ADIDAS_CATEGORY_ID,
   FEATURE_ID,
   NIKE_CATEGORY_ID,
   VANS_CONVERSE_CATEGORY_ID,
 } from 'utils/constants/settingSystem';
-import BannerVideo from 'components/BannerVideo';
+import BannerVideo from 'pages/Index/components/BannerVideo';
 import { productThunk } from 'redux/thunks/productThunk';
 import Carousel from './components/Carousel';
 import CameraScroll from './components/CameraScroll';
@@ -22,6 +22,7 @@ import Slogan from './components/Slogan';
 const Index = () => {
   const productListByCategory = useSelector((state) => state.product.productListByCategory);
   const featureProductList = useSelector((state) => state.product.featureProductList);
+  const screenWidth = useSelector((state) => state.ui.screenWidth);
   const dispatch = useDispatch();
   const sliedersRef = useRef({});
 
@@ -55,13 +56,15 @@ const Index = () => {
   return (
     <div className={styles.wrapper}>
       {/* 3d scroll effect */}
-      <CameraScroll />
+      {screenWidth > 992 && <CameraScroll />}
 
       {/* main content */}
-      <div className={styles.carousel}>
-        <Carousel />
-        <div className={styles.overlay}></div>
-      </div>
+      {screenWidth > 992 && (
+        <div className={styles.carousel}>
+          <Carousel />
+          <div className={styles.overlay}></div>
+        </div>
+      )}
 
       <div className={styles.hideSpace + ' ' + styles.first}>
         <Container>

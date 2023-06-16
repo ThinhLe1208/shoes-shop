@@ -3,11 +3,11 @@ import { Outlet, useHref } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import styles from './styles.module.scss';
-import FooterTemp from 'components/FooterTemp';
 import Header from 'components/Header';
 import { productThunk } from 'redux/thunks/productThunk';
 import { setScreenWidth } from 'redux/slices/uiSlice';
 import HeaderIndex from 'components/HeaderIndex';
+import Footer from 'components/Footer';
 
 const HomeTemplate = () => {
   const outletRef = useRef();
@@ -58,7 +58,7 @@ const HomeTemplate = () => {
       >
         <Outlet />
       </div>
-      <FooterTemp />
+      <Footer />
     </div>
   );
 };

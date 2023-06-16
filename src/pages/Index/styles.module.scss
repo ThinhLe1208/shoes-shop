@@ -47,12 +47,16 @@
 
 @media only screen and (max-width: 992px) {
   .wrapper {
-    .hideSpace.first {
-      margin-top: 110px;
+    .hideSpace {
+      display: none;
     }
 
-    .carousel {
-      display: none;
+    .showSpace {
+      padding-top: 0;
+    }
+
+    .banner1 {
+      margin-top: 110px;
     }
   }
 }

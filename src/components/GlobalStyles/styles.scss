@@ -287,6 +287,16 @@ td {
   }
 
   &.index {
-    --lord-icon-primary: #fff !important;
+    --lord-icon-primary: #fff;
+
+    &:hover {
+      --lord-icon-primary: var(--color-secondary);
+    }
+  }
+
+  @media only screen and (max-width: 992px) {
+    &.index {
+      --lord-icon-primary: var(--color-text-base);
+    }
   }
 }

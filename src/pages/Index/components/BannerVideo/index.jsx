@@ -28,7 +28,7 @@ const BannerVideo = ({ image, height }) => {
         <>
           <img
             className={styles.image}
-            src={require(`../../assets/images/${image}`)}
+            src={require(`assets/images/${image}`)}
             alt={image}
           />
           <button
@@ -40,7 +40,7 @@ const BannerVideo = ({ image, height }) => {
         </>
       )}
       <video
-        src={require('../../assets/videos/banner_video.mp4')}
+        src={require('assets/videos/banner_video.mp4')}
         className={styles.video}
         ref={videoRef}
         onPlay={() => setIsPlaying(true)}

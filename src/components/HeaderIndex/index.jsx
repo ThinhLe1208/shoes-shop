@@ -160,7 +160,7 @@ const HeaderIndex = () => {
                   className={styles.searchLink}
                 >
                   <LordIcon
-                    className={styles.indexIcon + ' lordIcon'}
+                    className={iconClass}
                     icon='search'
                     trigger='hover'
                   />

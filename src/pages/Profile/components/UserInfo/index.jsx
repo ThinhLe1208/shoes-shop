@@ -49,7 +49,7 @@ const UserInfo = ({ userProfile, isLoading }) => {
       <div className={styles.heading}>
         <img
           className={styles.cover}
-          src={require('../../../../assets/images/banner_2.png')}
+          src={require('assets/images/banner_2.png')}
           alt='cover'
         />
         <img

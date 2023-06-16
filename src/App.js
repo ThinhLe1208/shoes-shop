@@ -15,7 +15,6 @@ import HomeTemplate from 'templates/HomeTemplate';
 // import Profile from 'pages/Profile';
 // import Search from 'pages/Search';
 
-import Checkout from 'pages/Checkout';
 import ScrollToTopAuto from 'components/ScrollToTopAuto';
 import LoadingScreen from 'components/LoadingScreen';
 import { history } from 'utils/history';
@@ -100,7 +99,6 @@ function App() {
               <Route path='cart' element={<Cart />} />
               <Route path='profile' element={<Profile />} />
               <Route path='search' element={<Search />} />
-              <Route path='checkout' element={<Checkout />} />
               <Route path='*' element={<Navigate to='index' />} />
             </Route>
           </Routes>

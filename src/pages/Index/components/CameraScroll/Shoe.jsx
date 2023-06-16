@@ -5,14 +5,12 @@ import { useFrame } from '@react-three/fiber';
 import { editable as e } from '@theatre/r3f';
 import { useScroll } from 'framer-motion';
 import { getProject } from '@theatre/core';
-import demoProjectState from '../../../../data/CameraScroll.theatre-project-state.json';
+import demoProjectState from 'data/CameraScroll.theatre-project-state.json';
 
 const demoSheet = getProject('Demo Project', { state: demoProjectState }).sheet('Demo Sheet');
 
 const Shoe = () => {
-  const { nodes, materials, scene } = useGLTF(
-    require('../../../../assets/models/nike_air_zoom_pegasus_36-transformed.glb')
-  );
+  const { nodes, materials, scene } = useGLTF(require('assets/models/nike_air_zoom_pegasus_36-transformed.glb'));
   const shoeRef = useRef();
   const { scrollYProgress, scrollY } = useScroll();
 
