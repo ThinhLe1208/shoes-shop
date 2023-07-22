@@ -1,27 +1,19 @@
+import { BgColorsOutlined } from '@ant-design/icons';
+import { useGLTF } from '@react-three/drei';
+import { ConfigProvider, FloatButton } from 'antd';
 import { Suspense, lazy, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { unstable_HistoryRouter as HistoryRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { BgColorsOutlined } from '@ant-design/icons';
-import { ConfigProvider, FloatButton } from 'antd';
 import 'react-toastify/dist/ReactToastify.css';
 
-import HomeTemplate from 'templates/HomeTemplate';
-
-// import Index from 'pages/Index';
-// import Detail from 'pages/Detail';
-// import Login from 'pages/Login';
-// import Register from 'pages/Register';
-// import Cart from 'pages/Cart';
-// import Profile from 'pages/Profile';
-// import Search from 'pages/Search';
-
-import ScrollToTopAuto from 'components/ScrollToTopAuto';
 import LoadingScreen from 'components/LoadingScreen';
+import ScrollToTopAuto from 'components/ScrollToTopAuto';
+import { setTheme } from 'redux/slices/uiSlice';
+import HomeTemplate from 'templates/HomeTemplate';
+import { BLUE_COLOR_THEME, GREEN_COLOR_THEME, GREY_COLOR_THEME, RED_COLOR_THEME } from 'utils/constants/settingSystem';
 import { history } from 'utils/history';
 import { themeConfig } from 'utils/themes/antdTheme.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTheme } from 'redux/slices/uiSlice';
-import { BLUE_COLOR_THEME, GREEN_COLOR_THEME, GREY_COLOR_THEME, RED_COLOR_THEME } from 'utils/constants/settingSystem';
 
 // dynamic imports with lazy React
 const Index = lazy(() => import('pages/Index'));
@@ -107,5 +99,7 @@ function App() {
     </ ConfigProvider>
   );
 }
+
+useGLTF.preload(require('assets/models/nike_air_zoom_pegasus_36-transformed.glb'));
 
 export default App;

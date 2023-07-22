@@ -1,4 +1,5 @@
 import jwt_decode from 'jwt-decode';
+
 import { ACCESS_TOKEN, USER_LOGIN } from './constants/settingSystem';
 
 class Storage {

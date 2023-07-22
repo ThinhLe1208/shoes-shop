@@ -60,9 +60,9 @@ const Show = () => {
           </>
         )}
       </CubeCamera>
-      {/* 
+
       <Rings />
-      <Boxes /> */}
+      <Boxes />
 
       <spotLight
         color={[1, 0.25, 0.7]}

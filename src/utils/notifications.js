@@ -1,5 +1,6 @@
-import LordIcon from "components/LordIcon";
 import { toast } from "react-toastify";
+
+import LordIcon from "components/LordIcon";
 
 class Notifications {
     success = (content, options) => {

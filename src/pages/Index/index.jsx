@@ -62,7 +62,7 @@ const Index = () => {
       {screenWidth > 992 && (
         <div className={styles.carousel}>
           <Carousel />
-          <div className={styles.overlay}></div>
+          <div className={styles.overlay} />
         </div>
       )}
 

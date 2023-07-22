@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Outlet, useHref } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Outlet, useHref } from 'react-router-dom';
 
-import styles from './styles.module.scss';
-import Header from 'components/Header';
-import { productThunk } from 'redux/thunks/productThunk';
-import { setScreenWidth } from 'redux/slices/uiSlice';
-import HeaderIndex from 'components/HeaderIndex';
 import Footer from 'components/Footer';
+import Header from 'components/Header';
+import HeaderIndex from 'components/HeaderIndex';
+import { setScreenWidth } from 'redux/slices/uiSlice';
+import { productThunk } from 'redux/thunks/productThunk';
+import styles from './styles.module.scss';
 
 const HomeTemplate = () => {
   const outletRef = useRef();
