@@ -1,9 +1,7 @@
-import React from 'react';
-
-import styles from './styles.module.scss';
-import SigninForm from 'pages/Login/components/SigninForm';
-import Container from 'components/Container';
 import Breadcrumb from 'components/Breadcrumb';
+import Container from 'components/Container';
+import SignInForm from 'pages/Login/components/SignInForm';
+import styles from './styles.module.scss';
 
 const Login = () => {
   const breadCrumbList = [{ href: '/', title: 'Home' }, { title: 'Login' }];
@@ -13,7 +11,7 @@ const Login = () => {
       <Container>
         <Breadcrumb breadCrumbList={breadCrumbList} />
         <h1 className={styles.heading}>Already Registered?</h1>
-        <SigninForm />
+        <SignInForm />
       </Container>
     </div>
   );

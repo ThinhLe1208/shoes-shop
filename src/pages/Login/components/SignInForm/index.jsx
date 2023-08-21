@@ -16,7 +16,7 @@ const SignInSchema = Yup.object().shape({
   password: Yup.string().required('Please provide password.'),
 });
 
-const SigninForm = () => {
+const SignInForm = () => {
   const dispatch = useDispatch();
 
   // Formik
@@ -76,4 +76,4 @@ const SigninForm = () => {
   );
 };
 
-export default SigninForm;
+export default SignInForm;

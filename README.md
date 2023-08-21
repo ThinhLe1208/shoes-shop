@@ -27,4 +27,4 @@ The shoe e-commerce website is an online platform that provides users with a con
 - Add / Remove / Update products in cart
 - Search / Filter products
 - Like / Unlike products
-- Change many themes
+- Themes
